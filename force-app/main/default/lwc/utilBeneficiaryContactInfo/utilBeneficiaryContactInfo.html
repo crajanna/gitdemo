@@ -1,0 +1,47 @@
+<template>
+     <template if:true={suffixListValues1.data}>
+        <div class="slds-size_2-of-12">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label sr-only" for="suffix">Suffix</label>
+
+                <lightning-combobox name="Suffix" value={value} placeholder="Suffix"
+                    options={suffixListValues.data.values} onchange={handleChange}>
+                </lightning-combobox>
+
+            </div>
+        </div>
+    </template> 
+    <h6 class="mt-30">CONTACT INFO</h6>
+    <div class="slds-form-element mt-10">
+        <label class="slds-form-element__label sr-only" for="addNewAddress">Add
+            New Address</label>
+        <div class="slds-form-element__control">
+            <div class="slds-select_container">
+                <select class="slds-select" id="addNewAddress">
+                    <option>Add New Address</option>
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div if:true={countryValues1} class="box-light-gray mt-5">
+        <lightning-input-address
+            street-placeholder="Street Address"
+            city-placeholder="City"
+            postal-code-placeholder="Zip code"
+            province-placeholder="State"
+            country-placeholder="Country"
+            address-lookup-placeholder="Address lookup"
+            street={address.street}
+            city={address.city}
+            country={address.country}
+            province={address.province}
+            postal-code={address.postalCode}
+            country-options={getCountryOptions}
+            province-options={getProvinceOptions}
+            onchange={handleAddressChange}></lightning-input-address>
+    </div>
+</template>

@@ -1,0 +1,6 @@
+/* @import 'c/cssLibraryFpp'; */
+@import 'c/fpCssLibrary';
+
+.slds-form-element__label{
+    padding-right: 0px !important;
+}

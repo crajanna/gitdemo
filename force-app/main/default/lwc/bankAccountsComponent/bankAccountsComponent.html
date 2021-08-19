@@ -1,0 +1,128 @@
+<template>
+  <div class="f-comp">
+    <div class="slds-form__row mb-20">
+
+      <div class="slds-form__item" role="listitem">
+        <div class="slds-form-element slds-form-element_stacked">
+          <label class="slds-form-element__label" for="select-01">Select Financial Institution</label>
+          <abbr title="required" class="slds-required">*</abbr>
+          <div class="slds-form-element__control">
+            <div class="slds-select_container">
+              <select class="slds-select bankaccountCmp" name="accountType" onchange={handlePlanPaymentChange}>
+                <option disabled selected value>Select Financial Institution</option>
+                <template if:true={planPaymentsOptions}>
+                  <template for:each={planPaymentsOptions} for:item="planPaymentsOption">
+                    <option key={planPaymentsOption.value} value={planPaymentsOption.value}>{planPaymentsOption.label}
+                    </option>
+                  </template>
+                </template>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <br />
+    <template if:true={showNewAccountSetup}>
+      <div class="slds-form__row mb-20">
+
+
+        <div class="slds-form__item" role="listitem">
+          <div class="slds-form-element slds-form-element_stacked">
+            <label class="slds-form-element__label" for="fullname">Account Name</label>
+            <abbr title="required" class="slds-required">*</abbr>
+            <div class="slds-form-element__control">
+              <input type="text" id="fullname" class="slds-input instNameCmp" placeholder="Name"
+                value={finAcctRecord.Name} onchange={handleFinAcctNameChange} />
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__item" role="listitem">
+          <div class="slds-form-element slds-form-element_stacked">
+            <label class="slds-form-element__label" for="bankAccount">Account Type</label>
+            <abbr title="required" class="slds-required">*</abbr>
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <select class="slds-select bankaccountTypeCmp" name="bankAccount" onchange={handleAccountTypeChange}>
+                  <option disabled selected value>-- select an option --</option>
+                  <template if:true={bankAccountPicklist.data.values}>
+                    <template for:each={bankAccountPicklist.data.values} for:item="bankAccount">
+                      <option key={bankAccount.value} value={bankAccount.value}>{bankAccount.label}</option>
+                    </template>
+                  </template>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="slds-form__row mb-20">
+
+
+        <div class="slds-form__item" role="listitem">
+          <div class="slds-form-element slds-form-element_stacked">
+            <label class="slds-form-element__label pr-0" for="stacked-form-element-id-01">Routing Number</label>
+            <abbr title="required" class="slds-required">*</abbr>
+            <div class="slds-form-element__icon">
+              <button data-id="routNum" class="slds-button slds-button_icon" onmouseover={OnHelpMouseEnter}
+                onmouseout={OnHelpMouseLeave}>
+                <div if:true={showRoutTooltip}
+                  class=" slds-popover slds-popover_tooltip slds-nubbin_bottom-left tip-tweak2" role="tooltip"
+                  data-id="help">
+                  <div class="slds-popover__body">First 9 digits on the bottom left of your check.</div>
+                </div>
+                <svg class="slds-button__icon icon-primary" aria-hidden="true">
+                  <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#info"></use>
+                </svg>
+                <span class="slds-assistive-text">Help</span>
+              </button>
+            </div>
+            <div class="slds-form-element__control">
+              <input class="slds-input routingNumCmp" name="fInstRoutingNum" type="text" pattern="([0-9]*)"
+                placeholder="Routing Number" title="Enter only digits" value={finAcctRecord.FinServ__RoutingNumber__c}
+                onchange={handleFinAcctRoutingNbrChange} />
+            </div>
+          </div>
+        </div>
+
+        <div class="slds-form__item" role="listitem">
+          <div class="slds-form-element slds-form-element_stacked">
+            <label class="slds-form-element__label pr-0" for="stacked-form-element-id-01">Account Number</label>
+            <abbr title="required" class="slds-required">*</abbr>
+            <div class="slds-form-element__icon">
+              <button data-id="accNum" class="slds-button slds-button_icon" onmouseover={OnHelpMouseEnter}
+                onmouseout={OnHelpMouseLeave}>
+                <div if:true={showAccTooltip}
+                  class=" slds-popover slds-popover_tooltip slds-nubbin_bottom-left tip-tweak2" role="tooltip"
+                  data-id="help">
+                  <div class="slds-popover__body">Number may be found on the right of the Routing Number.</div>
+                </div>
+                <svg class="slds-button__icon icon-primary" aria-hidden="true">
+                  <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#info"></use>
+                </svg>
+                <span class="slds-assistive-text">Help</span>
+              </button>
+            </div>
+            <div class="slds-form-element__control">
+              <input class="slds-input accountNumCmp" name="fInstAccountNum" type="text" pattern="([0-9]*)"
+                placeholder="Account Number" title="Enter only digits"
+                value={finAcctRecord.FinServ__FinancialAccountNumber__c} onchange={handleFinAcctNbrChange} />
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </template>
+  </div>
+</template>

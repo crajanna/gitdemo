@@ -1,0 +1,136 @@
+<template>
+  
+  <div class="slds-grid slds-grid_vertical-align-center slds-wrap f-comp slds-is-relative">
+    <!-- <div class="slds-m-around_large"> -->
+      <!-- <div  class="slds-is-relative"> -->
+        <div if:true={isLoaded} class="slds-align_absolute-center">
+          <lightning-spinner alternative-text="Loading..." variant="brand">
+          </lightning-spinner>
+        </div>
+      <!-- </div> -->
+    <!-- </div> -->
+
+    <!-- FORM WRAP -->
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 f-form-wrap-alt">
+
+      <!-- FORM -->
+      <div class="mb-40">
+        <a href="https://www.floridaprepaidcollegefoundation.com/" target="_blank"> <img src={logo} width="157" alt="Stanley G. Tate Florida Prepaid College Foundation" /></a>
+      </div>
+
+      <div class="mb-40">
+        <h1>Create an Account</h1>
+        <p class="text-gray">Already have an account? <a href="../s/login">Sign In</a></p>
+      </div>
+
+      <fieldset class="slds-form-element slds-form-element_compound">
+        <legend class="slds-form-element__legend slds-form-element__label sr-only">Full Name</legend>
+        <div class="slds-form-element__control">
+          <div class="slds-form-element__row">
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element">
+                <label class="slds-form-element__label" for="firstName">First Name</label>
+
+                <div class="slds-form-element__control">
+                  <input type="text" id="firstName" name="firstName" class="slds-input" value={firstName} required=""
+                    onchange={contactChangeVal} />
+                </div>
+
+              </div>
+            </div>
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element">
+                <label class="slds-form-element__label" for="lastName">Last Name</label>
+                <div class="slds-form-element__control">
+                  <input type="text" id="lastName" name="lastName" class="slds-input" value={lastName} required=""
+                    onchange={contactChangeVal} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="slds-form-element mb-20">
+        <label class="slds-form-element__label" for="email">Email</label>
+        <div class="slds-form-element__control">
+          <input type="email" id="email" name="email" class="slds-input" value={email} required="" onchange={contactChangeVal} />
+          <template if:true={uniqueEmail}>
+            <div class="slds-m-vertical_medium">
+              <lightning-formatted-text style="color:red" value="Email already registered. Try with different email.">
+              </lightning-formatted-text>
+            </div>
+          </template>
+        </div>
+
+      </div>
+
+      <div class="slds-form-element">
+        <div class="slds-form-element__control">
+          <div class="slds-checkbox">
+            <input type="checkbox" name="ownBusiness" id="ownBusiness" value="ownBusiness"
+              onchange={contactChangeVal} />
+            <label class="slds-checkbox__label d-flex" for="ownBusiness">
+              <div class="check-inline">
+                <div class="slds-checkbox_faux check-inline"></div>
+              </div>
+              <span class="slds-form-element__label f-comp-label-lite">I am an individual and do not own a business. </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div if:false={hideBusinessName} class="slds-form-element mb-20">
+        <label class="slds-form-element__label" for="businessName">Business Name</label>
+        <div class="slds-form-element__control">
+          <input type="text" id="businessName" name="businessName" class="slds-input" value={businessName} required=""
+            onchange={contactChangeVal} />
+        </div>
+
+      </div>
+
+      <div class="slds-form-element mb-40">
+        <div class="slds-form-element__control">
+          <div class="slds-checkbox">
+            <input type="checkbox" name="acceptTerms" id="acceptTerms" value="acceptTerms"
+              onchange={contactChangeVal} />
+            <label class="slds-checkbox__label d-flex" for="acceptTerms">
+              <div class="check-inline">
+                <div class="slds-checkbox_faux check-inline"></div>
+              </div>
+              <span class="slds-form-element__label f-comp-label-lite">Creating an account means you accept our <a
+                  href="https://www.myfloridaprepaid.com/terms-conditions" target="_blank" >Terms of Service</a> & <a href="https://www.floridaprepaidcollegefoundation.com/privacy-policy" target="_blank" >Privacy Policy</a>. </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+
+
+      <template if:true={enableSignup}>
+        <div>
+          <a href="#" role="button" class="slds-button slds-button_brand" onclick={handleClick}>Create an Account</a>
+        </div>
+      </template>
+      <template if:false={enableSignup}>
+        <div>
+          <a href="#" role="button" class="slds-button slds-button_brand">Create an Account</a>
+        </div>
+      </template>
+
+    </div>
+
+    <!-- MESSAGE WRAP -->
+    <!-- MESSAGE WRAP -->
+    <div
+      class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-grid slds-grid_vertical-align-end slds-wrap f-cover f-cover-signup">
+      <c-bg-image-text-comp bg-image="bg-grad-dad.jpg"
+        title-text="Give aspiring students the opportunity to build a better future for themselves.">
+      </c-bg-image-text-comp>
+    </div>
+
+
+  </div>
+
+
+</template>

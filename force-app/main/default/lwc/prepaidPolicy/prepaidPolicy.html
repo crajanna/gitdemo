@@ -1,0 +1,154 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+
+    <template if:true={policyScreen}>
+        <div class="slds-modal__header">
+            <h2 class="slds-modal__title slds-hyphenate slds-text-heading--medium">
+                New Prepaid Policy
+            </h2>
+        </div>
+		<br>
+
+        <!--<div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                <lightning-combobox name="Beneficiary" label="Beneficiary" value={beneficiaryValue} options={beneficiariesOptions} onchange ={handleBeneficiaryChange}
+                required></lightning-combobox>
+            </div>
+        </div>
+
+        <template if:true={beneficiaryInfoSection}>
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_4-of-12"><h6 class="gray-grid-title">Beneficiary Birth Date </h6>     
+                    <lightning-formatted-text value={personBirthDate} ></lightning-formatted-text>
+                </div>
+                <div class="slds-size_1-of-12"></div>
+                <div class="slds-size_7-of-12"><h6 class="gray-grid-title">Projected Enrollment Year </h6>     
+                    {PEY}
+                </div>
+            </div>
+        </template> -->
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                <lightning-input type="Number" name="quantityValue" label="Number of Policies" value={quantityValue} min="0"
+                        max="200" onchange={handleQuantityValueChange} required>
+                </lightning-input>
+            </div>
+        </div>
+
+         <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_4-of-12">
+                <template if:true={ContractYearPicklist.data}>
+                        <lightning-combobox name="contractyear" value={contractYearValue} label="Contract Year"
+                        placeholder="Contract Year" options={ContractYearPicklist.data.values}
+                        onchange={handleContractYearChange} required
+                        ></lightning-combobox>                                     
+                </template>
+           </div>
+           <div class="slds-size_1-of-12"></div>
+           <div class="slds-size_7-of-12">        
+                <template if:true={PEYPicklist.data}>
+                        <lightning-combobox name="PEYValue" value={PEYvalue} label="PEY"
+                        placeholder="Projected Enrollement Year" options={PEYPicklist.data.values}
+                        onchange={handlePEYValueChange} required
+                        ></lightning-combobox> 
+                </template>
+           </div>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_4-of-12">
+                <lightning-combobox name="PolicyPurchaseType" label="Policy Purchase Type" value={policyPurchaseTypeValue} options={policyPurchaseTypeOptions}
+                onchange={handlePolicyPurchaseType} required></lightning-combobox> 
+           </div>
+           <div class="slds-size_1-of-12"></div>
+           <div class="slds-size_7-of-12">        
+            <lightning-combobox name="SubType" label="Sub Types" value={priceListSubTypeValue} options={priceSubTypesOptions}
+            onchange={handlePriceListSubType} required></lightning-combobox> 
+           </div>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                <lightning-combobox name="Policy" label="Available Plan Options" value={policyValue} options={policyOptions}
+                    onchange={handlePolicyValueChange} required></lightning-combobox>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                <lightning-input type="number" name="numberOfPayments" label="Number of Payments" value={numberOfPayments}
+                    onchange={handleNoOfPaymentChange} required></lightning-input>
+            </div>
+        </div>
+
+            <br>
+            <template if:true={coverages}>
+            <lightning-dual-listbox id="multiProduct" name="Select Coverages" label="Select Coverages"
+                source-label="Available Coverages" selected-label="Selected Coverages" options={coverageOptions}
+                value={selectedCoveragesValues} onchange={handleSelected}>
+            </lightning-dual-listbox>
+            <br />
+        </template>
+         
+        <div class="slds-align_absolute-center slds-m-top_small slds-m-bottom_medium">
+            <lightning-button label="Confirm Prepaid Policy" onclick={handleClickConfrimation}></lightning-button>
+           
+        </div>  
+        
+
+    </template>
+
+    <template if:true={confirmationScreen}>    
+        <div class="slds-modal__header">
+            <h2 class="slds-modal__title slds-hyphenate slds-text-heading--medium">
+                Confirm Prepaid Policy Details
+            </h2>
+        </div>
+        <br/>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">PEY</h6>     
+            <lightning-formatted-text value={PEYvalue} ></lightning-formatted-text></div>
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Contract Year</h6>     
+                <lightning-formatted-text value={contractYearValue} ></lightning-formatted-text></div>
+         </div>
+
+         <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Policy Purchase Type</h6>     
+            <lightning-formatted-text value={policyPurchaseTypeValue} ></lightning-formatted-text></div>
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Sub Type</h6>     
+                <lightning-formatted-text value={priceListSubTypeValue} ></lightning-formatted-text></div>
+         </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+           <!-- <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Beneficiary Name</h6>     
+            <lightning-formatted-text value={beneficiaryLabel} ></lightning-formatted-text></div> -->
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Policy</h6>     
+                <lightning-formatted-text value={policyLabel} ></lightning-formatted-text></div>
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Number of Payments</h6>     
+            <lightning-formatted-number value={numberOfPayments} maximum-fraction-digits="2"></lightning-formatted-number></div>
+         </div>
+        
+         <br/>
+  
+            <h6 class="gray-grid-title">Selected Coverages</h6>
+            <template for:each={SelOptionsLabels} for:item="cover" for:index="index">
+                <div key={cover.key}>
+                    {cover}<br />
+                </div>
+            </template>
+
+        
+        
+        <lightning-button variant="brand" label="Create Policy" title="Create Claim" onclick={createPolicy}
+        class="slds-float_right slds-p-around_medium"></lightning-button>
+        <lightning-button variant="brand" label="Edit" title="Edit" onclick={editPolicy}
+        class="slds-float_right slds-p-around_medium"></lightning-button>
+
+    </template>  
+
+    
+</template>

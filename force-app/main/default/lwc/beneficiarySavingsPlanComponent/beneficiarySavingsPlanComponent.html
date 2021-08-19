@@ -1,0 +1,75 @@
+<template>
+    <div class="d-flex space-between ml-34 mr-34">
+        <h3 class="text-20">Savings Plan</h3>
+
+        <a href="#" class="ml-auto" onclick={handleManageUsers} data-value={savingsPlanDetail.faId}><b>Manage Users</b></a>
+        <a href="#" class="ml-auto" onclick={onViewDetailsHandler} data-value={savingsPlanDetail.faId}><b>View Details</b></a>
+        
+      </div>
+      <div class="col-inner-wrap">
+  
+        <div class="box-dash d-flex">
+          <div class="img-link-alt2 flex-1">
+            <a href="#" class="d-flex" onclick={onViewDetailsHandler} data-value={savingsPlanDetail.faId}>
+                <img src={imagecirclefpo30} alt="icon" />
+              <div class="d-flex flex-column justify-content-center ml-10">
+                <span><b>529 Savings Plan</b></span>
+                <span class="small">Plan Acct # {savingsPlanDetail.faNumber}</span>
+              </div>
+            </a>
+          </div>
+  
+          <div class="img-link-alt2 px-4">
+            <a href="#" class="d-flex">
+                <img src={imagecirclefpo30} alt="icon" />
+              <div class="d-flex flex-column justify-content-center ml-10">
+                <span class="small">Account Owner</span>
+                <span><b>{savingsPlanDetail.accountOwnerName}</b></span>
+              </div>
+            </a>
+          </div>
+  
+          <div class="img-link-alt2 px-4">
+            <a href="#" class="d-flex">
+                <img src={imagecirclefpo30} alt="icon" />
+              <div class="d-flex flex-column justify-content-center ml-10">
+                <span class="small">Survivor</span>
+                <span><b>{savingsPlanDetail.survivorName}</b></span>
+              </div>
+            </a>
+          </div>
+  
+          <div class="img-link-alt2 px-4">
+            <span class="d-flex">
+              <div class="d-flex flex-column justify-content-center ml-10">
+                <span class="small">Current Balance</span>
+                <span><b>
+                         <lightning-formatted-number value={savingsPlanDetail.currentBalance} maximum-fraction-digits="2" format-style="currency" currency-code="USD">
+                         </lightning-formatted-number>
+                   </b></span>
+              </div>
+            </span>
+          </div>
+  
+          <div class="img-link-alt2 px-4">
+            <span class="d-flex">
+              <div class="d-flex flex-column justify-content-center ml-10">
+                <span class="small">Next Payment</span>
+                <span><b>
+                    
+                    <lightning-formatted-date-time
+                    value={savingsPlanDetail.nextPayment}
+                    year="numeric"
+                    month="numeric"
+                    day="numeric"
+                    time-zone="UTC">
+                </lightning-formatted-date-time>
+                    </b></span>
+              </div>
+            </span>
+          </div>
+  
+        </div>
+  
+      </div>
+</template>

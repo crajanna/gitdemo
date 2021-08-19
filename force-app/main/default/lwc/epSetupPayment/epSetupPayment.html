@@ -1,0 +1,158 @@
+<template>
+
+    <div class="spinner">
+      <template if:true={isLoading}>
+          <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+          </lightning-spinner>
+      </template>
+    </div>
+      <!-- CONTENT -->
+      <div class="slds-grid slds-grid_align-center slds-wrap f-comp pledge-content ">  
+    
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12">
+          <div class="pledge-card-wrap">
+    
+            <div class="pledge-inner">
+  
+                  <h1 class="text-normal">Select Payment Option</h1>
+              
+                    <div class="slds-form mb-5">
+                      <div class="slds-form-element slds-form-element_horizontal">
+                        <label class="slds-form-element__label" for="horizontal-input-id-01">Payment Method</label>
+                        <div class="slds-form-element__control">
+                          <lightning-combobox class="fullFillCmp" name="pledgeFulfillModeOption" value={pledgeFulfillModeOption} options={pledgeFulfillModeOptions}
+                            onchange={handlePledgeFulfillModeChange}></lightning-combobox>      
+                        </div>
+                      </div>
+                    </div>
+  
+                    <template if:true = {showPaymentAccounts}>
+                      <div class="slds-form mb-5">
+                        <div class="slds-form-element slds-form-element_horizontal">
+                          <label class="slds-form-element__label" for="horizontal-input-id-01"></label>
+                          <div class="slds-form-element__control">
+                            <c-bank-accounts-component onhandlefinaccountinfo={handleFinAccountInfo}></c-bank-accounts-component>
+                          </div>
+                        </div>
+                      </div>        
+                    </template>
+  
+                    <div class="slds-form mb-10">
+                      <div class="slds-form-element slds-form-element_horizontal">
+                        <template if:false={disableAmountField}>
+                           <label class="slds-form-element__label" for="howMuch">Payment Amount</label>
+                          </template>
+                         <div class="slds-form-element__control">
+                          <template if:true={disableAmountField}>
+                            <div class="pledge-info" style="margin-bottom: 0;">
+                              <div class="d-flex space-between mb-1">
+                                <h5>Summary</h5>
+                              </div>
+                              <div class="d-flex space-between">
+                                <p class="mb-5">Amount</p>
+                                <div class="mb-5">
+                                  <lightning-formatted-number value={originalamt} format-style="currency" currency-code="USD"></lightning-formatted-number></div>
+                              </div>
+                              <div class="d-flex space-between">
+                                <p class="mb-5">PayPal Processing Fee</p>
+                                <div class="mb-5">
+                                  <lightning-formatted-number value={vendorfee} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                </div>
+                              </div>
+                
+                              <hr />
+                
+                              <div class="d-flex space-between">
+                                <h5 class="mb-5">Total</h5>
+                                <div class="mb-5">
+                                  <strong>
+                                    <lightning-formatted-number value={amount} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                    </strong>
+                                </div>
+                              </div >
+                              <!-- <p class="mb-5">* PayPal fee of 2.2% + $0.30 applies.</p> -->
+                            </div>
+                
+                        </template>
+                           <template if:false={disableAmountField}>
+                            <div class="slds-form-element slds-form-element_horizontal">
+                              <div class="slds-form-element__control" style="margin-left: 7px;">
+                                <lightning-input class="amountCmp" name="amount" type="text"  formatter="currency" placeholder="$0.00"
+                                onchange={handleAmountChange}  ></lightning-input>
+                              </div>
+                            </div>
+                           
+                          </template> 
+        
+                        </div>
+                      </div>
+                    </div>
+                  
+        
+                  <template if:true={showCheckAddress}>
+                    <div class="pledge-info">
+                      <div>
+                        <p>Please include your account number when you submit your payment by check to the following address:                
+                       </p>
+                      </div>
+                      <div>
+                        Cash Account Number: {cashAccountNumber.data}
+                      </div>
+                      <div>
+                        Florida Prepaid College Foundation               
+                      </div>
+                      <div>
+                        PO Box 31088                
+                      </div>
+                      <div>
+                        Tampa, FL 33631
+                      </div>
+                    
+                    </div>
+                  </template>
+  
+                  <template if:true = {showPaymentAccounts}>
+  
+  
+                    <div class="slds-form-element mb-5">
+                      <div class="slds-form-element__control">
+                        <div class="slds-checkbox">
+                          <input type="checkbox" class="acceptach" name="acceptach" id="acceptach" value="acceptach"
+                            onchange={handleACHCheckboxSelection} />
+                          <label class="slds-checkbox__label d-flex" for="acceptach">
+                            <div class="check-inline">
+                              <div class="slds-checkbox_faux check-inline"></div>
+                            </div>
+                            <span class="slds-form-element__label f-comp-label-lite">Agree to ACH disclosure below.</span>
+  
+                            <!-- <span class="slds-form-element__label f-comp-label-lite">I hereby authorize the Florida Prepaid College Board to initiate a debit entry to my financial institution account indicated above at the depository financial institution named above via a one-time ACH transaction, which will post within 2 to 3 business days. In the event that the Florida Prepaid College Board is unable to secure funds from the financial institution account for this transaction for any reason, including but not limited to, insufficient funds, or insufficient or inaccurate information provided with submitting my electronic payment, further collection action may be undertaken by the Florida Prepaid College Board, including returned check fees to the extent permitted by law. I understand that I may cancel my transaction, obtain a paper copy of the electronic record of this authorization, and of the Florida Prepaid College Board electronic records related to the debit entry covered by this authorization by contacting customer service at 850.922.6740.  Due to the timing of the debit entry processing, transactions may only be cancelled same day.  Refunds may be requested thereafter. </span> -->
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <div class="pledge-info">
+                      <div>
+                        <p>I hereby authorize the Florida Prepaid College Board to initiate a debit entry to my financial institution account indicated above at the depository financial institution named above via a one-time ACH transaction, which will post within 2 to 3 business days. In the event that the Florida Prepaid College Board is unable to secure funds from the financial institution account for this transaction for any reason, including but not limited to, insufficient funds, or insufficient or inaccurate information provided with submitting my electronic payment, further collection action may be undertaken by the Florida Prepaid College Board, including returned check fees to the extent permitted by law. I understand that I may cancel my transaction, obtain a paper copy of the electronic record of this authorization, and of the Florida Prepaid College Board electronic records related to the debit entry covered by this authorization by contacting customer service at 850.922.6740.  Due to the timing of the debit entry processing, transactions may only be cancelled same day.  Refunds may be requested thereafter.              
+                       </p>
+                      </div>                  
+                    </div>
+        
+                    <!-- <div class="slds-form-element mt-20">
+                      <div class="slds-form-element__control">
+                        <div class="slds-checkbox">      
+                          <lightning-input type="checkbox" label="I hereby authorize the Florida Prepaid College Board to initiate a debit entry to my financial institution account indicated above at the depository financial institution named above via a one-time ACH transaction, which will post within 2 to 3 business days. In the event that the Florida Prepaid College Board is unable to secure funds from the financial institution account for this transaction for any reason, including but not limited to, insufficient funds, or insufficient or inaccurate information provided with submitting my electronic payment, further collection action may be undertaken by the Florida Prepaid College Board, including returned check fees to the extent permitted by law. I understand that I may cancel my transaction, obtain a paper copy of the electronic record of this authorization, and of the Florida Prepaid College Board electronic records related to the debit entry covered by this authorization by contacting customer service at XXXXXXXXXX.  Due to the timing of the debit entry processing, transactions may only be cancelled same day.  Refunds may be requested thereafter."  name="pdpaagreement"  onchange={handleACHCheckboxSelection} ></lightning-input>
+                        </div>
+                      </div>
+                    </div> -->
+                  </template>
+    
+                <div>
+                    <button onclick={handleSetupPayment}  class="slds-button slds-button_brand mt-10 px-40" style="background-color: blue;">Setup Payment</button>
+              </div>
+            </div>  
+          </div>
+        </div>     
+      </div>
+    </template>

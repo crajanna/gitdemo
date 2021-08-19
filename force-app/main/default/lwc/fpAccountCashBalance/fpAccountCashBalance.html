@@ -1,0 +1,35 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-18-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   05-18-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+   <!-- AVAILABLE FUNDS -->
+   <div class="f-comp">
+      <div class="card-white-col-wrap">
+         <div class="card-white right mb-10">
+            <div class="">
+               <div>
+                  <h6 class="hr-botm">Available Funds</h6>
+                  <div class="amount mt-10 mb-20">
+                     <span class="dollars">
+                        <lightning-formatted-number value={cashBalance} maximum-fraction-digits="2"
+                           format-style="currency" currency-code="USD">
+                        </lightning-formatted-number>
+                     </span>
+                  </div>
+               </div>
+            </div>
+            <div class="">
+               <a href="#" onclick={handleAddFunds}><b>Add Funds</b></a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</template>

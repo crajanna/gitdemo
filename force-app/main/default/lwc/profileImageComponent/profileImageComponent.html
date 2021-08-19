@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs">
+        <div class="slds-col slds-var-p-around_x-small slds-size_2-of-12">
+          <img src={profileSrcData} alt="" class="upload-mug" />
+         </div>
+        <div class="slds-col slds-var-p-around_x-small slds-size_10-of-12">
+          <h6>OPTIONAL PROFILE IMAGE</h6>
+          <p>Select an image to display for beneficiary. JPG, PNG, or GIF,
+            500kb max.</p>
+          <div class="custom-file mt-10">
+            <lightning-input type="file"
+              accept=".jpg, .png, .gif"
+              label="Attachment" onchange={handleFileChange}></lightning-input>
+            {profileFileName}
+          </div>
+        </div>
+      </div>
+</template>

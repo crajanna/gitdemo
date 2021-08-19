@@ -1,0 +1,84 @@
+<template>
+
+    <!-- TITLE -->
+    <div class="slds-grid f-comp pledge-header fixed-1000">
+        <div class="slds-col">
+
+            <div if:true={showSpinner}>
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </div>
+
+            <h1>My Tasks</h1>
+
+        </div>
+    </div>
+
+
+
+    <!-- CONTENT -->
+    <div class="slds-grid f-comp pledge-content fixed-1000">
+
+
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col">
+            <div class="pledge-card-wrap">
+                <div class="pledge-inner">
+
+                    <div class="pledge-fixed">
+
+
+                        <div class="slds-form" role="list">
+
+
+
+                            <h3>Task List</h3>
+
+
+                            <div class="doc-items">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th><span class="alt">Subject</span></th>
+                                            <th><span class="alt">Status</span></th>
+                                            <th><span class="alt">Created Date</span></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <template for:each={taskListData} for:item="task" for:index="index">
+                                            <tr key={task.Id}>
+                                                <td>
+                                                    <template if:true={task.Description}>
+                                                        <span class="alt"><a href="javascript:void(0)" name={task.Id}
+                                                                onclick={handleNavigte}>{task.Subject}</a></span>
+                                                    </template>
+                                                    <template if:false={task.Description}><span
+                                                            class="alt">{task.Subject}</span></template>
+                                                </td>
+                                                <td>
+                                                    <img src={task.icon}
+                                                        class="slds-icon slds-icon-text-default" />&nbsp;
+                                                    <span class="alt">{task.Status}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="alt">{task.CreatedDate}</span>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</template>

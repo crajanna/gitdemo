@@ -1,0 +1,67 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-17-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   05-17-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+  <div class="f-comp">
+
+    <div class="d-flex space-between mt-40 hr-botm">
+      <h6 class="card-heading">My Team
+        <span style="position:relative; right:0; top:0px;">
+
+          <button onmouseover={OnHelpMouseEnter} onmouseout={OnHelpMouseLeave} class="slds-button slds-button_icon"
+            aria-describedby="help" aria-disabled="true" title="Help">
+            <svg class="slds-button__icon" aria-hidden="true">
+              <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#info"></use>
+            </svg>
+            <span class="slds-assistive-text">Help</span>
+            <div if:true={showToolTip} style="top: -174px;"
+              class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left tip-tweak2" role="tooltip" id="help">
+              <div class="slds-popover__body">You can invite other team members within your organization who have a role
+                in overseeing the scholarship programs you select.</div>
+            </div>
+          </button>
+
+        </span>
+      </h6>
+      <div>
+        <button class="slds-button slds-button_brand btn-sm" onclick={handleDashboardEditContact}>
+          <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#add"></use>
+          </svg>Add New
+        </button>
+      </div>
+    </div>
+
+    <template for:each={contactsData} for:item="item" for:index="index">
+      <div key={item.contactId} class="card-team">
+        <a href="javascript:void(0);" class="d-flex" data-id={item.contactId} onclick={handleDashboardEditContact}>
+          <div class="d-flex">
+            <div class="mr-20">
+              <img src={profilePic} class="img-mug" height="55" width="55" alt="Profile Photo" />
+            </div>
+            <div>
+              <h5>{item.contactName}</h5>
+              <template if:false={item.Roles}>
+                <p class="text-small"> </p>
+              </template>
+              <template if:true={item.Roles}>
+                <p class="text-small">{item.Roles}</p>
+              </template>
+            </div>
+          </div>
+          <div data-id={item.contactId} class="icon-box icon-primary ml-auto" onclick={handleDashboardEditContact}>
+            <img src={taskIcon} class="icon" alt="tasks icon" />
+          </div>
+        </a>
+      </div>
+    </template>
+
+  </div>
+</template>

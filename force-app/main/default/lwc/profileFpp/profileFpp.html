@@ -1,0 +1,110 @@
+<template>
+     
+      
+      <main role="main" class="bg-white">
+      
+      
+        <!-- FORM + FAQ WRAP -->
+        <div class="slds-grid slds-gutters slds-container_x-large slds-container_center slds-p-bottom_xx-large">
+          <div class="slds-col slds-size_9-of-12 mt-30">
+        
+
+         
+        
+            <c-contact-info-component
+            onhandlecontactgeneralinfo={handleContactGeneralInfo}>
+          </c-contact-info-component>
+      
+            <div class="slds-form-element mt-20">
+              <div class="slds-form-element__control">
+                <div class="slds-checkbox">
+                  <input type="checkbox" name="options" id="checkbox-unique-id-73" value="checkbox-unique-id-73"  />
+                  <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                    <span class="slds-checkbox_faux"></span>
+                    <span class="slds-form-element__label">THIS ACCOUNT IS AFFILIATED WITH AN ORGANIZATION</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+      
+      
+      
+            <!-- CONTACT INFO ============================= -->
+      
+            <h6 class="mt-30">&nbsp;&nbsp; CONTACT INFO</h6>
+            <!-- CONTACT INFO ============================= -->
+            <c-address-component onhandleaddressinfo={handleaddressData}></c-address-component>
+    
+    
+      
+      
+            <!-- Phone -->
+            <fieldset class="slds-form-element slds-form-element_compound mt-16">
+              <legend class="slds-form-element__legend slds-form-element__label sr-only">Phone Numbers</legend>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__row">
+      
+                  <div class="slds-size_6-of-12">
+                    <div class="slds-form-element">
+                      <label class="slds-form-element__label sr-only" for="phone1">Primary Phone Number</label>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="phone1" class="slds-input" placeholder="Primary Phone Number" required="required" />
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="slds-size_6-of-12">
+                    <div class="slds-form-element">
+                      <label class="slds-form-element__label sr-only" for="phone2">Secondary Phone Number</label>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="phone2" class="slds-input" placeholder="Secondary Phone Number" />
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+              </div>
+            </fieldset>
+      
+      
+      
+            <!-- RESIDENCY VERIFICATION ============================= -->
+            <h6 class="mt-5">DELIVERY OF TAX FORMS</h6>
+      
+            <div class="slds-form-element mt-10 mb-30">
+              <label class="slds-form-element__label sr-only" for="taxFormDelivery">eStatements</label>
+              <div class="slds-form-element__control">
+                <div class="slds-select_container">
+                  <select class="slds-select" id="taxFormDelivery">
+                    <option>eStatementts</option>
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+      
+            <!-- FILE UPLOAD -->
+            <c-profile-image-component onhandleprofileimage=
+            {handleProfileImage}></c-profile-image-component>
+      
+      
+      
+            <!-- CONTINUE -->
+            <div class="mt-5">
+              <button onclick={updateProfileInfo}  class="slds-button slds-button_brand mt-20 px-40">Continue</button>
+            </div>
+      
+      
+          </div>
+          <div class="slds-col slds-size_3-of-12 mt-30">
+
+           <c-new-plans-beneficiary contract-id={contractId}> </c-new-plans-beneficiary>
+      
+          </div>
+        </div>
+      
+      </main>
+                 
+</template>

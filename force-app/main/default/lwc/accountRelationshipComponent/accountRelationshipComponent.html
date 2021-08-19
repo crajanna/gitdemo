@@ -1,0 +1,71 @@
+<template>
+
+    <!-- <template for:each={accRelationshipList} for:item="item" for:index="index">
+
+        <div class="box-dash box-dash-gray mb-20 pb-10 pt-15" key={item.Id}>
+            <div class="link-card-student">
+                <a >
+                    <img src={imagefpostudent30} alt="" />
+                    <span class="mr-auto pl-10">{item.relationshipAccountName}</span>
+                    <img src={imageiconarrowright} alt="" />
+                </a>
+            </div>
+            <div class="link-card-plans">
+            </div>
+        </div>
+
+    </template> -->
+    <div class="f-comp">
+        <template for:each={accRelationshipList} for:item="item" for:index="index">
+            <div class="card-team" key={item.Id}>
+                <a href="#" class="d-flex">
+                    <div class="d-flex">
+                        <div class="mr-20">
+
+                            <template if:true={item.profilePicURL}>
+                                <img src={item.profilePicURL} class="img-mug" height="55" width="55" alt="" />
+                            </template>
+                            <template if:false={item.profilePicURL}>
+                                
+                                <img src={studentProfilePlaceHolder} class="img-mug" height="55" width="55" alt="" />
+
+
+                                <!-- <span class="slds-avatar slds-avatar_circle"> -->
+                                <!-- <span class="slds-icon_container slds-icon-standard-user"
+                                        title="Description of icon when needed"> -->
+
+
+                                <!-- <span
+                                    class="slds-icon_container slds-icon_container_circle slds-icon-action-description"
+                                    title="Description of icon when needed">
+                                    <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#user"></use>
+                                    </svg>
+                                    <span class="slds-assistive-text">Description of icon when needed</span>
+                                </span> -->
+                                <!-- <span class="slds-assistive-text">Description of icon when needed</span>
+                                    </span> -->
+                                <!-- </span> -->
+
+                            </template>
+
+                        </div>
+                        <div>
+                            <h5>{item.relationshipAccountName}</h5>
+                            <!-- <p class="text-small">Daughter</p> -->
+                        </div>
+                    </div>
+                    <div class="icon-box icon-primary ml-auto" onclick={editStudentProfile}
+                        id={item.relationshipAccountId}>
+                        <!-- <img src="img/icon-edit.svg" class="icon" alt="tasks icon" /> -->
+                        <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#edit"></use>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </template>
+    </div>
+
+
+</template>

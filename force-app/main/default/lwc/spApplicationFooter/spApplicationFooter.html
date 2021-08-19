@@ -1,0 +1,7 @@
+<template>
+    <div>
+        <a if:true={visibleNext} href="#" role="button" class="slds-button slds-button_brand inline px-30 mr-20" onclick={handleNextScreen}>{nextLabel}</a>
+        <a if:true={visibleBack} href="#" onclick={handleBackScreen}><strong>{goBackLabel}</strong></a>
+    </div>
+
+</template>

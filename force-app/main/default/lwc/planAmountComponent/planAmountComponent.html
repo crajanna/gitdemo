@@ -1,0 +1,21 @@
+<template>
+    <div class="box-dash">
+        <div class="plan-amt text-center">
+          <img src={imagecirclefpo30} alt="" />
+          <h5>  
+            <lightning-formatted-number value={amount} maximum-fraction-digits="2" format-style="currency" currency-code="USD">
+            </lightning-formatted-number>
+          </h5>
+          <template if:true={isPrepaidPlan}>
+            <p>Total Amount Saved For</p>
+            <h6>PREPAID PLANS</h6>
+          </template>
+
+          <template if:true={isSavingsPlan}>
+            <p>Total Amount Contributed For</p>
+            <h6>SAVINGS PLANS</h6>
+         </template>
+        
+        </div>
+      </div>
+</template>

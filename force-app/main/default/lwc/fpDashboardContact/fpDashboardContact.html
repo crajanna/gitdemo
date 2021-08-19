@@ -1,0 +1,219 @@
+<template>
+
+  <!-- TITLE -->
+  <div class="slds-grid f-comp pledge-header rm-greyLine">
+    <div class="slds-col">
+  
+      <h1>Team Profile</h1>
+      <p>Update my personal information for this team member.</p>
+  
+    </div>
+  </div>
+  
+  
+  
+  <!-- CONTENT -->
+  <div class="slds-grid f-comp pledge-content" style="position:relative">
+  
+  
+    <!-- OTHER PROGRAMS -->
+    <div class="slds-col">
+      <div class="pledge-card-wrap">
+        <div class="pledge-inner">
+  
+          <div class="pledge-fixed">
+  
+  
+            <div class="slds-form" role="list">
+  
+  
+            <div if:true={showSpinner}>
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </div>
+
+            
+              <h3>General Info</h3>
+  
+             
+  
+              <div class="slds-form__row">
+                <div class="slds-form__item" role="listitem">
+  
+                  <div class="slds-size_1-of-1">
+                    <div class="slds-form-element mb-20">
+                      <label class="slds-form-element__label" for="firstName">First Name</label>
+                      <abbr title="required" class="slds-required">*</abbr>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="firstName" name="firstName" class="slds-input" onchange={handleChange} value={contactValues.firstName} onfocusout={checkValid}/>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+                <div class="slds-form__item" role="listitem">
+  
+                  <div class="slds-size_1-of-1">
+                    <div class="slds-form-element mb-20">
+                      <label class="slds-form-element__label" for="lastName">Last Name</label>
+                      <abbr title="required" class="slds-required">*</abbr>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="lastName" name="lastName" class="slds-input" onchange={handleChange} value={contactValues.lastName} onfocusout={checkValid}/>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+  
+  
+              <div class="slds-form__row">
+                <div class="slds-form__item" role="listitem">
+  
+                  <div class="slds-size_1-of-1">
+                    <div class="slds-form-element mb-20">
+                      <label class="slds-form-element__label" for="email">Email Address</label>
+                      <abbr title="required" class="slds-required">*</abbr>
+                      <div class="slds-form-element__control">
+                        <input type="email" id="email" name="email" class="slds-input" onchange={handleChange} value={contactValues.email} onfocusout={checkValid}/>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+                <div class="slds-form__item" role="listitem">
+  
+                  <div class="slds-size_1-of-1">
+                    <div class="slds-form-element mb-20">
+                      <label class="slds-form-element__label" for="phone">Phone Number</label>
+                        <lightning-input type="tel" id="phone" name="phone" variant="label-hidden" class="phone label-hidden" onchange={handlePhone} value={contactValues.phone} onfocusout={checkValid}></lightning-input>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+  
+  
+              <div class="slds-form__row">
+                <div class="slds-form__item" role="listitem">
+  
+  
+                  <div class="slds-size_1-of-2">
+                    <div class="slds-form-element mb-20">
+                      <label class="slds-form-element__label" for="role">Role</label>
+                      <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                          <select class="slds-select" id="role"  onchange={handleChange}>
+                            <option>Select a Role</option>
+                            <option selected="selected">Registered Agent</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+  
+  
+  
+              <h3 class="mt-40">Mailing Address</h3>
+  
+  
+  
+              <div class="slds-form__row">
+                <div class="slds-form__item" role="listitem">
+  
+                  <div class="slds-size_1-of-1">
+                    <div class="slds-form-element mb-20">
+                      <label class="slds-form-element__label" for="address1">Address Line 1</label>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="address1" name="address1" class="slds-input" value={contactValues.address1} onchange={handleChange} onfocusout={checkValid}/>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+                <div class="slds-form__item" role="listitem">
+  
+                  <div class="slds-size_1-of-1">
+                    <div class="slds-form-element mb-20">
+                      <label class="slds-form-element__label" for="address2">Address Line 2 <span class="text-normal">(Optional)</span></label>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="address2" name="address2" class="slds-input" value={contactValues.address2} onchange={handleChange} onfocusout={checkValid}/>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+  
+  
+              <div class="slds-form__row">
+                <div class="slds-form__item" role="listitem">
+  
+                  <div class="slds-size_1-of-1">
+                    <div class="slds-form-element mb-20">
+                      <label class="slds-form-element__label" for="city">City</label>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="city" name="city" class="slds-input" value={contactValues.city} onchange={handleChange} onfocusout={checkValid}/>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+                <div class="slds-form__item" role="listitem">
+  
+                  <div class="slds-size_1-of-2">
+                    <div class="slds-form-element mb-20">
+                      <label class="slds-form-element__label" for="state">State</label>
+                      <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                          <select class="slds-select" id="state" name="state" onchange={handleChange}>
+                            <option>Select a Location</option>
+                            <template for:each = {stateList} for:item="stateItem">
+                              <option key={stateItem.value} value={stateItem.value} selected={stateItem.selected}>{stateItem.value}</option>
+                           </template>
+                           <option>Other</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="slds-size_1-of-2">
+                    <div class="slds-form-element ml-10">
+                      <label class="slds-form-element__label" for="zip">ZIP</label>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="zip" name="zip" class="slds-input" value={contactValues.zip} onchange={handleChange} onfocusout={checkValid}/>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>  
+              <hr /> 
+              <div if:false={contactId}>
+                <button role="button" class="slds-button slds-button_brand btn-sm px-20" onclick={handleSave}>Save</button>
+                <button onclick={handleNav} class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10"><strong>Cancel</strong></button>
+              </div>
+              <div if:true={contactId}>
+                <button role="button" class="slds-button slds-button_brand btn-sm px-20" onclick={handleUpdate}>Update</button>
+                <button onclick={handleNav} class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10"><strong>Cancel</strong></button>
+              </div>
+              
+  
+  
+            </div>
+  
+  
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+  
+  </div>
+  
+
+</template>

@@ -1,0 +1,462 @@
+<template>
+
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content slds-is-relative">
+
+        <div if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading..." variant="brand"></lightning-spinner>
+        </div>
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+            <div class="pledge-card-wrap">
+
+                <div class="pledge-inner">
+
+                    <h1 class="text-normal">Student &amp; Guardian Information</h1>
+
+                    <p>Any relevant explanation of what the user needs to do. Lorem ipsum dolor sit amet nam in sociosqu
+                        eget conubia tempor non mattis.</p>
+
+                    <div class="slds-grid box-light-gray-inputs">
+                        <div class="slds-col slds-var-p-around_x-small slds-size_12-of-12">
+
+
+                            <hr>
+
+
+                            <!-- STUDENT INFO -->
+                            <h3 class="mt-40">Student Information</h3>
+
+                            <h6 class="mt-30">STUDENT OVERVIEW</h6>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="newID1">Student Name</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="studentName" name="studentName" onchange={handleChange}
+                                        placeholder="" value={nameVal} class="slds-input" />
+                                    <!-- <lightning-input type="text" name="studentName" onchange={handleChange} placeholder=""  class="slds-input"></lightning-input> -->
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Age-relted
+                                    Items</legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-01">Date of
+                                                    Birth</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="date" id="input-01" name="dob" onchange={handleChange}
+                                                        value={dobVal} class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">Age</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="input-02" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">Current
+                                                    Grade</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select" id="select-01">
+                                                            <option selected="selected">Option One</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="slds-form-element slds-form-element_compound">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">
+                                    Demographic-relted Items</legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_1-of-2">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-01">Gender</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select">
+                                                            <option selected="selected">Option One</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-2">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">Ethnicity</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select">
+                                                            <option selected="selected">Option One</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+                            <h6 class="mt-30">STUDENT CONTACT INFORMATION</h6>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="newID1">Street Address</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" placeholder="" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Address Items
+                                </legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_6-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-01">City</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_3-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">ST</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select">
+                                                            <option selected="selected">FL</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_3-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">ZIP</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="newID1">Email Address</label>
+                                <div class="slds-form-element__control">
+                                    <input type="email" placeholder="" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Phone Items
+                                </legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-01">Student Cell
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">Student Home
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+                            <fieldset class="slds-form-element">
+                                <legend class="slds-form-element__legend slds-form-element__label">Is student a Florida
+                                    Resident and U.S. Citizen or Resident Alien?</legend>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-radio">
+                                        <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+                                        <label class="slds-radio__label" for="radio-43">
+                                            <span class="slds-radio_faux"></span>
+                                            <span class="slds-form-element__label">Yes</span>
+                                        </label>
+                                    </span>
+                                    <span class="slds-radio">
+                                        <input type="radio" id="radio-44" value="radio-44" name="default" />
+                                        <label class="slds-radio__label" for="radio-44">
+                                            <span class="slds-radio_faux"></span>
+                                            <span class="slds-form-element__label">No</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </fieldset>
+
+
+
+                            <div class="slds-form-element__row">
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="newID1">Social Security
+                                            Number</label>
+                                        <div class="slds-form-element__control">
+                                            <input type="text" placeholder="" value="" class="slds-input" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <hr>
+
+
+                            <!-- GUARDIAN INFO -->
+                            <h3 class="mt-40">Guardian Information</h3>
+
+                            <h6 class="mt-30">GUARDIAN OVERVIEW</h6>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="newID1">Parent/Guardian Name</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" placeholder="" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="newID1">Relationship to Student</label>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-select_container">
+                                        <select class="slds-select">
+                                            <option selected="selected">Option One</option>
+                                            <option>Option Two</option>
+                                            <option>Option Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <h6 class="mt-30">GUARDIAN CONTACT INFORMATION</h6>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="newID1">Street Address</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" placeholder="" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Address Items
+                                </legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_6-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-01">City</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_3-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">ST</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select">
+                                                            <option selected="selected">FL</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_3-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">ZIP</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="newID1">Email Address</label>
+                                <div class="slds-form-element__control">
+                                    <input type="email" placeholder="" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Phone Items
+                                </legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-01">Cell
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">Home
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-02">Work
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+                            <hr>
+
+
+                            <!-- FLORIDA RESIDENCY -->
+                            <h3 class="mt-40">Florida Residency</h3>
+
+                            <p>The scholarship to which you are applying to requires proof of Florida residency. Please
+                                provide the proper documentation proving student and/or parent/guardian is a Florida
+                                resident as marked in your application (one or more of the following):</p>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="newID1">Residency Documentation</label>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-select_container">
+                                        <select class="slds-select">
+                                            <option selected="selected">FL</option>
+                                            <option>Option Two</option>
+                                            <option>Option Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FILE UPLOAD -->
+                            <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs">
+                                <div class="slds-col slds-var-p-around_x-small slds-size_2-of-12">
+
+                                    <img src="img/mug-fpo-160px.png" alt="FPO" class="upload-mug" />
+
+                                </div>
+                                <div class="slds-col slds-var-p-around_x-small slds-size_10-of-12">
+
+                                    <h6>OPTIONAL PROFILE IMAGE</h6>
+                                    <p>Select an image to display for beneficiary. JPG, PNG, or GIF, 500kb max.</p>
+                                    <div class="custom-file mt-10">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <hr>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- SELECTED PROGRAM -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+            <div class="pledge-card-wrap card-gradient card-right">
+
+                <div class="pledge-card pb-20">
+                    <div class="pledge-my">
+                        <div>
+                            <h6><img src="#" alt="heart" width="16" height="16" class="mr-5" /> MY
+                                SCHOLARSHIPS</h6>
+                        </div>
+                        <div>
+                            <span><strong>$0</strong> / $----</span>
+                        </div>
+                    </div>
+                    <div class="img-wrap">
+                        <img src="#" alt="program" />
+                    </div>
+                    <h3>Path to Prosperity</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit purus nascetur, enim vestibulum netus
+                        interdum praesent pharetra nibh mus, senectus molestie tortor sed auctor malesuada fames
+                        posuere.</p>
+                    <h6>Did you know?</h6>
+                    <p class="mb-40">Incentivizing fact lorem ipsum dolor sit amet tellum aqui lorem ipsum amet sit
+                        colleque.</p>
+                    <a href="#" class="text-bold fs-16">Learn more about this program ></a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- PORTAL FOOTER IMAGE: FPO -->
+    <div class="f-comp f-comp-footer-fpo">
+        <img src="img/fpo-sample-footer.png" width="1130" height="379" alt="Sample Footer" />
+    </div>
+    <div class="f-comp f-comp-footer-sub-fpo">
+        <img src="img/fpo-sample-footer-sub.png" width="1071" height="59" alt="Sample Footer Sub" />
+    </div>
+</template>

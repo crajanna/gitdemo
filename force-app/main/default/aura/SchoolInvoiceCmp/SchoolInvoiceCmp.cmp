@@ -1,0 +1,3 @@
+<aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader">
+    <c:schoolInvoice onclose="{!c.closeQA}" recordId="{!v.recordId}"/>
+</aura:component>

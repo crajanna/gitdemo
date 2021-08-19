@@ -1,0 +1,92 @@
+<template>
+
+        <div class="slds-modal__header">
+            <h2 class="slds-modal__title slds-hyphenate slds-text-heading--medium">
+                Restricted Account Transaction
+            </h2>
+        </div>
+		<br>
+        <template if:true={policyScreen}>
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                <lightning-combobox name="SourceCategory" label="Policy Coverage" placeholder="Select Coverage" value={selectedCoveragesValues} 
+                options={coverageOptions} onchange={handleSelected} required></lightning-combobox> 
+           </div>
+        </div>       
+
+        <br>
+        </template>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                <lightning-combobox name="SourceCategory" label="Source Category" placeholder="Select Source Category" value={sourceCategoryValue} 
+                options={sourceCategoryOptions} onchange={handleSourceCategory} required></lightning-combobox> 
+           </div>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+           <div class="slds-size_12-of-12">        
+            <lightning-combobox name="SubType" label="Source Sub Category"  placeholder="Select Source Sub Category" value={sourceSubCategoryValue} 
+            options={sourceSubCategoryOptions} onchange={handleSourceSubCategory} required></lightning-combobox> 
+           </div>
+        </div>
+
+        <template if:true={budgetScenario}>
+            Contract
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_12-of-12">
+                <c-lookup-component onselected={handleSelectChange} objectname="Contract" fieldname="Name"  label = "Contract"
+                        numrecords="10" iconname="standard:account" select-record-name={recordValue}> </c-lookup-component>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_12-of-12">
+                    <template if:true={transMonthlist.data}>
+                            <lightning-combobox name="month" value={transactionMonthValue} label="Month"
+                            placeholder="Select Month" options={transMonthlist.data.values}
+                            onchange={handleTransactionMonth} 
+                            ></lightning-combobox>                                     
+                    </template>
+               </div>
+            </div>
+
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_12-of-12">
+                    <template if:true={transYearlist.data}>
+                            <lightning-combobox name="year" value={transactionYearValue} label="Year"
+                            placeholder="Select Year" options={transYearlist.data.values}
+                            onchange={handleTransactionYear} 
+                            ></lightning-combobox>                                     
+                    </template>
+               </div>
+            </div>
+
+        </template> 
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                <template if:true={transactionTypelist.data}>
+                        <lightning-combobox name="transactionType" value={transactionTypeValue} label="Transaction Type"
+                        placeholder="Select Transaction Type" options={transactionTypelist.data.values}
+                        onchange={handleTransactionType} required
+                        ></lightning-combobox>                                     
+                </template>
+           </div>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+            <lightning-input type="number" name="amount" step="0.01" formatter="currency" label="Amount"
+                value={amount} onchange={handleAmount} required> 
+            </lightning-input>
+            </div>    
+        </div>
+
+        <div class="slds-m-top_large slds-grid slds-grid_align-center slds-align–absolute-center">
+            <lightning-button  label="Cancel" type="cancel" onclick={handleCancel}></lightning-button>
+             &nbsp;&nbsp; 
+            <lightning-button  type="submit" variant="brand" label="Save" onclick={createRecord}></lightning-button>
+          </div>
+
+</template>

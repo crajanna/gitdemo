@@ -1,0 +1,126 @@
+<template>
+    <div class="slds-grid f-comp pledge-header">
+        <div class="slds-col">
+            <h1>Apply for Scholarships</h1>
+        </div>
+    </div>
+    
+    <!-- STEPS -->
+    <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+        <div class="slds-col">
+            <div class="btn-wiz-new done">
+                <span class="num"><span>1</span></span> <span class="title">Student & Guardian Information</span>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="btn-wiz-new active">
+                <span class="num"><span>2</span></span> <span class="title">Student Interests</span>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>3</span></span> <span class="title">Student Responsibilites</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content">
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+            <div class="pledge-card-wrap">
+                <div class="pledge-inner">
+                    <h1 class="text-normal">Student Interests</h1>
+                    <p>Any relevant explanation of what the user needs to do. Lorem ipsum dolor sit amet nam in sociosqu eget conubia tempor non mattis.</p>
+                    <div class="slds-grid box-light-gray-inputs">
+                        <div class="slds-col slds-var-p-around_x-small slds-size_12-of-12">
+                            <hr>
+                            <!-- STUDENT INTERESTS INFO -->
+                            <h3 class="mt-40">Student Interests Overview</h3>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="newID1">What is your favorite subject in
+                                    school?</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="newID1" placeholder="" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="newID1">Please list your top three hobbies
+                                    and/or interests:</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="newID11" placeholder="1)" value="" class="slds-input" />
+                                </div>
+                                <div class="slds-form-element__control mt-10">
+                                    <input type="text" id="newID111" placeholder="2)" value="" class="slds-input" />
+                                </div>
+                                <div class="slds-form-element__control mt-10">
+                                    <input type="text" id="newID1111" placeholder="3)" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="newID1">What clubs/organizations do you
+                                    belong to, if any?</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="newID11111" placeholder="" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="newID1">What is your goal or plan for your
+                                    future/career?</label>
+                                <div class="slds-form-element__control">
+                                    <textarea id="textarea-id-01" placeholder="Placeholder text…"
+                                        class="slds-textarea"></textarea>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10"
+                        data-gtmid="Student Interests - Previous" onclick={handleGoBack}>Go
+                        Back</button>
+                        <button class="slds-button slds-button_brand btn-sm px-40" data-gtmid="Student Interests - Next"
+                            onclick={handleStudentInterests}>Next</button>
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SELECTED PROGRAM -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+            <div class="pledge-card-wrap card-gradient card-right">
+                <div class="pledge-card pb-20">
+                    <div class="pledge-my">
+                        <div>
+                            <h6>
+                                <!--<img src="img/icon-heart.svg" alt="heart" width="16" height="16" class="mr-5" /> -->MY
+                                SCHOLARSHIPS
+                            </h6>
+                        </div>
+
+                    </div>
+                    <div class="img-wrap">
+                        <!-- <img src="img/program-fpo.jpg" alt="program" /> -->
+                    </div>
+                    <h3>Path to Prosperity</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit purus nascetur, enim vestibulum netus
+                        interdum praesent pharetra nibh mus, senectus molestie tortor sed auctor malesuada fames
+                        posuere.</p>
+                    <h6 class="group">Did you know?</h6>
+                    <p class="mb-40">Incentivizing fact lorem ipsum dolor sit amet tellum aqui lorem ipsum amet sit
+                        colleque.</p>
+                    <a href="#" class="text-bold fs-16">Learn more about this program ></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,91 @@
+<template>
+  <div class="spinner">
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+        </lightning-spinner>
+    </template>
+  </div>
+  <!-- FORM + FAQ WRAP -->
+  <div class="slds-grid slds-gutters slds-container_x-large slds-container_center slds-p-bottom_xx-large">
+    <div class="slds-col slds-size_9-of-12 mt-30">
+
+      <template if:true = {isPrepaidPlanSelected}>
+        <h3>Master Contract</h3>
+
+        <div class="callout box-scroll">
+          <p>Florida Prepaid College Plan Master Contract</p>
+  
+          <p>I have read the Master Contract and understand that the Master Contract, which is incorporated into the application by reference, constitutes a legally binding agreement between me and the Florida Prepaid College Board. I understand that the policies, terms, and conditions of the Florida Prepaid College Plan and the Master Contract may be amended from time to time without prior notice, and I understand and agree that I will be subject to those amendments.</p>
+  
+          <p>Rights of Survivorship</p>
+          
+          <p>The Beneficiary will enjoy a right of survivorship for the Account Owner, which is subordinate only to an effective right of survivorship by the Survivor. If, and for as long as, the Beneficiary is a minor, the exercise of the right of survivorship requires a parent or legal guardian of the Beneficiary to be the Account Owner acting in a custodial capacity pursuant to Section 3.02 Account Owners Acting in a Custodial Capacity.</p>
+          <p>Acknowledgement And Acceptance</p>
+          <p>I certify that (1) all the information provided on this application and documentation furnished to the Florida Prepaid College Board with this application are true, complete, and correct, (2) I am a natural person and a citizen or resident alien of the United States and I am at least 18 years old, and (3) each of the survivor and the beneficiary is a citizen or resident alien of the United States.</p>
+          <p>When you accept the terms and click the "Submit Application" button, you are transmitting to us electronically your consent to this agreement. This electronic consent is just as binding legally as a conventional handwritten signature. We will record this consent along with all other data specific to the transaction and preserve it in our system.</p>
+  
+        </div>
+  
+        <div class="slds-form-element mt-20">
+          <div class="slds-form-element__control">
+            <div class="slds-checkbox">
+              <lightning-input type="checkbox" label="I acknowledge and agree to the terms and conditions"  name="masteragreement"  onchange={handleMasterSelection} ></lightning-input>
+  
+            </div>
+          </div>
+        </div>
+      </template>
+
+   
+      <template if:true = {isSavingsPlanSelected}>
+
+        <h3 class="mt-40">Program Description and Participation Agreement</h3>
+
+        <div class="callout box-scroll">
+          <p>529 Savings Plan Program Description and Participation Agreement</p>
+  
+          <p>I have read and understand the Florida 529 Savings Plan Program Description and Participation Agreement, and consent to the policies, terms, and conditions of the Florida 529 Savings Plan and Participation Agreement. I understand and accept that the Participation Agreement, which is incorporated by reference into this application, as it relates to enrollment in the Florida 529 Savings Plan, constitutes a legally binding agreement between me and the Florida Prepaid College Board. I understand that the policies, terms, and conditions of the Florida 529 Savings Plan and Participation Agreement may be amended from time to time without prior notice, and I understand and agree that I will be subject to those amendments.</p>
+  
+          <p>Rights of Survivorship</p>
+          <p>The Beneficiary will enjoy a right of survivorship for the Account Owner, which is subordinate only to an effective right of survivorship by the Survivor. If, and for as long as, the Beneficiary is a minor, the exercise of the right of survivorship requires a parent or legal guardian of the Beneficiary to be the Account Owner acting in a custodial capacity pursuant to Section 3.02 Account Owners Acting in a Custodial Capacity.</p>
+          <p>Acknowledgment and Acceptance</p>
+          <p>I certify that (1) all the information provided on this application and documentation furnished to the Florida Prepaid College Board with this application are true, complete, and correct, (2) I am a natural person and a citizen or resident alien of the United States and I am at least 18 years old, and (3) each of the survivor and the beneficiary is a citizen or resident alien of the United States.</p>
+          <p>I understand that enrolling in the Florida 529 Savings Plan and investing my funds in the investment options involves a high degree of risk, account values may fluctuate and there is no guarantee. I understand that I could lose all funds, including any earnings on those funds, deposited in the account, and investments in the Florida 529 Savings Plan are not deposits or obligations of, or insured or guaranteed, by the State of Florida, the United States government, the Florida Prepaid College Board, the Federal Deposit Insurance Corporation, or any other governmental agency or financial institution.</p>
+          <p>When you accept the terms and click the "Submit Application" button, you are transmitting to us electronically your consent to this agreement. This electronic consent is just as binding legally as a conventional handwritten signature. We will record this consent along with all other data specific to the transaction and preserve it in our system.</p>
+         
+        </div>
+  
+        <div class="slds-form-element mt-20">
+          <div class="slds-form-element__control">
+            <div class="slds-checkbox">
+  
+              <lightning-input type="checkbox" label="I acknowledge and agree to the terms and conditions"  name="pdpaagreement"  onchange={handlePdpaSelection} ></lightning-input>
+  
+              <!-- <input type="checkbox" name="options" id="checkbox-unique-id-73" value="checkbox-unique-id-73" />
+              <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                <span class="slds-checkbox_faux"></span>
+                <span class="slds-form-element__label"><b>I acknowledge and agree to the terms and conditions of XXXX</b></span>
+              </label> -->
+            </div>
+          </div>
+        </div>
+      </template>
+
+     
+
+
+      <!-- CONTINUE -->
+      <div class="mt-5">
+        <button onclick={handleAgreementFinishAction}  class="slds-button slds-button_brand mt-20 px-40">Finish</button>
+      </div>
+
+
+    </div>
+    <div class="slds-col slds-size_3-of-12 mt-30">
+
+        <c-new-plans-beneficiary contract-id={contractId}> </c-new-plans-beneficiary>
+
+    </div>
+  </div>
+
+</template>

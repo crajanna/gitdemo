@@ -1,0 +1,366 @@
+<template>
+  <div class="spinner">
+    <template if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading" variant="brand"
+        size="large">
+      </lightning-spinner>
+    </template>
+  </div>
+  <c-confirmation-dialog title='Delete Account'
+    message='Do you want to proceed?'
+    confirm-label='Yes'
+    cancel-label='No'
+    visible={isDialogVisible}
+    original-message={originalMessage}
+    name="confirmModal"
+    onclick={handleConfirmationClick}>
+  </c-confirmation-dialog>
+
+
+  <div class="slds-grid">
+    <div class="slds-col slds-large-size_12-of-12 bg-gray">
+
+      <template if:true ={showAdd}>
+        <template if:false={showNewAccountSetup}>
+          <div class="slds-clearfix mb-20 ml-30">  
+            <div class="slds-float_left">
+              <button class="slds-button slds-button_brand mt-20 px-40"
+                onclick={handleNewAccount}>+ Add New</button>  
+            </div>  
+          </div>
+        </template>
+      </template>
+
+
+     
+        <div class="col-inner-wrap">
+
+          <template if:true ={showAdd}>
+          <template if:true={showNewAccountSetup}>
+            <div class="box-dash">
+              <div class="slds-form__row mb-20">
+  
+  
+                <div class="slds-form__item" role="listitem">
+                  <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label" for="newname">Account
+                      Name</label>
+                    <abbr title="required" class="slds-required">*</abbr>
+                    <div class="slds-form-element__control">
+                      <input type="text" id="newname" class="slds-input
+                        instNameCmp" placeholder="Name" value=""
+                        onchange={handleFinAcctNameChange} />
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="slds-form-element slds-form-element_stacked"
+                  style="margin-left: 10px; margin-right:10px">
+                  <label class="slds-form-element__label" for="bankAccount">Account
+                    Type</label>
+                  <abbr title="required" class="slds-required">*</abbr>
+                  <lightning-combobox
+                    name="accounttype"
+                    variant="label-hidden"
+                    label="Account Type"
+                    value=""
+                    placeholder="Select Account Type"
+                    options={bankAccountPicklist.data.values}
+                    onchange={handleAccountTypeChange}></lightning-combobox>
+                </div>
+  
+              </div>
+  
+              <div class="slds-form__row mb-20">
+  
+                <div class="slds-form__item" role="listitem">
+                  <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label pr-0"
+                      for="stacked-form-element-id-01">Routing Number</label>
+                    <abbr title="required" class="slds-required">*</abbr>
+                    <div class="slds-form-element__icon">
+                      <button data-id="routNum" class="slds-button
+                        slds-button_icon" onmouseover={OnHelpMouseEnter}
+                        onmouseout={OnHelpMouseLeave}>
+                        <div if:true={showRoutTooltip}
+                          class="slds-popover slds-popover_tooltip
+                          slds-nubbin_bottom-left tip-tweak2" role="tooltip"
+                          data-id="help">
+                          <div class="slds-popover__body">First 9 digits on the
+                            bottom left of your check.</div>
+                        </div>
+                        <svg class="slds-button__icon icon-primary"
+                          aria-hidden="true">
+                          <use
+                            xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#info"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Help</span>
+                      </button>
+                    </div>
+                    <div class="slds-form-element__control">
+                      <!-- <input type="text" id="stacked-form-element-id-01" class="slds-input" value="" /> -->
+                      <input class="slds-input routingNumCmp"
+                        name="fInstRoutingNum" type="text" pattern="([0-9]*)"
+                        placeholder="Routing Number" title="Enter only digits"
+                        value=""
+                        onchange={handleFinAcctRoutingNbrChange} />
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="slds-form__item" role="listitem">
+                  <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label pr-0"
+                      for="stacked-form-element-id-01">Account Number</label>
+                    <abbr title="required" class="slds-required">*</abbr>
+                    <div class="slds-form-element__icon">
+                      <button data-id="accNum" class="slds-button
+                        slds-button_icon" onmouseover={OnHelpMouseEnter}
+                        onmouseout={OnHelpMouseLeave}>
+                        <div if:true={showAccTooltip}
+                          class="slds-popover slds-popover_tooltip
+                          slds-nubbin_bottom-left tip-tweak2" role="tooltip"
+                          data-id="help">
+                          <div class="slds-popover__body">Number may be found on
+                            the right of the Routing Number.</div>
+                        </div>
+                        <svg class="slds-button__icon icon-primary"
+                          aria-hidden="true">
+                          <use
+                            xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#info"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Help</span>
+                      </button>
+                    </div>
+                    <div class="slds-form-element__control">
+                      <input class="slds-input accountNumCmp"
+                        name="fInstAccountNum" type="text" pattern="([0-9]*)"
+                        placeholder="Account Number" title="Enter only digits"
+                        value="" onchange={handleFinAcctNbrChange} />
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+              <div class="text-right mt-20 mb-20">
+                <button class="slds-button slds-button_brand mt-20 px-40"
+                  onclick={handleSaveNewAccount}>Save</button>
+                <button class="slds-button slds-button_brand mt-20 px-40"
+                  onclick={handleCancelNewAccount}>Cancel</button>
+  
+              </div>
+            </div>
+          </template>
+         </template>
+          <template if:true ={showEdit}>
+            <div class="slds-grid slds-gutters slds-wrap">
+  
+              <template for:each={paymentAccountList} for:item="item">
+    
+                <div class="slds-col slds-large-size_4-of-12" key={item.id}>
+    
+                  <div class="box-dash">
+    
+                    <div class="slds-grid slds-gutters">
+    
+                      <div class="slds-col slds-large-size_12-of-12"
+                        style="padding-bottom:
+                        90px;">
+                        <template if:true={item.isEdit}>
+    
+                          <div class="slds-form__row mb-20">
+    
+    
+                            <div class="slds-form__item" role="listitem">
+                              <div class="slds-form-element
+                                slds-form-element_stacked">
+                                <label class="slds-form-element__label"
+                                  for={item.name}>Account Name</label>
+                                <abbr title="required" class="slds-required">*</abbr>
+                                <div class="slds-form-element__control">
+                                  <input type="text" id={item.name}
+                                    class="slds-input instNameCmp"
+                                    placeholder="Name" value={item.name}
+                                    onchange={handleFinAcctNameChange} />
+                                </div>
+                              </div>
+                            </div>
+    
+                            <div class="slds-form-element slds-form-element_stacked"
+                              style="margin-left: 10px; margin-right:10px">
+                              <label class="slds-form-element__label"
+                                for="bankAccount">Account Type</label>
+                              <abbr title="required" class="slds-required">*</abbr>
+                              <lightning-combobox
+                                name="accounttype"
+                                variant="label-hidden"
+                                label="Account Type"
+                                value={item.type}
+                                placeholder="Select Account Type"
+                                options={bankAccountPicklist.data.values}
+                                required
+                                onchange={handleAccountTypeChange}></lightning-combobox>
+                            </div>
+    
+                          </div>
+    
+                          <div class="slds-form__row mb-20">
+    
+                            <div class="slds-form__item" role="listitem">
+                              <div class="slds-form-element
+                                slds-form-element_stacked">
+                                <label class="slds-form-element__label pr-0"
+                                  for="stacked-form-element-id-01">Routing Number</label>
+                                <abbr title="required" class="slds-required">*</abbr>
+                                <div class="slds-form-element__icon">
+                                  <button data-id="routNum" class="slds-button
+                                    slds-button_icon" onmouseover={OnHelpMouseEnter}
+                                    onmouseout={OnHelpMouseLeave}>
+                                    <div if:true={showRoutTooltip}
+                                      class="slds-popover slds-popover_tooltip
+                                      slds-nubbin_bottom-left tip-tweak2"
+                                      role="tooltip"
+                                      data-id="help">
+                                      <div class="slds-popover__body">First 9 digits
+                                        on the bottom left of your check.</div>
+                                    </div>
+                                    <svg class="slds-button__icon icon-primary"
+                                      aria-hidden="true">
+                                      <use
+                                        xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#info"></use>
+                                    </svg>
+                                    <span class="slds-assistive-text">Help</span>
+                                  </button>
+                                </div>
+                                <div class="slds-form-element__control">
+                                  <!-- <input type="text" id="stacked-form-element-id-01" class="slds-input" value="" /> -->
+                                  <input class="slds-input routingNumCmp"
+                                    name="fInstRoutingNum" type="text"
+                                    pattern="([0-9]*)"
+                                    placeholder="Routing Number" title="Enter only
+                                    digits" value={item.routingNumber}
+                                    onchange={handleFinAcctRoutingNbrChange} />
+                                </div>
+                              </div>
+                            </div>
+    
+                            <div class="slds-form__item" role="listitem">
+                              <div class="slds-form-element
+                                slds-form-element_stacked">
+                                <label class="slds-form-element__label pr-0"
+                                  for="stacked-form-element-id-01">Account Number</label>
+                                <abbr title="required" class="slds-required">*</abbr>
+                                <div class="slds-form-element__icon">
+                                  <button data-id="accNum" class="slds-button
+                                    slds-button_icon" onmouseover={OnHelpMouseEnter}
+                                    onmouseout={OnHelpMouseLeave}>
+                                    <div if:true={showAccTooltip}
+                                      class="slds-popover slds-popover_tooltip
+                                      slds-nubbin_bottom-left tip-tweak2"
+                                      role="tooltip"
+                                      data-id="help">
+                                      <div class="slds-popover__body">Number may be
+                                        found on the right of the Routing Number.</div>
+                                    </div>
+                                    <svg class="slds-button__icon icon-primary"
+                                      aria-hidden="true">
+                                      <use
+                                        xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#info"></use>
+                                    </svg>
+                                    <span class="slds-assistive-text">Help</span>
+                                  </button>
+                                </div>
+                                <div class="slds-form-element__control">
+                                  <input class="slds-input accountNumCmp"
+                                    name="fInstAccountNum" type="text"
+                                    pattern="([0-9]*)"
+                                    placeholder="Account Number" title="Enter only
+                                    digits"
+                                    value={item.accountNumber}
+                                    onchange={handleFinAcctNbrChange} />
+                                </div>
+                              </div>
+                            </div>
+    
+                          </div>
+                          <div class="text-right mt-20">
+                            <button class="slds-button slds-button_brand mt-20
+                              px-40" data-id={item.id} onclick={handleSaveAccount}>Save</button>
+                            <button class="slds-button slds-button_brand mt-20
+                              px-40" onclick={handleCancelAccount}>Cancel</button>
+                          </div>
+                        </template>
+                        <template if:false={item.isEdit}>
+    
+                          <div class="slds-form-element
+                            slds-form-element_horizontal">
+                            <label class="slds-form-element__label"
+                              for="accountname">Account Name:</label>
+                            <div class="slds-form-element__control"
+                              style="text-align: left;">
+                              {item.name}
+                            </div>
+                          </div>
+                          <div class="slds-form-element
+                            slds-form-element_horizontal">
+                            <label class="slds-form-element__label"
+                              for="accounttype">Account Type:</label>
+                            <div class="slds-form-element__control"
+                              style="text-align: left;">
+                              {item.type}
+                            </div>
+                          </div>
+                          <div class="slds-form-element
+                            slds-form-element_horizontal">
+                            <label class="slds-form-element__label"
+                              for="routingnumber">Routing Number:</label>
+                            <div class="slds-form-element__control"
+                              style="text-align: left;">
+                              {item.routingNumber}
+                            </div>
+                          </div>
+                          <div class="slds-form-element
+                            slds-form-element_horizontal">
+                            <label class="slds-form-element__label"
+                              for="accountnumber">Account Number:</label>
+                            <div class="slds-form-element__control"
+                              style="text-align: left;">
+                              {item.accountNumber}
+                            </div>
+                          </div>
+                          <div class="text-right mt-20">
+                            <button class="slds-button slds-button_brand mt-20
+                              px-40" data-id={item.id}
+                              onclick={handleEditFinAccount}>Edit</button>
+                            <button class="slds-button slds-button_brand mt-20
+                              px-40" data-id={item.id}
+                              onclick={handleDeleteFinAccount}>Delete</button>
+                          </div>
+                        </template>
+    
+    
+                      </div>
+                    </div>
+                  </div>
+    
+                </div>
+              </template>
+    
+    
+            </div>
+          </template>
+  
+          <!-- OPTIONS -->
+       
+  
+  
+        </div><!-- /.col-inner-wrap -->
+     
+
+
+
+
+    </div>
+  </div>
+
+</template>

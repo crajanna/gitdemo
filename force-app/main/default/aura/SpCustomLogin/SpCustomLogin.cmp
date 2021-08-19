@@ -1,0 +1,126 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"
+  controller="LightningLoginFormController">
+  <ltng:require styles="{!$Resource.ScholarshipPortalCSS}" />
+  <aura:attribute name="showError" type="Boolean" required="true" description="" default="false" access="private" />
+  <aura:attribute name="errorMessage" type="String" required="false" description="" access="private" />
+  <aura:attribute name="startUrl" type="String" required="false"
+    description="The url you go to after a successful login" />
+  <aura:attribute name="expid" type="String" required="false" description="The branding experience ID" />
+  <aura:attribute name="usernameLabel" type="String" required="false" default="Username" />
+  <aura:attribute name="passwordLabel" type="String" required="false" default="Password" />
+  <aura:attribute name="loginButtonLabel" type="String" required="false" default="Sign In" />
+  <aura:attribute name="forgotPasswordLabel" type="String" required="false" default="Forgot your password?" />
+  <aura:attribute name="selfRegisterLabel" type="String" required="false" default="Not a member?" />
+  <aura:attribute name="forgotPasswordUrl" type="String" required="false" default="/ForgotPassword" />
+  <aura:attribute name="selfRegisterUrl" type="String" required="false" default="/SelfRegister" />
+
+  <aura:attribute name="isUsernamePasswordEnabled" type="Boolean" access="private" />
+  <aura:attribute name="isSelfRegistrationEnabled" type="Boolean" access="private" />
+  <aura:attribute name="communityForgotPasswordUrl" type="String" access="private" />
+  <aura:attribute name="communitySelfRegisterUrl" type="String" access="private" />
+  <aura:attribute name="showEmailErrorMessage" type="String" required="false" description="" access="private" />
+  <aura:attribute name="showPasswordErrorMessage" type="String" required="false" description="" access="private" />
+  <aura:attribute name="showInCorrectPasswordMessage" type="String" required="false" description="" access="private" />
+
+  <aura:registerevent name="sitePropagatedStartUrl" type="c:setStartUrl" />
+  <aura:handler name="init" value="{!this}" action="{!c.initialize}" />
+  <aura:dependency resource="c:setStartUrl" type="EVENT" />
+
+  <aura:dependency resource="siteforce:registerQueryEventMap" type="EVENT" />
+
+  <aura:handler event="c:setStartUrl" action="{!c.setStartUrl}" />
+  <aura:handler event="c:setExpId" action="{!c.setExpId}" />
+  <aura:dependency resource="c:setExpId" type="EVENT" />
+  <div class="f-comp">
+
+    <!-- MAIN CONTENT -->
+    <div class="slds-grid slds-grid_vertical-align-center slds-wrap f-comp">
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 f-form-wrap-alt">
+
+
+
+        <!-- FORM -->
+        <div class="mb-80">
+          <a href="https://www.floridaprepaidcollegefoundation.com/" target="_blank"><img src="{!$Resource.FoundationImages + '/img/logo-fl-prepaid-black-320px.png'}"
+              width="157" alt="Stanley G. Tate Florida Prepaid College Foundation" /></a>
+        </div>
+
+        <div class="mb-40">
+
+          <h1 class="mb-10">Sign In to Your Account</h1>
+          <p class="text-gray">Don’t have an account? <a
+              href="{!if(v.communitySelfRegisterUrl == null, v.selfRegisterUrl, v.communitySelfRegisterUrl)}">Create an
+              Account</a></p>
+
+        </div>
+
+        <div class="slds-form-element mb-20">
+          <label class="slds-form-element__label" for="email">Email</label>
+          <div class="slds-form-element__control">
+            <ui:inputText value="" aura:id="username" keyup="{!c.onKeyUp}" class="slds-input" label="{!v.usernameLabel}"
+              labelClass="assistiveText" />
+            <!-- <input type="email" id="email" class="slds-input" /> -->
+            <p style="color: red;">{!v.showEmailErrorMessage}</p>
+          </div>
+        </div>
+
+        <div class="slds-form-element mb-20">
+          <div class="d-flex space-between">
+            <label class="slds-form-element__label" for="password">Password</label>
+            <!-- <a href="#">Forgot Password?</a> -->
+            <span><a href="{!if(v.communityForgotPasswordUrl == null, v.forgotPasswordUrl, v.communityForgotPasswordUrl)}" style=" text-align: right; float: right;">{!v.forgotPasswordLabel}</a></span>
+          </div>
+          <div class="slds-form-element__control">
+            <ui:inputSecret value="" aura:id="password" keyup="{!c.onKeyUp}" class="slds-input"
+              label="{!v.passwordLabel}" labelClass="assistiveText" />
+            <!-- <input type="password" id="password" class="slds-input" /> -->
+
+            <p style="color: red;">{!v.showPasswordErrorMessage}</p>
+            <p style="color: red;">{!v.showInCorrectPasswordMessage}</p>
+            
+          </div>
+        </div>
+
+        <div class="slds-form-element mb-40">
+          <div class="slds-form-element__control">
+            <div class="slds-checkbox">
+              <input type="checkbox" name="options" id="checkbox-unique-id-73" value="checkbox-unique-id-73" />
+              <label class="slds-checkbox__label d-flex" for="checkbox-unique-id-73">
+                <div class="check-inline">
+                  <div class="slds-checkbox_faux check-inline"></div>
+                </div>
+                <span class="slds-form-element__label f-comp-label-lite"><b>Remember Me.</b> Do not check if this is a
+                  public or shared device.</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <ui:button aura:id="submitButton" label="Sign In" press="{!c.handleLogin}"
+            class="slds-button sfdc_button" />
+          <!-- <aura:renderIf isTrue="{!v.isSelfRegistrationEnabled}">
+                <span class="px-4">  &nbsp;or&nbsp;</span><a href="{!if(v.communitySelfRegisterUrl == null, v.selfRegisterUrl, v.communitySelfRegisterUrl)}"><b>{!v.selfRegisterLabel}</b></a> 
+            </aura:renderIf>      -->
+          <!-- <button class="slds-button slds-button_brand mb-20">Sign In</button> -->
+        </div>
+
+
+
+      </div>
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-grid slds-grid_vertical-align-end slds-wrap f-cover f-cover-signup">
+
+        <!-- <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-grid slds-grid_vertical-align-end slds-wrap f-cover "> -->
+
+
+        <c:bgImageTextComp bgImage="bg-grad-mom.jpg" style=""
+          titleText="Give aspiring students the opportunity to build a better future for themselves.">
+        </c:bgImageTextComp>
+
+      </div>
+
+
+    </div>
+    <!-- </div> -->
+  </div>
+</aura:component>

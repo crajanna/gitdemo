@@ -1,0 +1,26 @@
+<template>
+    <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs">
+        <div class="slds-col slds-var-p-around_x-small slds-size_5-of-12">
+            <h6>NEW BENEFICIARY</h6>
+
+            <lightning-input name="Birthdate" type="date" placeholder="Enter a date" value={beneficiaryDate}
+                onchange={handleChange}></lightning-input>
+            <!-- <lightning-input type="date" name="beneficiaryDate" label="Enter a date" ></lightning-input> -->
+            <!-- <input type="date" id="beneficiaryDate" placeholder="" value="2020-02-01" class="slds-input" /> -->
+        </div>
+        <div class="slds-col slds-var-p-around_x-small slds-size_5-of-12">
+            <div class="slds-form-element mt-24">
+                <label class="slds-form-element__label sr-only" for="beneficiaryType">Beneficiary Type</label>
+                <lightning-combobox name="infant" value={value} placeholder="Infant" options={beneficiaryOptions}
+                    onchange={handleBeneficiaryChange}></lightning-combobox>
+            </div>
+        </div>
+
+        <div class="slds-col slds-var-p-around_x-small slds-size_2-of-12">
+            <div class="slds-form-element mt-24">
+                <button onclick={updateNewBeneficiaryInfo} class="slds-button
+              slds-button_brand mt-20">Update</button>
+            </div>
+        </div>
+    </div>
+</template>

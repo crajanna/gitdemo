@@ -1,0 +1,105 @@
+<template>
+
+    <div class="slds-grid">
+        <div class="slds-col slds-size_2-of-12 p-4">
+            <c-beneficiary-list-component record-id={userAccountId}></c-beneficiary-list-component>
+        </div>
+        <div class="slds-col slds-large-size_10-of-12 bg-gray">
+
+
+            <template if:true={showManagePayments}>
+                <c-ep-manage-payments
+                    beneficiary-account-id={beneficiaryAccountId}></c-ep-manage-payments>
+            </template>
+            <template if:true={showChangePlans}>
+                <c-ep-change-plans></c-ep-change-plans>
+            </template>
+
+            <template if:true={showManageAccount}>
+
+
+
+                <h1 class="mb-40 ml-30">Manage Account</h1>
+
+
+                <div class="col-inner-wrap">
+
+
+                    <!-- OPTIONS -->
+                    <div class="slds-grid slds-gutters slds-wrap">
+
+                        <div class="slds-col slds-large-size_3-of-12">
+
+                            <div class="box-dash box-stack">
+
+                                <img src="img/circle-fpo-66px.png"
+                                    class="inline-block mt-20 mb-40" alt="" />
+                                <h3>Manage Payments</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit. Ut a ultrices ante, vel
+                                    volutpat nulla. In tempus fringilla arcu.</p>
+                                <button class="slds-button slds-button_brand slds-button_stretch
+                                    mt-20 px-40 d-block"
+                                    onclick={manangePayments}>Manage</button>
+                            </div>
+
+                        </div>
+                        <div class="slds-col slds-large-size_3-of-12">
+
+                            <div class="box-dash box-stack">
+
+                                <img src="img/circle-fpo-66px.png"
+                                    class="inline-block mt-20 mb-40" alt="" />
+                                <h3>Change Plans</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit. Ut a ultrices ante, vel
+                                    volutpat nulla. In tempus fringilla arcu.</p>
+                                <button class="slds-button slds-button_brand slds-button_stretch
+                                    mt-20 px-40 d-block"
+                                    onclick={handleChangePlans}>Change</button>
+                            </div>
+
+                        </div>
+                        <div class="slds-col slds-large-size_3-of-12">
+
+                            <div class="box-dash box-stack">
+
+                                <img src="img/circle-fpo-66px.png"
+                                    class="inline-block mt-20 mb-40" alt="" />
+                                <h3>Use Plans</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit. Ut a ultrices ante, vel
+                                    volutpat nulla. In tempus fringilla arcu.</p>
+                                <button class="slds-button slds-button_brand slds-button_stretch
+                                    mt-20 px-40 d-block">Use</button>
+                            </div>
+
+                        </div>
+                        <div class="slds-col slds-large-size_3-of-12">
+
+                            <div class="box-dash box-stack">
+
+                                <img src="img/circle-fpo-66px.png"
+                                    class="inline-block mt-20 mb-40" alt="" />
+                                <h3>Manage Users</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit. Ut a ultrices ante, vel
+                                    volutpat nulla. In tempus fringilla arcu.</p>
+                                <button class="slds-button slds-button_brand slds-button_stretch
+                                    mt-20 px-40 d-block">Manage</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div><!-- /.col-inner-wrap -->
+            </template>
+
+        </div>
+    </div>
+
+
+</template>

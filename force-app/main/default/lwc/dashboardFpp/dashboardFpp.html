@@ -1,0 +1,209 @@
+<template>
+
+    <div class="slds-grid">
+        <div class="slds-col slds-size_2-of-12 p-4">
+          <c-beneficiary-list-component record-id ={accountId}></c-beneficiary-list-component>
+        </div>
+        <div class="slds-col slds-large-size_10-of-12 bg-gray">
+      
+      
+    
+      
+          <div class="slds-grid">
+            <div class="slds-col slds-large-size_9-of-12 slds-grid">
+              <div class="slds-col slds-size_1-of-2">
+      
+                <div class="col-inner-wrap pr-14">
+      
+      
+                  <!-- MY DASHBOARD -->
+                  <h1 class="mb-40 mt-20">My Dashboard</h1>
+      
+                  <div class="box-dash">
+      
+                    <div class="welcome-wrap d-flex">
+                        <img src={imageMugFpotasks} alt="tasks" class="mr-4" />
+                      <div class="welcome-text">
+                        <h6>WELCOME BACK!</h6>
+                        <h5 class="fw-400">You currently have <b>7 tasks</b> to complete.</h5>
+                      </div>
+                    </div>
+      
+                    <div class="tasks">
+      
+                      <div class="task">
+                        <p class="task-text">Please verify Arin K's Florida residency status.</p>
+                        <a href="#" class="task-link">VERIFY <img src={imagearrowrightwhite} class="icon-arrow-tweak" alt="" /></a>
+                      </div>
+                      <div class="task">
+                        <p class="task-text">Please verify Arin K's Florida residency status.</p>
+                        <a href="#" class="task-link">VERIFY <img src={imagearrowrightwhite} class="icon-arrow-tweak" alt="" /></a>
+                      </div>
+                      <div class="task">
+                        <p class="task-text">You have an overdue payment.<br /> <a href="#">Feeling stressed about this?</a></p>
+                        <a href="#" class="task-link">PAY <img src={imagearrowrightwhite} class="icon-arrow-tweak" alt="" /></a>
+                      </div>
+                      <div class="task">
+                        <p class="task-text">You haven't set up Bobbi J's Savings Plan contributions.</p>
+                        <a href="#" class="task-link">SET UP <img src={imagearrowrightwhite} class="icon-arrow-tweak" alt="" /></a>
+                      </div>
+      
+                    </div>
+      
+                    <button  class="slds-button slds-button_brand mt-20 px-40">View All Tasks</button>
+
+                  </div>
+      
+      
+                </div>
+      
+      
+              </div>
+              <div class="slds-col slds-size_1-of-2 ">
+      
+      
+                <div class="col-inner-wrap pl-14">
+      
+      
+                  <!-- REWARDS -->
+                  <!-- <div class="rewards-wrap">
+                    <div class="rewards">
+                      <h6>REWARDS</h6>
+                      <p class="pts"><span>320/500pts</span> to go!</p>
+                    </div>
+                    <div class="rewards-progress">
+                      <div class="rewards-progress-bar"></div>
+                    </div>
+                    <div class="rewards-trophy">
+                        <img src={imageicontrophy} width="70" height="70" alt="trophy" />
+                    </div>
+                  </div> -->
+      
+      
+      
+                  <!-- UPCOMING PAYMENTS -->
+                  <div class="box-dash mt-20">
+      
+                    <h6 class="mb-20">UPCOMING EVENTS</h6>
+      
+                    <div class="pymt-items">
+      
+                      <div class="pymt-item">
+                        <div class="pymt-amt"><span class="d-sign">$</span>210<span class="cents"><span class="sr-only">.</span>00</span></div>
+                        <div class="pymt-due">due today</div>
+                        <div> <button  class="slds-button slds-button_brand mt-20 px-40">Pay Now</button> </div>
+                       
+                      </div>
+                      <div class="pymt-item">
+                        <div class="pymt-amt"><span class="d-sign">$</span>210<span class="cents"><span class="sr-only">.</span>00</span></div>
+                        <div class="pymt-due">due 08/06/2020</div>
+                        <div><button  class="slds-button slds-button_brand mt-20 px-40">Scheduled</button></div>
+                      </div>
+                      <div class="pymt-item">
+                        <div class="pymt-amt"><span class="d-sign">$</span>210<span class="cents"><span class="sr-only">.</span>00</span></div>
+                        <div class="pymt-due">due 08/06/2020</div>
+                        <div><button  class="slds-button slds-button_brand mt-20 px-40">Scheduled</button></div>
+                      </div>
+      
+                    </div>
+      
+                    <a href="#" class="fw-600">See All Payments &amp; Contributions</a>
+      
+                  </div>
+      
+      
+                  <!-- CTA -->
+                  <div class="box-dash">
+      
+                    <h5>Either educational promo CTA, or tiny survey to casually capture more account data in exchange for reward points.</h5>
+                    <button class="slds-button slds-button_brand mt-20 px-40">Learn More About Prepaid Plans</button>
+      
+                  </div>
+      
+      
+                </div>
+      
+      
+              </div>
+            </div>
+            <div class="slds-col slds-large-size_3-of-12">
+      
+      
+              <!-- RIGHT BAR -->
+              <div class="col-inner-wrap col-right mt-20">
+      
+                <c-plan-amount-component record-id={accountId} plan-type="Prepaid">
+                </c-plan-amount-component>
+                
+      
+                <c-plan-amount-component record-id={accountId} plan-type="Savings">
+                </c-plan-amount-component>
+
+            
+                <!-- <div class="box-dash">
+                  <div class="plan-amt text-center">
+                    <img src={imagecirclefpo30} alt="" />
+                    <h5><span>$</span>17,862</h5>
+                    <p>Total Amount Saved For</p>
+                    <h6>PREPAID PLANS</h6>
+                  </div>
+                </div>
+      
+      
+                <div class="box-dash">
+                  <div class="plan-amt text-center">
+                    <img src={imagecirclefpo30} alt="" />
+                    <h5><span>$</span>12,123</h5>
+                    <p>Total Amount Contributed For</p>
+                    <h6>SAVINGS PLANS</h6>
+                  </div>
+                </div> -->
+      
+      
+                <div class="box-dash">
+      
+                  <h6>PROGRESS</h6>
+      
+                  <div class="progress">
+                    <div class="progress-item">
+                      <p>Charlie J.</p>
+                      <div class="progress-plans">
+                        <div><b>PP</b> $5,345</div>
+                        <div><b>SP</b> &mdash;</div>
+                      </div>
+                    </div>
+                    <div class="progress-item">
+                      <p>Charlie J.</p>
+                      <div class="progress-plans">
+                        <div><b>PP</b> &mdash;</div>
+                        <div><b>SP</b> $13,345</div>
+                      </div>
+                    </div>
+                    <div class="progress-item">
+                      <p>Charlie J.</p>
+                      <div class="progress-plans">
+                        <div><b>PP</b> $5,345</div>
+                        <div><b>SP</b> $13,345</div>
+                      </div>
+                    </div>
+                  </div>
+      
+      
+                  <a href="#" class="text-center d-block fw-600">See All Plans</a>
+      
+                </div>
+      
+      
+              </div>
+      
+      
+            </div>
+          </div>
+      
+      
+        </div>
+      </div>
+      
+      <a href="#" class="chat-btn"><img src={imageiconhelpchat} alt="help" /></a>
+      
+</template>

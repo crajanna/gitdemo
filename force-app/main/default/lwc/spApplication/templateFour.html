@@ -1,0 +1,162 @@
+<template>
+    
+<!-- TITLE -->
+<div class="slds-grid f-comp pledge-header">
+  <div class="slds-col">
+
+    <h1>Apply for Scholarships</h1>
+    <!-- <p>Choose a program to support lorem ipsum.</p> -->
+
+  </div>
+</div>
+
+
+<!-- STEPS -->
+<div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+
+  <div class="slds-col">
+    <div class="btn-wiz-new done">
+      <span class="num"><span>1</span></span> <span class="title">Student &amp; Guardian Information</span>
+    </div>
+  </div>
+
+  <div class="slds-col">
+    <div class="btn-wiz-new done">
+      <span class="num"><span>2</span></span> <span class="title">Financial Information</span>
+    </div>
+  </div>
+
+  <div class="slds-col">
+    <div class="btn-wiz-new done">
+      <span class="num"><span>3</span></span> <span class="title">Student Interests</span>
+    </div>
+  </div>
+
+  <div class="slds-col">
+    <div class="btn-wiz-new active">
+      <span class="num"><span>4</span></span> <span class="title">Student Responsibilites</span>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- CONTENT -->
+<div class="slds-grid slds-wrap f-comp pledge-content">
+
+
+  <!-- OTHER PROGRAMS -->
+  <div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12">
+    <div class="pledge-card-wrap">
+
+      <div class="pledge-inner">
+
+        <h1 class="text-normal">Student Responsibilities</h1>
+
+        <p>Any relevant explanation of what the user needs to do. Lorem ipsum dolor sit amet nam in sociosqu eget conubia tempor non mattis.</p>
+
+        <div class="slds-grid box-light-gray-inputs">
+          <div class="slds-col slds-var-p-around_x-small slds-size_12-of-12">
+
+
+            <hr>
+
+
+            <!-- STUDENT INTERESTS INFO -->
+            <h3 class="mt-40">Student Responsibilities Overview</h3>
+
+            <p class="mt-20">If selected for Project STARS Scholarship, the student agrees to:</p>
+            <ul class="slds-list_dotted mt-10">
+              <li>Remain drug free</li>
+              <li>Remain crime free</li>
+              <li>Complete an annual Project STARS Student Survey</li>
+              <li>Meet regularly with a mentor</li>
+            </ul>
+
+
+            <div class="slds-form-element mt-20 mb-20">
+              <div class="slds-form-element__control">
+                <div class="slds-checkbox">
+                  <input type="checkbox" name="options" id="acceptTerms" value="acceptTerms" />
+                  <label class="slds-checkbox__label d-flex" for="acceptTerms">
+                    <div class="check-inline">
+                      <div class="slds-checkbox_faux check-inline"></div>
+                    </div>
+                    <span class="slds-form-element__label f-comp-label-lite">I agree that all the information contained in this application is accurate and will be shared with the donor organization to which I have applied. Any false information will result in ineligibility to the scholarship program.</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <fieldset class="slds-form-element slds-form-element_compound mt-10">
+              <legend class="slds-form-element__legend slds-form-element__label sr-only">Signatures</legend>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__row">
+                  <div class="slds-size_1-of-2">
+                    <div class="slds-form-element">
+                      <label class="slds-form-element__label" for="input-01">Student Signagure</label>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="input-01" class="slds-input" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-size_1-of-2">
+                    <div class="slds-form-element">
+                      <label class="slds-form-element__label" for="input-02">Parent/Guardian Signature</label>
+                      <div class="slds-form-element__control">
+                        <input type="text" id="input-02" class="slds-input" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <p class="mt-20">*If any information filled out on this application were to change, please contact the donor foundation to which you are applying.</p>
+            <p class="ml-10"><b>Donor Name</b><br />
+            (850) 123-4567<br />
+            <a href="mailto:donorname@donordomain.com">donorname@donordomain.com</a></p>
+
+
+
+
+            <hr>
+
+
+
+          </div>
+        </div>
+
+
+
+        <div>
+          <!-- <a href="#" role="button" class="slds-button slds-button_brand inline px-30 mr-20">Next</a>
+          <a href="#"><strong>< Go Back</strong></a> -->
+          <lightning-button label="Next"  onclick={finish}> </lightning-button> &nbsp;
+          <!-- <a href="#" role="button" class="slds-button slds-button_brand inline px-30 mr-20" onclick={finish}>Next</a> -->
+          <!-- <a href="#"><strong> Go Back</strong></a> -->
+          <lightning-button label="< Go Back " onclick={studentInterests}> </lightning-button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  
+  </div>
+
+</div>
+
+
+
+<!-- PORTAL FOOTER IMAGE: FPO -->
+<div class="f-comp f-comp-footer-fpo">
+  <img src="#" width="1130" height="379" alt="Sample Footer" />
+</div>
+<div class="f-comp f-comp-footer-sub-fpo">
+  <img src="#" width="1071" height="59" alt="Sample Footer Sub" />
+</div>
+
+</template>

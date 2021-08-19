@@ -1,0 +1,16 @@
+<template>
+    <div class="f-comp cta-wrap"> 
+      <template  for:each={content} for:item="con">
+        <div class={con.class} key={con.Id}>
+          <div class="card-text">
+            <h5>{con.tag}</h5>
+            <p><lightning-formatted-rich-text value={con.description}></lightning-formatted-rich-text></p>
+            <a href={con.buttonUrl} target="_blank" role="button" class="slds-button slds-button_azure-reverse mt-10">
+              {con.buttonText}
+              <img src={con.imageUrl} class="ml-10" alt="arrow right" />
+            </a>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>

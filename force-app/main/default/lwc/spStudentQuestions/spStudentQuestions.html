@@ -1,0 +1,451 @@
+<template>
+    <div class="slds-grid f-comp pledge-header">
+        <div class="slds-col">
+            <h1>Apply for a Scholarship</h1>
+        </div>
+
+    </div>
+    <!-- STEPS -->
+    <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+        <div class="slds-col">
+            <div class="btn-wiz-new done">
+                <span class="num"><span>1</span></span> <span class="title">Student Information</span>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="btn-wiz-new done">
+                <span class="num"><span>2</span></span> <span class="title">Parent/Guardian Information</span>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="btn-wiz-new active">
+                <span class="num"><span>3</span></span> <span class="title">Scholarship Requirements</span>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>4</span></span> <span class="title">Student Responsibilities</span>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content">
+
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+            <div class="pledge-card-wrap">
+                <div class="pledge-inner">
+                    <div>
+                        <!-- <lightning-input label="xxx" name="file uploader"  type="file" multiple></lightning-input>
+
+                        <lightning-input type="file"  label="Attachment1" onchange={openfileUpload}></lightning-input> -->
+
+
+                        <!-- Starts Boys & Girls Club Application-->
+                        <template if:true={studentStatementLabel}>
+                            <p><strong><span style="font-size: 18px;">Student Statement: </span></strong></p>
+                            <ul style="margin-bottom:0in;margin-top:0in;" type="square">
+                                <li style='margin-left: 28px; font-size:15px;font-family:"Calibri",sans-serif;'>
+                                    {studentStatementLabel}</li>
+                            </ul>
+                            <lightning-input-rich-text id="studentStatement" name="studentStatement"
+                                onchange={handleClick} message-when-bad-input={errorMessage} valid={validity}>
+                            </lightning-input-rich-text>
+                            <br /><br />
+                        </template>
+
+                        <template if:true={academicInterests}>
+                            <p><strong><span style="font-size: 18px;">{academicInterests}: </span></strong></p>
+                            <lightning-input name="academicInterestsInput" type="text" value=""
+                                onchange={academicInterestsHandler}></lightning-input>
+                            <br /><br />
+                        </template>
+                        <!--Ends Boys & Girls Club Application-->
+
+                        <!--Starts Black History Month Scholarship Application-->
+                        <!-- <template if:true={allOrganizations}>
+                            <p><strong><span style="font-size: 18px;">{allOrganizations} </span></strong></p>
+                            <lightning-input name="allOrganizationsInput" type="text" value=""
+                                onchange={scholarshipRequirementHandler}></lightning-input>
+                        </template>     -->
+                        <!-- <div>
+                            <lightning-input label="" name="file uploader" onchange={handleFilesChange} type="file"
+                                multiple>
+                            </lightning-input>
+                        </div><br />
+                        <div class="slds-text-body_small slds-text-color_success">{fileName}
+                            <template if:true={showLoadingSpinner}>
+                                <lightning-spinner alternative-text="Uploading......" size="medium"></lightning-spinner>
+                            </template>
+                        </div><br />
+                        <div class="slds-text-body_small slds-text-color_error">{errorMsg}</div><br />
+                        <template if:false={isTrue}>
+                            <div>
+                                <lightning-button class="slds-m-top_medium" label={UploadFile} onclick={handleSave}
+                                    variant="brand" disabled={isTrue}></lightning-button>
+                            </div>
+                        </template> -->
+
+                        <template if:true={videoStatement}>
+                            <div class="slds-form-element mt-20">
+
+                                <p><strong><span style="font-size: 18px;">
+                                            <lightning-formatted-rich-text value={videoStatement}>
+                                            </lightning-formatted-rich-text>
+                                        </span></strong></p>
+                                <div class="slds-form-element__control">
+
+                                    <template if:false={hideUpload}>
+                                        <!--<div>
+                                            <lightning-input label="" id="videoFileUploader" name="videoFileUploader"
+                                                onchange={handleFileChange} type="file" accept={acceptedFormats}
+                                                disabled={isTrue}>
+                                            </lightning-input>
+                                        </div>-->
+                                        
+                                                    <!-- style="position: absolute;left: 0;opacity: 0;top: 0;bottom: 0;width: 100%;" -->
+                                        <lightning-file-upload
+                                                    name="videoFileUploader" type="file" label="" data-id="videoFileUploader"
+                                                    onuploadfinished={handleFileChange} accept={acceptedFormats} disabled={isTrue}>
+                                        </lightning-file-upload>
+                                    </template>
+                                    <template if:true={fileName}>
+                                        <br />
+                                        <div class="slds-text-heading_medium slds-text-color_success">{fileName}
+                                            <template if:true={data}>
+                                                - {data}
+                                            </template>
+
+                                            <template if:true={showLoadingSpinner}>
+                                                <lightning-spinner alternative-text="Uploading......" size="medium">
+                                                </lightning-spinner>
+                                            </template>
+                                        </div>
+                                        <div class="slds-text-heading_medium slds-text-color_error">{errorMsg}</div>
+                                    </template>
+                                    <!-- <br />
+                                    <template if:true={isTrue}>
+                                        <br />
+                                        <div class="slds-form-element">
+                                            <label class="slds-checkbox_toggle slds-grid">
+                                                <span class="slds-form-element__label slds-m-bottom_none">Would you like
+                                                    to reset uploaded video
+                                                    :</span>
+                                                <input type="checkbox" name="restVideo" value="true"
+                                                    aria-describedby="checkbox-toggle-16" onchange={handleResetVideo} />
+                                                <span id="checkbox-toggle-16" class="slds-checkbox_faux_container"
+                                                    aria-live="assertive">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-checkbox_on"></span>
+                                                    <span class="slds-checkbox_off"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+
+                                    </template> -->
+
+                                    <!-- <div>
+                                        <br />
+                                        <lightning-button class="slds-m-top_medium" label="Create Contract"
+                                            onclick={handleCreateContract} variant="brand"></lightning-button>
+                                    </div> -->
+
+
+                                </div>
+                            </div>
+                            <br /><br />
+                        </template>
+
+                        <template if:true={essayContest}>
+                            <p><strong><span style="font-size: 18px;">{essayContest} </span></strong></p>
+                            <template if:true={communityChampions}>
+                                <lightning-formatted-rich-text value={communityChampions}>
+                                </lightning-formatted-rich-text>
+                            </template>
+                            <lightning-input-rich-text id="essayContest" name="essayContest" onchange={handleClick}
+                                value={myVal} message-when-bad-input={errorMessage} valid={validity}>
+                            </lightning-input-rich-text>
+                            <br /><br />
+                        </template>
+
+                        <!--Ends Black History Month Scholarship Application-->
+
+                        <template if:true={benefitsQualifyLabel}>
+                            <div>
+                                <h1>Qualification Criteria</h1>
+                            </div>
+                            <div style="display: flex;">
+                                <div class="slds-col slds-size_1-of-1 slds-large-size_10-of-12">
+                                    <lightning-formatted-rich-text value={benefitsQualifyLabel}>
+                                    </lightning-formatted-rich-text>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                                    <lightning-combobox name="benefitsQualify" label="" value={value}
+                                        style="width: 110px;margin-top: -31px;" options={options}
+                                        onchange={handleChange}>
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                            <br /><br />
+                        </template>
+
+
+                        <template if:true={showProofOfBenefits}>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12">
+                                <div>
+                                    <p><strong>If so, please attach proof of benefits or the most recent tax records
+                                            demonstrating eligibility.</strong></p>
+                                </div>
+                                <div>
+                                    <!--<lightning-input label="" id="proofOfBenefits" name="proofOfBenefits"
+                                        onchange={handleFileChange} type="file" disabled={isTrue}>
+                                    </lightning-input>-->
+                                    <lightning-file-upload
+                                                    name="proofOfBenefits" type="file" label="" data-id="proofOfBenefits"
+                                                    onuploadfinished={handleFileChange} disabled={isTrue}>
+                                    </lightning-file-upload>
+                                </div>
+                                <div>
+                                    <template if:true={proofOfBenefitsFileName}>
+                                        <br />
+                                        <div class="slds-text-heading_medium slds-text-color_success">{proofOfBenefitsFileName}</div>
+                                    </template>
+                                </div>
+                            </div>
+                            <br /><br />
+                        </template>
+
+
+                        <template if:true={completeHighSchoolOrAttendCollegeLabel}>
+                            <div style="display: flex;">
+                                <div class="slds-col slds-size_1-of-1 slds-large-size_10-of-12">
+                                    <lightning-formatted-rich-text value={completeHighSchoolOrAttendCollegeLabel}>
+                                    </lightning-formatted-rich-text>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                                    <lightning-combobox name="completeHighSchoolOrAttendCollege" label="" value={value}
+                                        style="width: 110px;margin-top: -31px;" placeholder="Select Progress"
+                                        options={options} onchange={handleChange}>
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                            <br /><br />
+                        </template>
+
+
+                        <template if:true={mentorLabel}>
+                            <div style="display: flex;">
+                                <div class="slds-col slds-size_1-of-1 slds-large-size_10-of-12">
+                                    <lightning-formatted-rich-text value={mentorLabel}></lightning-formatted-rich-text>
+                                </div>
+                                <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                                    <lightning-combobox name="mentor" label="" value={value}
+                                        style="width: 110px;margin-top: -31px;" placeholder="Select Progress"
+                                        options={options} onchange={handleChange}>
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                            <br /><br />
+                        </template>
+
+                        <template if:true={showMetorFields}>
+                            <template if:true={mentorOrOrganizationLabel}>
+                                <div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12">
+
+                                    <lightning-formatted-rich-text value={mentorOrOrganizationLabel}>
+                                    </lightning-formatted-rich-text>
+
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                                        <!-- <lightning-combobox name="mentorOrOrganization" label="" value={value}
+                                            style="width: 110px;margin-top: -31px;" placeholder="Select Progress"
+                                            options={options} onchange={handleChange}>
+                                        </lightning-combobox> -->
+
+                                    </div>
+                                    <div id="mentorOrOrganization">
+
+                                        <!-- <lightning-textarea name="mentorOrOrganization" label="" onchange={handleClick}>
+                                        </lightning-textarea> -->
+                                        <lightning-input name="mentorOrOrganization" type="text" value=""
+                                            style="height: 70px;" max-length="100" onchange={handleClick}>
+                                        </lightning-input><br />
+                                    </div>
+                                </div>
+                                <br /> <br />
+                            </template>
+
+                            <template if:true={workingWithMentorLabel}>
+                                <div style="display: flex;">
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_10-of-12">
+                                        <lightning-formatted-rich-text value={workingWithMentorLabel}>
+                                        </lightning-formatted-rich-text>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                                        <lightning-combobox name="workingWithMentor" label="" value={value}
+                                            style="width: 110px;margin-top: -31px;" placeholder="Select Progress"
+                                            options={options} onchange={handleChange}>
+                                        </lightning-combobox>
+                                    </div>
+                                </div>
+                                <!-- <div>
+                                    <lightning-input name="workingWithMentor" type="text" value="" style="height: 70px;"
+                                        onchange={handleClick}></lightning-input>
+                                        <lightning-textarea name="workingWithMentor" label="" onchange={handleClick}></lightning-textarea>
+                                </div> -->
+                                <br /><br />
+                            </template>
+                        </template>
+
+
+
+
+
+                        <template if:true={institutionHigherEducationLabel}>
+                            <div style="display: flex;">
+                                <div class="slds-col slds-size_1-of-1 slds-large-size_10-of-12">
+                                    <lightning-formatted-rich-text value={institutionHigherEducationLabel}>
+                                    </lightning-formatted-rich-text>
+                                </div>
+                            </div>
+                            <br />
+                        </template>
+
+                        <template if:true={institutionLabel}>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12">
+
+                                <lightning-formatted-rich-text value={institutionLabel}>
+                                </lightning-formatted-rich-text>
+
+                                <!-- <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                                    <lightning-combobox name="institution" label="" value={value}
+                                        style="width: 110px;margin-top: -31px;" placeholder="Select Progress"
+                                        options={options} onchange={handleChange}>
+                                    </lightning-combobox>
+                                </div> -->
+                            </div>
+                            <div>
+                                <!-- <lightning-input name="institution" type="text" value="" style="height: 70px;"
+                                    onchange={handleClick}></lightning-input> -->
+
+                                <lightning-input name="institution" type="text" value="" style="height: 70px;"
+                                    max-length="100" onchange={handleClick}></lightning-input><br />
+
+
+                            </div>
+
+                            <br /><br />
+                        </template>
+
+                        <template if:true={semesterLabel}>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12">
+                                <lightning-formatted-rich-text value={semesterLabel}>
+                                </lightning-formatted-rich-text>
+
+                                <!-- <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                                    <lightning-combobox name="semester" label="" value={value}
+                                        style="width: 110px;margin-top: -31px;" placeholder="Select Progress"
+                                        options={options} onchange={handleChange}>
+                                    </lightning-combobox>
+                                </div> -->
+                            </div>
+                            <div>
+                                <!-- <lightning-input name="semester" type="text" value="" style="height: 70px;"
+                                    onchange={handleClick}></lightning-input> -->
+
+                                <!-- <lightning-textarea name="semester" label="" onchange={handleClick}>
+                                </lightning-textarea> -->
+
+                                <lightning-input max-length="100" name="semester" type="text" value=""
+                                    style="height: 70px;" onchange={handleClick}></lightning-input><br />
+                            </div>
+                            <br /><br />
+                        </template>
+
+
+                        <template if:true={floridaResidentToQualifyLabel}>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12">
+                                <div>
+                                    <lightning-formatted-rich-text value={floridaResidentToQualifyLabel}>
+                                    </lightning-formatted-rich-text>
+                                </div>
+                                <!-- <div class="slds-col slds-size_1-of-1 slds-large-size_2-of-12">
+                                    <lightning-combobox name="floridaResidentToQualify" label="" value={value}
+                                        style="width: 110px;margin-top: -31px;" placeholder="Select Progress"
+                                        options={options} onchange={handleChange}>
+                                    </lightning-combobox>
+                                </div> -->
+                            </div>
+                            <!--<div>
+                                <lightning-input label="" id="floridaResidentToQualify" name="floridaResidentToQualify"
+                                    onchange={handleFileChange} type="file" disabled={isTrue}>
+                                </lightning-input>
+                            </div>-->
+                            <lightning-file-upload
+                                    name="floridaResidentToQualify" type="file" label="" data-id="floridaResidentToQualify"
+                                    onuploadfinished={handleFileChange} disabled={isTrue}>
+                                </lightning-file-upload>
+                            <div>
+                                <template if:true={floridaResidentToQualifyFileName}>
+                                    <br />
+                                    <div class="slds-text-heading_medium slds-text-color_success">{floridaResidentToQualifyFileName}</div>
+                                </template>
+                            </div>
+                        </template>
+                        <!-- <div>
+                            
+                            <div>
+                                <div>
+                                    <lightning-input label="" id="qualifyForAFPC" name="qualifyForAFPC"
+                                        onchange={handleFileChange} type="file" accept={acceptedFormats}
+                                        disabled={isTrue}>
+                                    </lightning-input>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <br /><br />
+                    <div>
+                        <button class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10"
+                            data-gtmid="Student Responsibilities - Previous" onclick={handleGoBack}>Go
+                            Back</button>
+
+                        <template if:true={displayNext}>
+                            <button class="slds-button slds-button_brand btn-sm px-40"
+                                onclick={handleStudentQuestions}>Next</button>
+                        </template>
+                        <template if:false={displayNext}>
+                            <button class="slds-button slds-button_brand btn-sm px-40"
+                                style="background: lightgrey;border: 2px solid lightgrey;">Next</button>
+                        </template>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SELECTED PROGRAM -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+            <div class="pledge-card-wrap card-gradient card-right">
+
+                <div class="pledge-card pb-20">
+
+                    <template if:true={productImgURL}>
+                        <div class="img-wrap">
+                            <img src={productImgURL} alt="program" />
+                        </div>
+                    </template>
+
+                    <h3>{productName}</h3>
+                    <p>{priductDescription}</p>
+                    <a href={productLearnMoreURL} id="productLearnMoreURL" target="_blank" class="text-bold fs-16">Learn
+                        more about this program ></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</template>

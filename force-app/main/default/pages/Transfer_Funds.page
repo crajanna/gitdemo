@@ -1,0 +1,8 @@
+<apex:page controller="FundTransferController">
+    <apex:form >
+        <span>Countries: </span>
+        <apex:selectList size="1">
+            <apex:selectOptions value="{! countryOptions}" />       
+        </apex:selectList>
+    </apex:form>
+</apex:page>

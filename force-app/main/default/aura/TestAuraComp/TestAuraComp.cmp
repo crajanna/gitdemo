@@ -1,0 +1,83 @@
+<aura:component access="global" implements="forceCommunity:availableForAllPageTypes"> 
+    <ltng:require
+            styles="{!$Resource.bootstrap4portal  + '/bootstrap-4.6.0-dist/css/bootstrap.css'}"
+            scripts="{!$Resource.bootstrap4portal + '/bootstrap-4.6.0-dist/js/bootstrap.js'}"
+            afterScriptsLoaded="{!c.onScriptsLoaded}"
+    />
+     <ltng:require styles="{!$Resource.ECMaincss}" /> 
+   
+        <div class="pt-5">
+
+          <div class="container">
+
+            <div class="row">
+
+              <div class="col-md-12">
+      
+                <div class="card card-jumbo mb-4">
+                  <div class="card-body p-0">
+      
+                    <div class="container-fluid p-0">
+                      <div class="row">
+                        <div class="col-md-7">
+      
+                          <div class="box-gray box-gray-left">
+                           
+                            <img src="{!$Resource.ECImages + '/img/logo-fl-prepaid-white-320px.png'}" width="140" alt="Florida Prepaid"/>
+                            <div class="py-5">
+                              <div class="d-flex justify-content-center">
+                                <img src="{!$Resource.ECImages + '/img/img-fpo-gray.png'}"  width="68" height="62" class="text-center" alt="FPO"/>
+                              </div>
+                              <div class="d-flex justify-content-center">
+                                <p class="tiny-text">bright, colorful, fun image to keep the mood bright and encouraging</p>
+                              </div>
+                            </div>
+                            <h1>Start saving for the future, today.</h1>
+                            <h2 class="pb-3">Tax-free, stress-free, worry free.</h2>
+                          </div>
+      
+                        </div>
+                        <div class="col-md-5">
+      
+                          <div class="mr-30">
+                            <h3 class="text-center py-4">Let’s Get Started</h3>
+      
+                            <hr/>
+                            <div>
+                    
+                              <div class="d-flex flex-column">
+                                 <lightning:button label="I’m new to Florida Prepaid"                                                                
+                                onclick="{!c.handleClick}"/>  
+                                <p>I’m interested in enrolling in a plan.</p>
+                              </div>
+                            </div>
+                      
+                            <div class="d-flex img-link">
+                              
+                               <div class="d-flex flex-column">
+                                 <lightning:button label="I’m already enrolled"
+                                 class="slds-m-top_medium"
+                                 variant="brand"
+                                 onclick="{!c.handleClick}"/> 
+                                <p>I’m a <b>beneficiary</b>, a <b>survivor</b>, or related to an existing plan already by other means.</p>
+                              </div>
+                            </div>
+      
+                            <hr/>
+      
+                            <p class="text-center py-4">Already have an account? <b><a href="#">Sign in</a></b></p>
+                          </div>
+      
+                        </div>
+                      </div>
+                    </div>
+      
+                  </div>
+                </div><!-- /.card -->
+      
+              </div>
+            </div>
+</div>
+        </div>
+
+</aura:component>

@@ -1,0 +1,526 @@
+<template>
+
+    <!-- PORTAL HEADER IMAGE: FPO -->
+    <!-- <div class="f-comp f-comp-header-fpo">
+        <img src="img/fpo-sample-header.png" width="1375" height="164" alt="Sample Header" />
+    </div> -->
+
+    <!-- TITLE -->
+    <div class="slds-grid f-comp pledge-header">
+        <div class="slds-col">
+            <h1>Apply for Scholarships</h1>
+            <!-- <p>Choose a program to support lorem ipsum.</p> -->
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+
+        <div class="slds-col">
+            <div class="btn-wiz-new active">
+                <span class="num"><span>1</span></span> <span class="title">Student &amp; Guardian Information</span>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>2</span></span> <span class="title">Financial Information</span>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>3</span></span> <span class="title">Student Interests</span>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>4</span></span> <span class="title">Student Responsibilites</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content">
+
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+            <div class="pledge-card-wrap">
+                <div class="pledge-inner">
+                    <h1 class="text-normal">Student &amp; Guardian Information</h1>
+                    <p>Any relevant explanation of what the user needs to do. Lorem ipsum dolor sit amet nam in sociosqu
+                        eget conubia tempor non mattis.</p>
+
+                    <div class="slds-grid box-light-gray-inputs">
+                        <div class="slds-col slds-var-p-around_x-small slds-size_12-of-12">
+                            <hr>
+
+                            <!-- STUDENT INFO -->
+                            <h3 class="mt-40">Student Information</h3>
+
+                            <h6 class="group">STUDENT OVERVIEW</h6>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="studentName">Student Name</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="studentName" name="studentName" placeholder="" value={studentName} onchange={studentAndGuardianInformationHandler}
+                                        class="slds-input" />
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound mt-20">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Age-relted
+                                    Items</legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="studentDateOfBirth">Date of
+                                                    Birth</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="date" id="studentDateOfBirth" name="studentDateOfBirth" value={studentDateOfBirth} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="studentAge">Age</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="studentAge" name="studentAge" value={studentAge} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-3">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label"
+                                                    for="studentCurrentGrade">Current
+                                                    Grade</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select" id="studentCurrentGrade" onchange={studentAndGuardianInformationHandler}
+                                                            name="studentCurrentGrade">
+                                                            <option selected="selected">Option One</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="slds-form-element slds-form-element_compound mt-20">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">
+                                    Demographic-relted Items</legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_1-of-2">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label"
+                                                    for="studentGender">Gender</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select" id="studentGender" onchange={studentAndGuardianInformationHandler}
+                                                            name="studentGender">
+                                                            <option selected="selected">Option One</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-2">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label"
+                                                    for="studentEthnicity">Ethnicity</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select" id="studentEthnicity" onchange={studentAndGuardianInformationHandler}
+                                                            name="studentEthnicity">
+                                                            <option selected="selected">Option One</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <h6 class="group">STUDENT CONTACT INFORMATION</h6>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="studentAddress">Street Address</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="studentAddress" name="studentAddress" placeholder="" value={studentAddress} onchange={studentAndGuardianInformationHandler}
+                                        class="slds-input" />
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound mt-20">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Address Items
+                                </legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_6-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="studentCity">City</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="studentCity" name="studentCity" value={studentCity} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_3-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="studentST">ST</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select" id="studentST" name="studentST" onchange={studentAndGuardianInformationHandler}>
+                                                            <option selected="selected">FL</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_3-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="studentZIP">ZIP</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="studentZIP" name="studentZIP" value={studentZIP} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="studentEmailAddress">Email Address</label>
+                                <div class="slds-form-element__control">
+                                    <input type="email" id="studentEmailAddress" name="studentEmailAddress" value={studentEmailAddress} onchange={studentAndGuardianInformationHandler}
+                                        placeholder=""  class="slds-input" />
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound mt-20">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Phone Items
+                                </legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="studentCellPhone">Student
+                                                    Cell
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="studentCellPhone" name="studentCellPhone" value={studentCellPhone} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="studentHomePhone">Student
+                                                    Home
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="studentHomePhone" name="studentHomePhone" value={studentHomePhone} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+                            <fieldset class="slds-form-element mt-20">
+                                <legend class="slds-form-element__legend slds-form-element__label label">Is student a
+                                    Florida Resident and U.S. Citizen or Resident Alien?</legend>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-radio">
+                                        <input type="radio" id="studentFloridaResidentYes" value="radio-43" onclick={studentAndGuardianInformationHandler}
+                                            name="studentFloridaResidentYes" checked="" />
+                                        <label class="slds-radio__label" for="radio-43">
+                                            <span class="slds-radio_faux"></span>
+                                            <span class="slds-form-element__label">Yes</span>
+                                        </label>
+                                    </span>
+                                    <span class="slds-radio">
+                                        <input type="radio" id="studentFloridaResidentNo" value="radio-44" onchange={studentAndGuardianInformationHandler}
+                                            name="studentFloridaResidentNo" />
+                                        <label class="slds-radio__label" for="radio-44">
+                                            <span class="slds-radio_faux"></span>
+                                            <span class="slds-form-element__label">No</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </fieldset>
+
+                            <div class="slds-form-element__row mt-20">
+                                <div class="slds-size_1-of-2">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="socialSecurityNumber">Social
+                                            Security
+                                            Number</label>
+                                        <div class="slds-form-element__control">
+                                            <input type="text" id="socialSecurityNumber" name="socialSecurityNumber"
+                                                placeholder="" value={socialSecurityNumber} class="slds-input" onchange={studentAndGuardianInformationHandler}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- GUARDIAN INFO -->
+                            <h3 class="mt-40">Guardian Information</h3>
+
+                            <h6 class="group">GUARDIAN OVERVIEW</h6>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="guardianName">Parent/Guardian Name</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="guardianName" name="guardianName" placeholder="" value={guardianName} onchange={studentAndGuardianInformationHandler}
+                                        class="slds-input" />
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="guardianRelationshipToStudent">Relationship
+                                    to Student</label>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-select_container">
+                                        <select class="slds-select" id="guardianRelationshipToStudent" onchange={studentAndGuardianInformationHandler}
+                                            name="guardianRelationshipToStudent">
+                                            <option selected="selected">Option One</option>
+                                            <option>Option Two</option>
+                                            <option>Option Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h6 class="group">GUARDIAN CONTACT INFORMATION</h6>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="guardianStreetAddress">Street
+                                    Address</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="guardianStreetAddress" name="guardianStreetAddress"  onchange={studentAndGuardianInformationHandler}
+                                        placeholder="" value={guardianStreetAddress} class="slds-input" />
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound mt-20">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Address Items
+                                </legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_6-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="guardianCity">City</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="guardianCity" name="guardianCity" value={guardianCity} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_3-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="guardianST">ST</label>
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-select_container">
+                                                        <select class="slds-select" id="guardianST" name="guardianST" onchange={studentAndGuardianInformationHandler}>
+                                                            <option selected="selected">FL</option>
+                                                            <option>Option Two</option>
+                                                            <option>Option Three</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_3-of-12">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="guardianZIP">ZIP</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="guardianZIP" name="guardianZIP" value={guardianZIP} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="guardianEmailAddress">Email Address</label>
+                                <div class="slds-form-element__control">
+                                    <input type="email" id="guardianEmailAddress" name="guardianEmailAddress" onchange={studentAndGuardianInformationHandler}
+                                        placeholder="" value={guardianEmailAddress} class="slds-input" />
+                                </div>
+                            </div>
+
+                            <fieldset class="slds-form-element slds-form-element_compound mt-20">
+                                <legend class="slds-form-element__legend slds-form-element__label sr-only">Phone Items
+                                </legend>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-form-element__row">
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="guardianCellPhone">Cell
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="guardianCellPhone" name="guardianCellPhone" value={guardianCellPhone} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="guardianHomePhone">Home
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="guardianHomePhone" name="guardianHomePhone" value={guardianHomePhone} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-size_1-of-4">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="guardianWorkPhone">Work
+                                                    Phone</label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" id="guardianWorkPhone" name="guardianWorkPhone" value={guardianWorkPhone} onchange={studentAndGuardianInformationHandler}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <hr>
+
+                            <!-- FLORIDA RESIDENCY -->
+                            <h3 class="mt-40">Florida Residency</h3>
+
+                            <p>The scholarship to which you are applying to requires proof of Florida residency. Please
+                                provide the proper documentation proving student and/or parent/guardian is a Florida
+                                resident as marked in your application (one or more of the following):</p>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="floridaResidencyDocumentation">Residency
+                                    Documentation</label>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-select_container">
+                                        <select class="slds-select" id="floridaResidencyDocumentation" onchange={studentAndGuardianInformationHandler}
+                                            name="floridaResidencyDocumentation">
+                                            <option selected="selected">FL</option>
+                                            <option>Option Two</option>
+                                            <option>Option Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FILE UPLOAD -->
+                            <div class="slds-form-element mt-20">
+                                <span class="slds-form-element__label" id="file-selector-primary-label">Files to
+                                    Attach</span>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-file-selector slds-file-selector_files">
+                                        <div class="slds-file-selector__dropzone">
+                                            <input type="file" class="slds-file-selector__input slds-assistive-text"
+                                                accept="image/png" id="floridaFileUpload" name="floridaFileUpload" onchange ={studentAndGuardianInformationHandler}
+                                                aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+                                            <label class="slds-file-selector__body" for="file-upload-input-01"
+                                                id="file-selector-secondary-label">
+                                                <span
+                                                    class="slds-file-selector__button slds-button slds-button_neutral">
+                                                    <svg class="slds-button__icon slds-button__icon_left"
+                                                        aria-hidden="true">
+                                                        <use xlink:href="icons/utility-sprite/svg/symbols.svg#upload">
+                                                        </use>
+                                                    </svg>Upload Files</span>
+                                                <span class="slds-file-selector__text slds-medium-show">or Drop
+                                                    Files</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                        </div>
+                    </div>
+
+                    <!-- <div>
+                        <a href="#" role="button" class="slds-button slds-button_brand inline px-30 mr-20">Next</a>
+                        <a href="#"><strong> Go Back</strong></a>
+                    </div> -->
+                    <div>
+                        <lightning-button label="Next" onclick={financialInformationHandler}> </lightning-button> &nbsp;
+
+                        <lightning-button label="< Go Back"></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SELECTED PROGRAM -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+            <div class="pledge-card-wrap card-gradient card-right">
+
+                <div class="pledge-card pb-20">
+                    <div class="pledge-my">
+                        <div>
+                            <h6><img src="img/icon-heart.svg" alt="heart" width="16" height="16" class="mr-5" /> MY
+                                SCHOLARSHIPS</h6>
+                        </div>
+                        <div>
+                            <span><strong>$0</strong> / $----</span>
+                        </div>
+                    </div>
+                    <div class="img-wrap">
+                        <img src="img/program-fpo.jpg" alt="program" />
+                    </div>
+                    <h3>Path to Prosperity</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit purus nascetur, enim vestibulum netus
+                        interdum praesent pharetra nibh mus, senectus molestie tortor sed auctor malesuada fames
+                        posuere.</p>
+                    <h6 class="group">Did you know?</h6>
+                    <p class="mb-40">Incentivizing fact lorem ipsum dolor sit amet tellum aqui lorem ipsum amet sit
+                        colleque.</p>
+                    <a href="#" class="text-bold fs-16">Learn more about this program ></a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PORTAL FOOTER IMAGE: FPO -->
+    <!-- <div class="f-comp f-comp-footer-fpo">
+        <img src="img/fpo-sample-footer.png" width="1130" height="379" alt="Sample Footer" />
+    </div>
+    <div class="f-comp f-comp-footer-sub-fpo">
+        <img src="img/fpo-sample-footer-sub.png" width="1071" height="59" alt="Sample Footer Sub" />
+    </div> -->
+
+</template>

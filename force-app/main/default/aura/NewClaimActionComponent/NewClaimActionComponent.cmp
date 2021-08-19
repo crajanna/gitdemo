@@ -1,0 +1,13 @@
+<!--
+  @description       : 
+  @author            : Jagdish Nikam
+  @group             : 
+  @last modified on  : 02-17-2021
+  @last modified by  : Pradeep Landge
+  Modifications Log 
+  Ver   Date         Author           Modification
+  1.0   02-17-2021   Jagdish Nikam   Initial Version
+-->
+<aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader">
+    <c:claimProcess onclose="{!c.closeQA}" recordId="{!v.recordId}"/>
+</aura:component>

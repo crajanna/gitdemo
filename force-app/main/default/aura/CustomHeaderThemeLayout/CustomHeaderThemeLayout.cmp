@@ -1,0 +1,26 @@
+<aura:component implements="forceCommunity:themeLayout" access="global"
+    description="Custom Header Theme Layout">
+
+    <aura:attribute name="logo" type="Aura.Component[]" required="false" />
+    <aura:attribute name="navMenu" type="Aura.Component[]" required="false" />
+    <aura:attribute name="userProfileMenu" type="Aura.Component[]" required="false" />
+
+                <div class="slds-grid slds-wrap custom-background" >
+                    <div class="slds-col slds-size_1-of-1
+                        slds-large-size_2-of-12">
+                        {!v.logo}
+                    </div>
+                    <div class="slds-col slds-size_1-of-1
+                        slds-large-size_8-of-12">
+                        {!v.navMenu}
+                    </div>
+                    <div id="pmenu" class="slds-col slds-size_1-of-1
+                        slds-large-size_2-of-12">
+                        {!v.userProfileMenu}
+                    </div>
+                </div>
+                <div class="mainContentArea">
+                    {!v.body}
+                </div>
+
+</aura:component>

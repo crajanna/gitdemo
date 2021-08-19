@@ -1,0 +1,179 @@
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+          <lightning-spinner alternative-text="Loading" variant="brand"
+            size="large">
+          </lightning-spinner>
+        </template>
+      </div>
+    <div class="slds-grid f-comp pledge-header">
+        <div class="slds-col">
+            <h1>Apply for a Scholarship</h1>
+        </div>
+
+    </div>
+    <!-- STEPS -->
+    <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+        <div class="slds-col">
+            <div class="btn-wiz-new done">
+                <span class="num"><span>1</span></span> <span class="title">Student Information</span>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="btn-wiz-new active">
+                <span class="num"><span>2</span></span> <span class="title">Parent/Guardian Information</span>
+            </div>
+        </div>
+        <!-- <template if:true={displayStudentQuestions}> -->
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>3</span></span> <span class="title">Scholarship
+                    Requirements</span>
+            </div>
+        </div>
+        <!-- </template> -->
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <!-- <template if:true={displayStudentQuestions}> -->
+                <span class="num"><span>4</span></span> <span class="title">Student
+                    Responsibilities</span>
+                <!-- </template>
+                <template if:false={displayStudentQuestions}>
+                    <span class="num"><span>2</span></span> <span class="title">Student Responsibilites</span>
+                </template> -->
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content">
+        <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+            <div class="pledge-card-wrap">
+                <div class="pledge-inner">
+                    <h1 class="text-normal">Parent/Guardian Information</h1>
+                    <p>Provide the below information for the Parent/Guardian.</p>
+
+                    <div class="slds-grid box-light-gray-inputs">
+                        <div class="slds-col slds-var-p-around_x-small
+                            slds-size_12-of-12">
+                            <hr>
+
+
+                            <div class="slds-form__item" role="listitem">
+                                <div class="slds-form-element
+                                    slds-form-element_stacked">
+                                    <label class="slds-form-element__label"
+                                        for="select-01">Select Existing Parent/Guardian</label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <select class="slds-select"
+                                                name="accountType"
+                                                onchange={handleExistingGuardianSelection}>
+                                                <option selected value>Select Existing Parent/Guardian</option>
+                                                <template
+                                                    if:true={existingGauardian}>
+                                                    <template
+                                                        for:each={existingGauardian}
+                                                        for:item="item">
+                                                        <option key={item.value}
+                                                            value={item.value}>{item.label}
+                                                        </option>
+                                                    </template>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                             
+
+                            <!-- GENERAL INFO ============================= -->
+                            <c-contact-info-component
+                                onhandlecontactgeneralinfo={handleContactGeneralInfo}>
+                            </c-contact-info-component>
+                            <div class="slds-grid slds-gutters slds-container_x-large slds-container_center">
+                                <div class="slds-col slds-size_12-of-12">
+                                    <fieldset class="slds-form-element slds-form-element_compound">
+                                        <legend class="slds-form-element__legend slds-form-element__label
+                                          sr-only">General Info</legend>
+                                        <div class="slds-form-element__control">
+                                          <div class="slds-form-element__row">
+                                  
+                                            <div class="slds-size_12-of-12">
+                                              <div class="slds-form-element">
+                                                <label class="slds-form-element__label sr-only"
+                                                  for="email">Enter email address</label>
+                                                <div>
+                                                    <lightning-input name="email" type="email"
+                                                    placeholder="Email"
+                                                    value={guardianEmail}
+                                                    onchange={handleGuardianEmailChange}></lightning-input>
+                                                </div>
+                                              </div>
+                                            </div>
+                                  
+                                          </div>
+                                        </div>
+                                      </fieldset>
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+                                                     
+                            <!-- CONTACT INFO ============================= -->
+                            <c-address-component onhandleaddressinfo={handleaddressData}></c-address-component>
+
+                            <br>
+                
+
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <button  class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10"
+                        data-gtmid="Student Responsibilities - Previous" onclick={handleGoBack}>Go
+                        Back</button>
+
+                        <button class="slds-button slds-button_brand btn-sm
+                            px-40" data-gtmid="Guardian Information -
+                            Next"
+                            onclick={handleGuardianInfo}>Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SELECTED PROGRAM -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+            <div class="pledge-card-wrap card-gradient card-right">
+
+                <div class="pledge-card pb-20">
+                    <div class="pledge-my">
+                    </div>
+                    <template if:true={productImgURL}>
+                        <div class="img-wrap">
+                            <img src={productImgURL} alt="program" />
+                        </div>
+                    </template>
+
+                    <h3>{productName}</h3>
+                    <p>{priductDescription}</p>
+                    <a href={productLearnMoreURL} id="productLearnMoreURL"
+                        target="_blank" class="text-bold fs-16">Learn more about
+                        this program ></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>

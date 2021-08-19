@@ -1,0 +1,68 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+
+        <div class="slds-modal__header">
+            <h2 class="slds-modal__title slds-hyphenate slds-text-heading--medium">
+                Lumpsum Payment
+            </h2>
+        </div>
+		<br>
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                <lightning-input type="number" name="lumSumAmount" step="0.01" formatter="currency" label="Amount"
+                value={lumSumAmount} onchange={handleLumSumAmountValueChange}>
+            </lightning-input>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                <lightning-input type="date" name="dueDate" label="Due Date"  datestyle="short"  
+                onchange={handleDueDateChange}> 
+                </lightning-input> 
+            </div>
+        </div>
+
+        <lightning-button variant="brand" label="Post Lumsum Payment" title="Post Lumsum Payment" onclick={createLumsumPayment}
+        class="slds-float_right slds-p-around_medium"></lightning-button>
+
+        <lightning-button variant="brand" label="Cancel/Reverse Lumsum Payment" title="Cancel/Reverse Lumsum Payment" onclick={postReversal}
+        class="slds-float_right slds-p-around_medium"></lightning-button>
+
+      <!--  <lightning-button variant="brand" label="Next" title="Next" onclick={goToCoverages}
+            class="slds-float_right slds-p-around_medium"></lightning-button>
+    </template>
+
+     <template if:true={coverageScreen}>
+        <div class="slds-modal__header">
+            <h2 class="slds-modal__title slds-hyphenate slds-text-heading--medium">
+                Lumsum Payment breakup by Coverage
+            </h2>
+        </div>
+		<br>
+        <p>
+            To modify the value for the Coverage , edit the value in the Lumsum Amount column for the Coverage. 
+        </p>
+        <br>
+        <div class="slds-box">
+            <lightning-card title="Insurance Coverage Plans" icon-name="custom:custom16"> 
+                <template if:true={coveragePlanList}>
+                    <lightning-datatable data={coveragePlanList} columns={columns} key-field="Id" hide-checkbox-column="true" show-row-number-column>
+                    </lightning-datatable>
+                </template>
+                <template if:true={error}>
+                    {error}
+                </template>
+            </lightning-card> 
+        </div>
+
+        <lightning-button variant="brand" label="Post Lumsum Payment" title="Post Lumsum Payment" onclick={createLumsumPayment}
+        class="slds-float_right slds-p-around_medium"></lightning-button>
+        <lightning-button variant="brand" label="Edit" title="Edit" onclick={edit}
+        class="slds-float_right slds-p-around_medium"></lightning-button>
+
+    </template> -->
+    
+</template>

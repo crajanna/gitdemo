@@ -1,0 +1,10 @@
+<design:component label="Fp Custom Login Form">
+    <design:attribute name="startUrl"/>
+    <design:attribute name="usernameLabel" default="Email"/>
+    <design:attribute name="passwordLabel" default="Password"/>
+    <design:attribute name="loginButtonLabel" default="Sign In"/>
+    <design:attribute name="forgotPasswordLabel" default="Forgot password?"/>
+    <design:attribute name="forgotPasswordUrl"/>
+    <design:attribute name="selfRegisterLabel" default=" Create an Account"/>
+    <design:attribute name="selfRegisterUrl"/>
+</design:component>

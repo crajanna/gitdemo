@@ -1,0 +1,149 @@
+<template>
+    
+
+    <template if:true={coverageScreen}>
+        <fieldset class="slds-form-element slds-form-element_compound">
+            <h4 align = "center">New Claim</h4>
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_12-of-12">
+                 <c-lookup-component onselected={handleSelectChange} objectname="Account" fieldname="Name"  label = "School"
+                        numrecords="10" iconname="standard:account" select-record-name={recordValue} required> </c-lookup-component>
+                </div>
+            </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+              <div class="slds-size_5-of-12">
+                    <template if:true={claimTermPicklist.data}>
+                            <lightning-combobox name="claimYear" value={termValue} label="Term"
+                            placeholder="Claim Term" options={claimTermPicklist.data.values}
+                            onchange={handleChangeClaimTermOptions} required 
+                            ></lightning-combobox> 
+                    
+                    </template>
+             </div>
+             <div class="slds-size_1-of-12"></div>
+            <div class="slds-size_6-of-12">        
+                <template if:true={claimYearPicklist.data}>
+                        <lightning-combobox name="claimYear" value={claimYearValue} label="Year"
+                        placeholder="Claim Year" options={claimYearPicklist.data.values}
+                        onchange={handleChangeClaimYearOptions} required 
+                        ></lightning-combobox> 
+           
+                </template>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_5-of-12">
+                <template if:true={claimTypePicklist.data}>      
+                    <lightning-combobox name="claimType" value={claimTypeValue} label="Claim Type"
+                    placeholder="Claim Type" options={claimTypePicklist.data.values}
+                    onchange={handleChangeClaimTypeOptions} required 
+                    ></lightning-combobox>             
+                </template>
+            </div>
+            <div class="slds-size_1-of-12"></div>
+            <div class="slds-size_6-of-12">
+                <template if:true={paymentMethodologyPicklist.data}>     
+                    <lightning-combobox name="paymentmethod" value={value} label="Payment Methodology"
+                    placeholder="Select Payment Option" options={paymentMethodologyPicklist.data.values}
+                    ></lightning-combobox>                
+                </template>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_5-of-12">
+                <lightning-input type="number" name="requestedUnits" label="Requested Units" value={requestedUnitsValue}
+                onchange={handleRequestedUnitValueChange}>
+            </lightning-input>
+            </div>
+            <div class="slds-size_1-of-12"></div>
+            <div class="slds-size_6-of-12">
+                <lightning-input type="number" name="requested Amount" step="0.01" formatter="currency" label="Requested Amount"
+                value={requestedAmountValue} onchange={handleRequestedAmountValueChange}>
+            </lightning-input>
+            </div>
+        </div>
+
+        <div>
+            <template if:true={coverages}>
+                <lightning-dual-listbox id="multiProduct" name="Select Coverages" label="Select Coverages"
+                    source-label="Available Coverages" selected-label="Selected Coverages" options={coverageOptions}
+                    value={selectedCoveragesValues} onchange={handleSelected}> 
+                </lightning-dual-listbox>
+            </template>
+        </div>
+        </fieldset>
+
+            <lightning-file-upload
+                    label="Supporting Documentation"
+                    name="fileUploader"
+                    accept={acceptedUploadFormats}
+                    record-id={claimId}
+                    onuploadfinished={handleActionFinished}
+                    multiple>
+            </lightning-file-upload>
+            <template if:true={filePresent}>
+                <c-uploaded-files-list files={uploadedFiles} onfiledelete={handleDeleteAction}></c-uploaded-files-list>
+            </template>
+           <!-- <table class="slds-table slds-table_cell-buffer slds-table_bordered f-table">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="File Name">File Name</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={filesUploaded} for:item="file">
+                        <tr key={file.Title}>
+                            <td>
+                                <div key={file.Title} class="slds-text-body_small">{file.Title}</div>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table> -->
+
+            <lightning-button variant="brand" label="Confirm Claim" title="Confirm Claim" onclick={goToconfirmationScreen}
+            class="slds-float_right slds-p-around_medium"></lightning-button>
+
+    </template>
+
+    <template if:true={confirmationScreen}>    
+        <div class="slds-modal__header">
+            <h2 class="slds-modal__title slds-hyphenate slds-text-heading--medium">
+                Confirm Claim Details
+            </h2>
+        </div>
+        <br/>
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">School</h6>     
+            <lightning-formatted-text value={recordValue} ></lightning-formatted-text></div>
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Policy Term</h6>     
+                <lightning-formatted-text value={termValue} ></lightning-formatted-text></div>
+         </div>
+        
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Claim Year</h6>     
+            <lightning-formatted-text value={claimYearValue} ></lightning-formatted-text></div>
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Claim Type</h6>     
+                <lightning-formatted-text value={claimTypeValue} ></lightning-formatted-text></div>
+         </div>
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Requested Amount</h6>     
+            <lightning-formatted-number value={requestedAmountValue} maximum-fraction-digits="2"></lightning-formatted-number></div>
+            <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Requested Units</h6>     
+                <lightning-formatted-text value={requestedUnitsValue} ></lightning-formatted-text></div>
+         </div>
+        
+        <lightning-button variant="brand" label="Create Claim" title="Create Claim" onclick={CreateClaim}
+        class="slds-float_right slds-p-around_medium"></lightning-button>
+        <lightning-button variant="brand" label="Edit" title="Edit" onclick={editClaim}
+        class="slds-float_right slds-p-around_medium"></lightning-button>
+
+    </template>  
+</template>

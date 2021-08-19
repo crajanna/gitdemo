@@ -1,0 +1,266 @@
+<template>
+  <div class="slds-grid slds-wrap f-comp f-dash-wrap">
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-wrap f-dash-left-wrap">
+      <!-- <div class="box-dash box-dash-gray py-2">
+        <a href="#" class="link-split link-lg link-no-line" onclick={handleProfileUpdate}><span>Update My Profile</span>
+          <img src={imagerightcircle} alt="" /></a>
+      </div> -->
+      <div class="d-flex space-between mb-20 hr-botm">
+        <h6 class="card-heading">My Profile</h6>
+        <div>
+          <button class="slds-button slds-button_brand btn-sm" onclick={handleProfileUpdate}>
+            <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+              <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#edit"></use>
+            </svg>
+            <!-- <img src={editIcon} class="icon" alt="address icon" /> -->
+            Edit
+          </button>
+        </div>
+      </div>
+
+
+      <div class="mb-20 d-flex">
+        <div style="margin-left: -9px">
+          <template if:true={showLogo}>
+            <img src={profileVersionId} alt="profile picture" class="add-logo logo-added" />
+          </template>
+          <template if:false={showLogo}>
+            <label style="display: inline-block;position: relative;height: 95px;width: 95px;" for="inputFile">
+              <div style="position: absolute;left: 0;top: 0;bottom: 0;
+                                          width: 100%;display: flex;border-radius: 6px;
+                                          align-items: center;justify-content: center;background: #FFF;
+                                          border: 2px dashed #bbbcbe; color: #0735a5;"
+                                          >
+                Add Logo
+              </div>
+              <button style="position: absolute;left: 0;opacity: 0;top: 0;bottom: 0;width: 100%;" name="file1" onclick={handleProfileUpdate}>
+
+              </button>
+              <!-- <lightning-input style="position: absolute;left: 0;opacity: 0;top: 0;bottom: 0;width: 100%;" name="file1"
+                type="file" label="Attachment" onchange={handleFileChange} accept=".jpg, .png, .gif"> 
+              </lightning-input>-->
+            </label>
+          </template>
+          <!-- <a href="#" class="add-logo">Add Logo</a> -->
+        </div>
+        <div class="d-flex f-dir-col j-con-cen ml-10">
+          <h3>
+            <lightning-formatted-text value={accName}></lightning-formatted-text>
+          </h3>
+        </div>
+      </div>
+      <div class="d-flex mb-10">
+        <div class="icon-box icon-primary mr-10">
+          <img src={addressIcon} class="icon" alt="address icon" />
+        </div>
+        <div class="d-flex f-dir-col j-con-cen">
+          <template if:true={showAddress}>
+            <h3>
+              <lightning-formatted-address street={accBillingStreet} city={accBillingCity} country={accBillingCountry}
+                province="" postal-code={accBillingPostalCode}></lightning-formatted-address>
+            </h3>
+          </template>
+        </div>
+      </div>
+      <div class="d-flex mb-10">
+        <div class="icon-box icon-primary mr-10">
+          <img src={phoneIcon} class="icon" alt="phone icon" />
+        </div>
+        <div class="d-flex f-dir-col j-con-cen">
+          <a href="#">
+            <lightning-formatted-phone value={accPhone}></lightning-formatted-phone>
+          </a>
+        </div>
+      </div>
+
+      <div class="d-flex mb-10">
+        <div class="icon-box icon-primary mr-10">
+          <img src={emailIcon} class="icon" alt="email icon" />
+        </div>
+        <div class="d-flex f-dir-col j-con-cen">
+          <a href="#">
+            <lightning-formatted-email value={accPersonEmail} hide-icon></lightning-formatted-email>
+          </a>
+        </div>
+      </div>
+
+      <div class="d-flex space-between mt-40 hr-botm">
+        <h6 class="card-heading">My Students</h6>
+        <div>
+          <button class="slds-button slds-button_brand btn-sm" onclick={handleNewAccount}>
+            <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+              <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#add"></use>
+            </svg>Add New
+          </button>
+        </div>
+
+      </div>
+      <div class = "f-comp">  
+        <c-account-relationship-component></c-account-relationship-component>
+      </div>
+
+      <!-- <template for:each={accRelationshipList} for:item="item" for:index="index">
+        <div class="card-team" key={item.Id}>
+          <a href="#" class="d-flex">
+            <div class="d-flex">
+              <div class="mr-20">
+                <img src="img/mug-mackenzie-mcdole.jpg" class="img-mug" height="55" width="55"
+                            alt="Mackenzie McDole" />
+              </div>
+              <div>
+                <h5>{item.relationshipAccountName}</h5>
+                <p class="text-small">Daughter</p>
+              </div>
+            </div>
+            <div class="icon-box icon-primary ml-auto" onclick={handleTest}>
+              <img src="img/icon-edit.svg" class="icon" alt="tasks icon" />
+              <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#edit"></use>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </template> -->
+      <!-- <button onclick={handleNewAccount} class="slds-button slds-button_brand mt-20 px-40">Add New</button> -->
+    </div>
+
+
+    <div class="slds-col slds-size_1-of-1 slds-large-size_9-of-12 slds-grid slds-wrap f-dash-main-wrap">
+
+
+      <!-- WELCOME -->
+      <div class="fb-100 mb-20 mt-20">
+        <h1 class="mb-0"><span class="text-400">Welcome back,</span> {userName}!</h1>
+        <p>Here’s an overview of your tasks, scholarships, and applications.</p>
+      </div>
+
+      <!-- TASKS AND CTA COLUMN -->
+      <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-grid slds-wrap">
+
+
+        <!-- TASK LIST -->
+        <div class="card-white mb-30 w-100p">
+
+          <div class="d-flex mb-20 hr-botm">
+            <div class="icon-box icon-primary mr-10">
+              <img src={taskIcon} class="icon" alt="tasks icon" />
+            </div>
+            <h6 class="card-heading">My Task List</h6>
+            <div class="ml-auto">
+              <button class="slds-button slds-button_brand btn-sm" onclick={handleAllTask}>
+                View All Tasks
+              </button>
+            </div>
+          </div>
+          <c-fp-dashboard-task-list task-data={taskList}></c-fp-dashboard-task-list>
+
+        </div>
+
+
+        <!-- CTA -->
+        <c-sp-dashboard-did-you-know content={contentData}></c-sp-dashboard-did-you-know>
+        <!-- <div class="card-cta bg-books">
+          <div class="card-text">
+            <h5>New! Path to Prosperity Scholarship Program</h5>
+            <p>Together we can make a difference for Florida’s children, one college scholarship at a time.
+            </p>
+            <a href="#" role="button" class="slds-button slds-button_brand-reverse mt-10">
+              More About the Program
+              <img src={scholarshipBooksIcon} class="ml-10" alt="arrow right" />
+            </a>
+          </div>
+        </div> -->
+
+      </div>
+
+      <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-wrap cta-wrap">
+
+
+        <!-- SCHOLARSHIPS -->
+        <div class="card-white card-full mb-20">
+
+          <div>
+
+            <div class="d-flex space-between mb-20">
+              <div class="icon-box icon-primary mr-10">
+                <!-- <img src="img/icon-pledges.svg" class="icon" alt="scholarships icon" /> -->
+                <img src={scholarshipIcon} class="icon" alt="scholarship icon" />
+              </div>
+              <h6 class="card-heading">Apply for a Scholarship</h6>
+              <h6 class="card-heading ml-auto">&nbsp;</h6>
+            </div>
+
+            <div class="card-pledge-grid">
+              <template if:true={scholarshipPrograms.data}>
+                <template for:each={scholarshipPrograms.data} for:item="program">
+                  <div class="card-pledge" key={program.Id}>
+                    <div class="card-pledge-img">
+                      <img src={program.imgUrl} height="106" alt="fpo" style="width: 500px;" />
+                    </div>
+                    <div class="card-pledge-info">
+                      <h5>{program.name}</h5>
+                      <template if:true={program.endDate}>
+                        <p class="amount"><strong>Apply By:</strong> {program.endDate}</p>
+                      </template>
+                      <div>
+                        <button class="slds-button slds-button_brand btn-sm mr-20" onclick={gotoScholarshipPage}
+                          data-gtmid={program.name} data-target-name={program.name} data-target-id={program.id}>
+                          Apply Now
+                        </button>
+                        <a href={program.learnMoreUrl} onclick={gotoLearnMorePage} data-gtmid={program.name}
+                          target="_blank" data-target-name={program.learnMoreUrl}
+                          data-target-id={program.learnMoreUrl}><strong>Learn
+                            More</strong></a>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </template>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-wrap cta-wrap">
+
+        <!-- APPLICATIONS -->
+        <div class="card-white card-full mb-20">
+          <div>
+            <div class="d-flex space-between mb-20">
+              <div class="icon-box icon-primary mr-10">
+                <!-- <img src="img/icon-applications.svg" class="icon" alt="applications icon" /> -->
+                <img src={statusReviewIcon} class="icon" alt="tasks icon" />
+              </div>
+              <h6 class="card-heading">Completed Applications</h6>
+              <h6 class="card-heading ml-auto">&nbsp;</h6>
+            </div>
+
+            <div class="card-pledge-grid">
+              <template if:true={reviews.data}>
+                <template for:each={reviews.data} for:item="review">
+                  <div class="card-app orange" key={review.Id}>
+                    <div class="card-app-info">
+                      <small>Scholarship</small>
+                      <h5>{review.name}</h5>
+                      <small>Student</small>
+                      <h5>{review.learnMoreUrl}</h5>
+                      <small>Status</small>
+                      <h6>{review.endDate}</h6>
+                    </div>
+                  </div>
+                </template>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+  </div>
+  <!-- <a href="#" class="chat-btn"><img src={imageiconhelpchat} alt="help" /></a> -->
+</template>

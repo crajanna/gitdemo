@@ -1,0 +1,74 @@
+<template>
+
+  <fieldset class="slds-form-element slds-form-element_compound">
+    <legend class="slds-form-element__legend slds-form-element__label sr-only">Contact Info</legend>
+    <div class="slds-form-element__control">
+      <div class="slds-form-element__row">
+        <div class="slds-size_8-of-12">
+          <div class="slds-form-element">
+            <label class="slds-form-element__label sr-only" for="firstName">Phone</label>
+              <div>
+                <template if:true={displayFileUpload}>
+                  <img src={fppLogoUrl} alt="Logo"/>
+                </template>
+                
+                <!--<template if:true={displayFileUpload}>-->
+                  <div class="slds-m-vertical_medium">
+                    <h6>Logo</h6>
+                    <lightning-file-upload
+                        label="Attach Logo"
+                        name="fileUploader"
+                        accept={acceptedFormats}
+                        record-id={accountIduser}
+                        onuploadfinished={handleUploadFinished}
+                        multiple>
+                    </lightning-file-upload>
+                  </div>
+                <!--</template>
+                <template if:false={displayFileUpload}>
+                  <div class="slds-m-vertical_medium">
+                    <a href="#" onclick={updateLogo}>Update Logo</a>
+                  </div>
+                </template>-->
+              </div>
+          </div>
+        </div>
+        <div class="slds-size_4-of-12 slds-text-align_right">
+          <div class="slds-form-element">
+           
+            <div>
+              Cash Account Balance: $0.00               
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+
+  
+  
+
+
+    <lightning-tabset>
+        <lightning-tab label="News">
+            <div class="slds-m-top_medium slds-m-bottom_x-large">
+              The Path to Prosperity campaign is now live!
+          </div>
+        </lightning-tab>
+        <lightning-tab label="Announcements" title="2nd tab extended title">
+            Two Content !
+        </lightning-tab>
+        <lightning-tab label="Tasks">
+            Three Content !
+        </lightning-tab>
+    </lightning-tabset>
+
+    
+
+    <lightning-button variant="brand" label="Contact Information" title="Primary action" onclick={handleContactClick} class="slds-m-left_x-small"></lightning-button>
+    <lightning-button variant="brand" label="Business Information" title="Primary action" onclick={handleBusinessClick} class="slds-m-left_x-small"></lightning-button>
+    <lightning-button variant="brand" label="Donate" title="Primary action"  class="slds-m-left_x-small"></lightning-button>
+    
+    
+</template>

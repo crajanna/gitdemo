@@ -1,0 +1,61 @@
+<template>
+
+    <div class="slds-grid slds-gutters slds-container_x-large
+    slds-container_center slds-var-p-bottom_xx-large">
+    <div class="slds-col slds-size_12-of-12 mt-30">
+            <!-- RESIDENCY VERIFICATION ============================= -->
+            <h6 class="mt-30">RESIDENCY VERIFICATION</h6>
+            <p>You must submit proof of Florida residency. You may choose from the below list of options available for validation. If the student is under 18 years of age, the parent/legal guardian information can be submitted on behalf of the student.</p>
+    
+            <div class="slds-form-element mt-10 mb-10">
+              <label class="slds-form-element__label sr-only"
+                for="mailVerification">Mail in verification (You can change this
+                later)</label>
+              <lightning-combobox
+                name="resVerification"
+                value={resVerificationValue}
+                options={resVerificationOptions}
+                onchange={handleResVerificationChange}></lightning-combobox>
+            </div>
+            <template if:true={resDocPicklistValues.data}>
+              <div class="slds-form-element mt-10 mb-10">
+                  <label class="slds-form-element__label sr-only"
+                    for="resdoc">resdoc</label>
+    
+                  <lightning-combobox
+                    name="resdoc"
+                    value={resDocvalue}
+                    placeholder="Select Document"
+                    options={resDocPicklistValues.data.values}
+                    onchange={handleResDocListChange}></lightning-combobox>
+    
+                </div>
+            </template>
+            <template if:true={showDocUpload}>
+              <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs mb-10">
+    
+                <div class="slds-col slds-var-p-around_x-small slds-size_12-of-12">
+                  <h6>Upload documents</h6>
+                  <p>Select a document to upload for online verificaiton.</p>
+                  <div class="custom-file mt-10 mb-10">
+                    <lightning-input type="file"
+                      accept=".jpg, .png, .gif, .pdf"
+                      label="Attachment" onchange={handleResDocFileChange}></lightning-input>
+                    {resDocFileName}
+                  </div>
+      
+                </div>
+      
+              </div>
+    
+            </template>
+            <template if:true={showDriverLicense}>
+              <div class="mb-10">
+                <lightning-input name="dmv" type="Text" placeholder="Driver's License Number"
+                  value="" onchange={handleDriverLicenseChange}></lightning-input>
+              </div>
+    
+            </template>
+        </div>
+    </div>
+</template>

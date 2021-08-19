@@ -1,0 +1,5 @@
+@import 'c/fpCssLibrary';
+
+.f-comp .slds-visual-picker .slds-visual-picker__figure .slds-button_brand {
+    padding: 10px 30px;
+}

@@ -1,0 +1,13 @@
+<template>
+    <lightning-card icon-name="custom:custom19" title='Upload CSV File'>
+        <div style="margin-left: 3%">
+            <lightning-file-upload accept={acceptedFormats} 
+                                   label="Attach file" 
+                                   multiple="multiple" 
+                                   onuploadfinished={handleUploadFinished} 
+                                   record-id={recordId}></lightning-file-upload>
+        </div>
+
+
+    </lightning-card>
+</template>

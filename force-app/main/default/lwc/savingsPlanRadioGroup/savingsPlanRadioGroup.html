@@ -1,0 +1,22 @@
+<template>
+    <div class="c-container">
+    <lightning-layout horizontal-align="space" multiple-rows="false">
+            <template for:each={spOtions} for:item="item">
+                <lightning-layout-item key={item.value} >
+                    <fieldset key={item.value} style="display: block; float: left;">
+                        <div class="slds-form-element__control">
+                            <span class="slds-radio">
+                                <input name="radiogroup" id={item.value} type="radio" value={item.value} onchange={handleSelected}/>
+                                <label class="slds-radio__label" for={item.value}>
+                                    <span class="slds-radio_faux"></span>
+                                    <span class="slds-form-element__label" style="font-size: 16px;" ><B>{item.label}</B></span>
+                                </label>
+                            </span>
+                        </div>
+                       <label style="padding-left:25px">{item.label1}</label>
+                    </fieldset>
+                </lightning-layout-item>                
+            </template>       
+    </lightning-layout>
+  </div>
+</template>

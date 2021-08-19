@@ -1,0 +1,78 @@
+<apex:page showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" controller="PaypalController" docType="html-5.0">
+<apex:includeScript value="{!URLFOR($Resource.FoundationScripts, '/jQuery.js')}" />
+<script> j$ = jQuery.noConflict(); </script>
+<apex:variable var="paypalsrc" value="{!paypalSrc}" />
+
+<body>
+<apex:includeScript value="{!paypalsrc}"/>   
+</body>
+
+     <apex:form >
+        
+           <apex:inputHidden value="{!recordType}" id="recordType"/>                 
+          
+    <div id="smart-button-container" >
+
+      <div style="text-align: center;">
+             <div style="text-align: center; margin-top: 0px;margin-left: 30px; display:inline-block; width:300px;" id="paypal-button-container"></div>
+      </div>
+    </div>
+  <script>
+
+   function initPayPalButton() {
+
+         recordType = j$('[id$=recordType]').val();
+
+       var purchase_units = [];
+        purchase_units[0] = {};
+        purchase_units[0].amount = {};
+       
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal',
+        },
+
+      onClick: function () {
+        purchase_units[0].amount.value = {!transactionAmount};
+      },
+          
+          
+        createOrder: function(data, actions) {
+          return actions.order.create({
+           purchase_units: purchase_units,
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {             
+              var amtv = details.purchase_units[0].amount.value;
+              var pxid = details.purchase_units[0].payments.captures[0].id;
+              
+                            
+ 
+             if(recordType=="Contribution"){
+                    window.top.location.href = "{!$Site.BaseUrl}/s/addfundsfinishpage?pxid="+pxid;
+              }else{
+                window.top.location.href = "{!$Site.BaseUrl}/s/pledgefinishpage?pxid="+pxid;
+              }
+             
+              
+            });
+        },
+        onCancel: function (data, actions) {
+           console.log('onCancel..');
+          },
+          
+        onError: function(err) {
+           console.log('onError..'+err);
+        }
+      }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+  </script>
+         
+         </apex:form>
+</apex:page>

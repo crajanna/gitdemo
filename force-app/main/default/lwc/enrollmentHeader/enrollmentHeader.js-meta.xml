@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>      
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="title" type="String" default="Page Title" label="Enter page title"/>
+            <property name="contactNumber" type="String" default="1-800-552-4723" label="Enter cotnact number"/>
+            <property name="businessHours" type="String" default="MONDAY-FRIDAY, 8AM-6PM EST" label="Enter business hours"/>          
+        </targetConfig>
+      </targetConfigs>
+</LightningComponentBundle>

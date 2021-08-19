@@ -1,0 +1,161 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-18-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   05-17-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+
+  <div >
+    <!-- BODY -->
+    <div class="slds-grid slds-wrap f-comp f-dash-wrap">
+
+      <!-- LEFT ONE-THIRD -->
+      <div
+        class="slds-col slds-order_2 slds-medium-order_1 slds-size_1-of-1 slds-medium-size_4-of-12 slds-wrap f-dash-left-wrap">
+
+        <!-- MY COMPANY -->
+          <c-fp-dashboard-my-company onimageupload={handleRefresh} account-iduser={accountIduser}
+            account-data={accountData}>
+          </c-fp-dashboard-my-company>
+        <!-- MY TEAM -->
+        <c-fp-dashboard-my-team random-num={randomNum}></c-fp-dashboard-my-team>
+
+      </div>
+
+
+
+      <!-- MAIN TWO-THIRDS -->
+      <div
+        class="slds-col slds-order_1 slds-medium-order_2  slds-size_1-of-1 slds-medium-size_8-of-12 slds-grid slds-wrap f-dash-main-wrap">
+
+        <!-- MESSAGE -->
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-wrap">
+
+          <!-- WELCOME -->
+          <div class="mb-20">
+            <h1 class="mb-0"><span class="text-400">Welcome back,</span> {userName}!</h1>
+            <p>Here’s what’s going on today.</p>
+          </div>
+
+        </div>
+
+        <!-- PLEDGES -->
+        <div class="card-white card-full mb-20" >
+          <div class="mb-20 w-100p">
+            <div class="d-flex space-between mb-20">
+              <div class="icon-box icon-burgundy mr-10">
+                <img src={pledgeIcon} class="icon" alt="tasks icon" />
+              </div>
+              <h6 class="card-heading">My Pledges</h6>
+              <h6 class="card-heading ml-auto">
+                <template if:true={displayTotalAmount}>
+                  TOTAL: <lightning-formatted-number class="text-gray1" value={aggDonationAmount}
+                    format-style="currency" currency-code="USD"></lightning-formatted-number></b> /
+                  <lightning-formatted-number class="text-400" value={aggPledgeAmount} format-style="currency"
+                    currency-code="USD"></lightning-formatted-number>
+                </template>
+              </h6>
+            </div>
+
+            <div class="card-pledge-grid">
+              <template if:true={pledgeList}>
+                <template for:each={pledgeList} for:item="pledge">
+                  <a href="javascript:void(0)" id={pledge.id} onclick={handleSelectedPledge} class={pledge.class}
+                    key={pledge.Id}>
+                    <div class="card-pledge-info">
+                      <h5>{pledge.name}</h5>
+                      <p class="amount"><strong>
+                          <lightning-formatted-number value={pledge.donationAmount} format-style="currency"
+                            currency-code="USD"></lightning-formatted-number>
+                        </strong> / <lightning-formatted-number value={pledge.pledgeAmount} format-style="currency"
+                          currency-code="USD"></lightning-formatted-number>
+                      </p>
+                      <h6>Update / Fulfill</h6>
+                    </div>
+                  </a>
+                </template>
+              </template>
+              <a href="javascript:void(0)" class="card-pledge burgundy new-pledge" onclick={handleNewPledge}>
+                <div class="icon-box icon-burgundy-reverse mb-10">
+                  <img src={plusIcon} class="icon" alt="add icon" />
+                </div>
+                <span class="text" style="line-height: 1.4rem;">Make a <br />New Pledge</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!--End of Pledge Card-->
+
+        <!-- MESSAGE -->
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-grid slds-wrap">
+          <!-- TASK LIST -->
+          <div class="card-white mb-20 w-100p">
+            <div class="d-flex mb-20 hr-botm">
+              <div class="icon-box icon-azure mr-10">
+                <img src={taskIcon} class="icon" alt="tasks icon" />
+              </div>
+              <h6 class="card-heading">My Task List</h6>
+              <div class="ml-auto">
+                <button class="slds-button slds-button_azure btn-sm" onclick={handleAllTask}>
+                  View All Tasks
+                </button>
+              </div>
+            </div>
+            <c-fp-dashboard-task-list oneditaccount={handleNavEditAcc} task-data={taskList}></c-fp-dashboard-task-list>
+
+          </div>
+          <!--End of Task List-->
+
+          <!-- TOTAL DONATIONS -->
+          <div class="card-white-wrap-row">
+
+            <!-- TOTAL DONATIONS -->
+            <div class="card-white-wrap">
+              <div class="card-white-col-wrap">
+                <div class="card-white left mb-20">
+                  <div class="">
+                    <div>
+                      <h6 class="hr-botm">Total Donations</h6>
+                      <div class="amount mt-10 mb-20"><span class="dollars">
+                          <lightning-formatted-number value={aggDonationAmount} format-style="currency"
+                            currency-code="USD"></lightning-formatted-number>
+                        </span></div>
+                    </div>
+                  </div>
+                  <div class="">
+                    <span>/ <lightning-formatted-number value={aggPledgeAmount} format-style="currency"
+                        currency-code="USD"></lightning-formatted-number></span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <!-- AVAILABLE FUNDS -->
+            <div class="card-white-wrap">
+              <c-fp-account-cash-balance> </c-fp-account-cash-balance>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA LIST -->
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-wrap cta-wrap">
+
+          <!-- CTA -->
+          <c-fp-dashboard-did-you-know content={contentData}></c-fp-dashboard-did-you-know>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</template>

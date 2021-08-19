@@ -1,0 +1,6 @@
+<design:component >
+    <design:attribute name="startUrl"/>
+    <design:attribute name="regConfirmUrl" default="./CheckPasswordResetEmail"/>
+    <design:attribute name="includePasswordField" default="false"/>
+    <design:attribute name="extraFieldsFieldSet"/>
+</design:component>

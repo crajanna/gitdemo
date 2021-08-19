@@ -1,0 +1,148 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-01-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   05-26-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <h2 id="element-with-table-label" class="slds-text-heading_medium slds-m-bottom_xx-small mt-30">2021 Board Meeting
+        Schedule</h2>
+    <p id="other-element-with-table-label" class="slds-text-title slds-m-bottom_small">The tentative schedule and agenda
+        for upcoming Board meetings are provided below.</p>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered f-table">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Board Meeting">Board Meeting</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Location">Location</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Able Board">
+                        <img src="../resource/BoardPortalImages/board-portal-images/logo-able-table.png" alt="Able Board" />                        
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Foundation Board">
+                        <img src="../resource/BoardPortalImages/board-portal-images/logo-foundation-table-alt.png" alt="Foundation Board" />                        
+                    </div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Prepaid Board">
+                        <img src="../resource/BoardPortalImages/board-portal-images/logo-prepaid-table.png" alt="Prepaid Board" />                        
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template if:true={scheduleDataEvents}>
+                <template for:each={scheduleDataEvents} for:item="scheduleDataEvent">
+                    <tr class="slds-hint-parent" key={scheduleDataEvent.eventId}>
+                        <th data-label="Board Meeting" scope="row">
+                            <div class="slds-truncate" title="First Quarter 2021">{scheduleDataEvent.eventSubject}</div>
+                        </th>
+                        <template if:true={scheduleDataEvent.eventLocation}>
+                            <td data-label="Location">
+                                <div class="slds-truncate" title="Board Office">{scheduleDataEvent.eventLocation}</div>
+                            </td>
+                        </template>
+                        <template if:false={scheduleDataEvent.eventLocation}>
+                            <td data-label="Location">
+                                <div class="slds-truncate" title="Board Office">TBD<br /></div>
+                            </td>
+                        </template>
+                        <template if:true={scheduleDataEvent.ableUnitedDocsWrapper}>
+                            <td data-label="Able Board">
+                                <div class="slds-truncate" title="1:00PM March 23, 2021">{scheduleDataEvent.ableUnitedDocsWrapper.eventTime} &middot; {scheduleDataEvent.ableUnitedDocsWrapper.eventDate}</div>
+                                <template if:true={scheduleDataEvent.ableUnitedDocsWrapper.boardDocSize}>
+                                    <div>
+                                        <a href={scheduleDataEvent.ableUnitedDocsWrapper.boardDocURL} download>Board Meeting Packet</a> 
+                                        ({scheduleDataEvent.ableUnitedDocsWrapper.boardDocSize} KB)
+                                    </div>
+                                </template>
+                                <template if:true={scheduleDataEvent.ableUnitedDocsWrapper.investmentDocSize}>
+                                    <div>
+                                        <a href={scheduleDataEvent.ableUnitedDocsWrapper.investmentDocURL} download>Investment Committee Packet</a> 
+                                        ({scheduleDataEvent.ableUnitedDocsWrapper.boardDocSize} KB)
+                                    </div>
+                                </template>
+                                <template if:true={scheduleDataEvent.ableUnitedDocsWrapper.auditDocSize}>
+                                    <div>
+                                        <a href={scheduleDataEvent.ableUnitedDocsWrapper.auditDocURL} download>Audit &amp; Risk Committee Packet</a> 
+                                        ({scheduleDataEvent.ableUnitedDocsWrapper.boardDocSize} KB)
+                                    </div>
+                                </template>
+                            </td>
+                        </template>
+                        <template if:false={scheduleDataEvent.ableUnitedDocsWrapper}>
+                            <td data-label="Able Board">
+                                <div class="slds-truncate" title="Board Office">TBD<br /></div>
+                            </td>
+                        </template>
+                        <template if:true={scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper}>
+                            <td data-label="Foundation Board">
+                                <div class="slds-truncate" title="1:00PM March 23, 2021">{scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.eventTime} &middot; {scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.eventDate}</div>
+                                <template if:true={scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.boardDocSize}>
+                                    <div>
+                                        <a href={scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.boardDocURL} download>Board Meeting Packet</a> 
+                                        ({scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.boardDocSize} KB)
+                                    </div>
+                                </template>
+                                <template if:true={scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.investmentDocSize}>
+                                    <div>
+                                        <a href={scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.investmentDocURL} download>Investment Committee Packet</a> 
+                                        ({scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.boardDocSize} KB)
+                                    </div>
+                                </template>
+                                <template if:true={scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.auditDocSize}>
+                                    <div>
+                                        <a href={scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.auditDocURL} download>Audit &amp; Risk Committee Packet</a> 
+                                        ({scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper.boardDocSize} KB)
+                                    </div>
+                                </template>
+                            </td>
+                        </template>
+                        <template if:false={scheduleDataEvent.floridaPrepaidCollegeFoundationBoardDocsWrapper}>
+                            <td data-label="Foundation Board">
+                                <div class="slds-truncate" title="Board Office">TBD<br /></div>
+                            </td>
+                        </template>
+                        <template if:true={scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper}>
+                            <td data-label="Prepaid Board">
+                                <div class="slds-truncate" title="1:00PM March 23, 2021">{scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.eventTime} &middot; {scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.eventDate}</div>
+                                <template if:true={scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.boardDocSize}>
+                                    <div>
+                                        <a href={scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.boardDocURL} download>Board Meeting Packet</a> 
+                                        ({scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.boardDocSize} KB)
+                                    </div>
+                                </template>
+                                <template if:true={scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.investmentDocSize}>
+                                    <div>
+                                        <a href={scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.investmentDocURL} download>Investment Committee Packet</a> 
+                                        ({scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.boardDocSize} KB)
+                                    </div>
+                                </template>
+                                <template if:true={scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.auditDocSize}>
+                                    <div>
+                                        <a href={scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.auditDocURL} download>Audit &amp; Risk Committee Packet</a> 
+                                        ({scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper.boardDocSize} KB)
+                                    </div>
+                                </template>
+                            </td>
+                        </template>
+                        <template if:false={scheduleDataEvent.floridaPrepaidCollegeBoardDocsWrapper}>
+                            <td data-label="Prepaid Board">
+                                <div class="slds-truncate" title="Board Office">TBD<br /></div>
+                            </td>
+                        </template>
+                    </tr>
+                </template>
+            </template>
+        </tbody>
+    </table>
+</template>

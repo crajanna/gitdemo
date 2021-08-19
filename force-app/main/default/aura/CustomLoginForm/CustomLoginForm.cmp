@@ -1,0 +1,118 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="LightningLoginFormController">
+    <ltng:require styles="{!$Resource.MainSLDS}" /> 
+    <aura:attribute name="showError" type="Boolean" required="true" description="" default="false" access="private"/>
+    <aura:attribute name="errorMessage" type="String" required="false" description="" access="private"/>
+    <aura:attribute name="startUrl" type="String" required="false" description="The url you go to after a successful login" />
+    <aura:attribute name="usernameLabel" type="String" required="false" default="Username"/>
+    <aura:attribute name="passwordLabel" type="String" required="false" default="Password"/>
+    <aura:attribute name="loginButtonLabel" type="String" required="false" default="Log in"/>
+    <aura:attribute name="expid" type="String" required="false" description="The branding experience ID" />        
+    
+    <aura:attribute name="forgotPasswordLabel" type="String" required="false" default="Forgot your password?"/>
+    <aura:attribute name="selfRegisterLabel" type="String" required="false" default="Not a member?"/>
+    <aura:attribute name="forgotPasswordUrl" type="String" required="false" default="/ForgotPassword"/>
+    <aura:attribute name="selfRegisterUrl" type="String" required="false" default="/SelfRegister"/>
+    
+    <aura:attribute name="isUsernamePasswordEnabled" type="Boolean" access="private"/>
+    <aura:attribute name="isSelfRegistrationEnabled" type="Boolean" access="private"/>
+    <aura:attribute name="communityForgotPasswordUrl" type="String" access="private"/>
+    <aura:attribute name="communitySelfRegisterUrl" type="String" access="private"/>
+    
+    <aura:registerevent name="sitePropagatedStartUrl" type="c:setStartUrl"/>
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}"/>
+    <aura:dependency resource="c:setStartUrl" type="EVENT"/>
+   
+    <aura:dependency resource="siteforce:registerQueryEventMap" type="EVENT"/>
+    
+    <aura:handler event="c:setStartUrl" action="{!c.setStartUrl}"/>
+    <aura:handler event="c:setExpId" action="{!c.setExpId}"/>    
+    <aura:dependency resource="c:setExpId" type="EVENT"/>  
+    
+    <div>
+        <aura:renderIf isTrue="{!v.isUsernamePasswordEnabled}">
+            <span>
+                <aura:renderIf isTrue="{!v.showError}">
+                    <div id="error">
+                        <ui:outputRichText value="{!v.errorMessage}"/>
+                    </div>
+                </aura:renderIf>
+            </span>        
+
+    <div class="slds-grid slds-container_large slds-container_center slds-p-top_xx-large">
+        <div class="slds-col slds-size_7-of-12 box-white box-left box-pad">
+      
+      
+          <div class="d-flex justify-content-between">
+            <img src="{!$Resource.ECImages + '/img/logo-fl-prepaid-black-320px.png'}" width="140" alt="Florida Prepaid"/>
+            <p><small><a href="#">Having trouble signing in?</a></small></p>
+          </div>
+      
+          <h3 class="pt-5">Sign In to Your Account</h3>
+          <p class="pb-20">Adding new plans has never been easier lorem ipsum.</p>
+      
+          <div class="slds-form-element mt-20">
+            <label class="slds-form-element__label sr-only" for="exampleInputEmail">Username or Email</label>
+            <div class="slds-form-element__control">
+                <ui:inputText value="" aura:id="username" placeholder="{!v.usernameLabel}" keyup="{!c.onKeyUp}" class="input sfdc_usernameinput sfdc" label="{!v.usernameLabel}" labelClass="assistiveText"/>
+            </div>
+          </div>
+      
+          <div class="slds-form-element mt-20">
+            <label class="slds-form-element__label sr-only" for="pw">Password</label>
+            <div class="slds-form-element__control">
+                <ui:inputSecret value="" aura:id="password" placeholder="{!v.passwordLabel}" keyup="{!c.onKeyUp}" class="input sfdc_passwordinput sfdc" label="{!v.passwordLabel}" labelClass="assistiveText"/>
+            </div>
+          </div>
+      
+          <div class="slds-form-element mt-20">
+            <div class="slds-form-element__control">
+              <div class="slds-checkbox">
+                <input type="checkbox" name="options" id="checkbox-unique-id-73" value="checkbox-unique-id-73" checked="" />
+                <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                  <span class="slds-checkbox_faux"></span>
+                  <span class="slds-form-element__label"><b>Remember Me</b><br /><span class="check-help">Do not check if this is public or shared device.</span></span>
+                </label>
+              </div>
+            </div>
+          </div>
+      
+      
+          <div class="mt-30">
+            <ui:button aura:id="submitButton" label="{!v.loginButtonLabel}" press="{!c.handleLogin}" class="slds-button slds-button_brand mt-20 px-40"/>
+            <aura:renderIf isTrue="{!v.isSelfRegistrationEnabled}">
+                <span class="px-4">  &nbsp;or&nbsp;</span><a href="{!if(v.communitySelfRegisterUrl == null, v.selfRegisterUrl, v.communitySelfRegisterUrl)}"><b>{!v.selfRegisterLabel}</b></a> 
+            </aura:renderIf>           
+          </div>
+
+        </div>
+        <div class="slds-col slds-size_5-of-12 box-gray bg-img-fpo box-right box-pad d-flex flex-column justify-content-end">
+      
+      
+          &nbsp;
+      
+      
+        </div>
+      </div>
+      
+      
+      <!-- FOOTER -->
+      <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-top_xx-large slds-p-bottom_xx-large">
+        <div class="slds-col slds-size_8-of-12 slds-p-left_none">
+      
+          <p><small><b>Important Note About Your Security</b></small></p>
+          <p><small>The Florida Prepaid College Program will never ask you to provide your username and password (or any other personal information) in an email. If you ever receive an email message or phone call requesting that you provide such information in an email or on a web site, do not reply and please promptly report it to our Call Center at 1-800-553-GRAD (4723).</small></p>
+      
+        </div>
+        <div class="slds-col slds-size_4-of-12 slds-p-right_none">
+      
+          <div class="more-info img-left">
+           
+            <img src="{!$Resource.ECImages + '/img/logo-fl-prepaid-symbol-black-260px.png'}" height="34" width="34" class="img-34" alt="Florida Prepaid"/>
+            <p class="img-left-text pl-10"><small>For more information on our privacy policy or Plans, please visit <b><a href="#">MyFloridaPrepaid.com</a></b></small></p>
+          </div>
+      
+        </div>
+      </div>
+    </aura:renderIf>
+</div>     
+</aura:component>

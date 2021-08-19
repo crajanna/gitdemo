@@ -1,0 +1,416 @@
+<template>
+  <!-- CONTENT -->
+  <div class="slds-grid slds-wrap f-comp pledge-content slds-is-relative">
+
+    <div if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading..." variant="brand"></lightning-spinner>
+    </div>
+
+    <!-- OTHER PROGRAMS -->
+    <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+      <div class="pledge-card-wrap">
+
+        <div class="pledge-inner">
+
+          <h1 class="text-normal">Financial Information</h1>
+
+          <p>Any relevant explanation of what the user needs to do. Lorem ipsum dolor sit amet nam in sociosqu eget
+            conubia tempor non mattis.</p>
+
+          <div class="slds-grid box-light-gray-inputs">
+            <div class="slds-col slds-var-p-around_x-small slds-size_12-of-12">
+
+
+              <hr>
+
+
+              <!-- FINANCIAL OVERVIEW -->
+              <h3 class="mt-40">Financial Overview</h3>
+
+              <h6 class="label mt-20">What is your total gross household income? <span class="text-normal">(Before taxes
+                  &amp; other deductions)</span></h6>
+
+              <fieldset class="slds-form-element slds-form-element_compound mt-10">
+                <legend class="slds-form-element__legend slds-form-element__label sr-only">Income-related Items</legend>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__row">
+                    <div class="slds-size_1-of-2">
+                      <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="input-01">Monthly</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" name="monthly" onchange={handleChange} id="input-01" value={monthVal}
+                            class="slds-input" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-size_1-of-2">
+                      <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="input-02">Annually</label>
+                        <div class="slds-form-element__control">
+                          <input type="text" name="annually" onchange={handleChange} id="input-02" class="slds-input" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+
+              <fieldset class="slds-form-element mt-20">
+                <legend class="slds-form-element__legend slds-form-element__label label">Are you eligible to receive the
+                  following? <span class="text-normal">(Select all that apply):</span></legend>
+                <div class="slds-form-element__control">
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" id="checkbox-unique-id-72" value="checkbox-unique-id-72"
+                      checked="" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-72">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Medicaid</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">SNAP benefits</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Free/reduced lunch program (Based on individual
+                        income qualifications)</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Other</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-form-element__control mt-10">
+                    <div class="slds-form-element__row">
+                      <div class="slds-size_1-of-3">
+
+                        <div class="slds-form-element">
+                          <label class="slds-form-element__label sr-only" for="input-01">Other</label>
+                          <div class="slds-form-element__control">
+                            <input type="text" class="slds-input ml-30" placeholder="Please Specify" />
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </fieldset>
+
+
+
+              <hr>
+
+
+              <!-- FINANCIAL RISK -->
+              <h3 class="mt-40">Financial Risk</h3>
+
+              <p class="mt-20">The scholarship to which you are applying to requires one of the above financial risk
+                factors for eligibility. Please provide the proper documentation proving student met economically
+                disadvantaged criteria as marked in your application (one or more of the following):</p>
+              <ul class="slds-list_dotted mt-10">
+                <li>District transcript/screen print showing student qualified for free or reduced lunch based on the
+                  individual student</li>
+                <li>Most recent filed tax return listing student as dependent</li>
+                <li>SNAP eligibility based on income, student must be listed</li>
+                <li>Medicaid eligibility based on income, student must be listed</li>
+              </ul>
+
+              <!-- FILE UPLOAD -->
+              <div class="slds-form-element mt-20">
+                <span class="slds-form-element__label" id="file-selector-primary-label">Files to Attach</span>
+                <div class="slds-form-element__control">
+                  <div class="slds-file-selector slds-file-selector_files">
+                    <div class="slds-file-selector__dropzone">
+                      <input type="file" class="slds-file-selector__input slds-assistive-text" accept="image/png"
+                        id="file-upload-input-01"
+                        aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+                      <label class="slds-file-selector__body" for="file-upload-input-01"
+                        id="file-selector-secondary-label">
+                        <span class="slds-file-selector__button slds-button slds-button_neutral">
+                          <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                            <use xlink:href="icons/utility-sprite/svg/symbols.svg#upload"></use>
+                          </svg>Upload Files</span>-->
+                        <span class="slds-file-selector__text slds-medium-show">or Drop Files</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <hr>
+
+
+              <fieldset class="slds-form-element mt-20">
+                <legend class="slds-form-element__legend slds-form-element__label label">Please check any risk factors
+                  that apply to the student:</legend>
+                <div class="slds-form-element__control">
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-72" checked="" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-72">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Poor attendance (more than 5 days absent from
+                        school during previous school year)</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Poor academic performance (less than a 2.5
+                        GPA)</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">More than three school reports showing behavior
+                        or other problems</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Single parent</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Incarcerated parent</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Deceased parent</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Absent parent (no contact or support)</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">English not spoken at home</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Migrant worker</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Loss of Employment</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Home in foreclosure</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Poor relations between biological
+                        parents</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">DCF involvement</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Extended family in home</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Student is teen parent</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Parent was teen parent</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Student will be first in family to attend
+                        college</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Student is first in family to complete high
+                        school</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Family has received TANF within one year</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Homeless or living with extended family or
+                        friends</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Serious illness in family</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Disabled student or family member</span>
+                    </label>
+                  </div>
+
+                  <div class="slds-checkbox">
+                    <input type="checkbox" name="options" value="checkbox-unique-id-73" />
+                    <label class="slds-checkbox__label" for="checkbox-unique-id-73">
+                      <span class="slds-checkbox_faux"></span>
+                      <span class="slds-form-element__label text-normal">Student is or has been in foster care</span>
+                    </label>
+                  </div>
+
+
+                </div>
+              </fieldset>
+
+
+
+              <hr>
+
+
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- SELECTED PROGRAM -->
+    <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+      <div class="pledge-card-wrap card-gradient card-right">
+
+        <div class="pledge-card pb-20">
+          <div class="pledge-my">
+            <div>
+              <h6><img src="img/icon-heart.svg" alt="heart" width="16" height="16" class="mr-5" /> MY SCHOLARSHIPS</h6>
+            </div>
+            <div>
+              <span><strong>$0</strong> / $----</span>
+            </div>
+          </div>
+          <div class="img-wrap">
+            <img src="img/program-fpo.jpg" alt="program" />
+          </div>
+          <h3>Path to Prosperity</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipiscing elit purus nascetur, enim vestibulum netus interdum
+            praesent pharetra nibh mus, senectus molestie tortor sed auctor malesuada fames posuere.</p>
+          <h6 class="group">Did you know?</h6>
+          <p class="mb-40">Incentivizing fact lorem ipsum dolor sit amet tellum aqui lorem ipsum amet sit colleque.</p>
+          <a href="#" class="text-bold fs-16">Learn more about this program ></a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- PORTAL FOOTER IMAGE: FPO -->
+  <div class="f-comp f-comp-footer-fpo">
+    <img src="img/fpo-sample-footer.png" width="1130" height="379" alt="Sample Footer" />
+  </div>
+  <div class="f-comp f-comp-footer-sub-fpo">
+    <img src="img/fpo-sample-footer-sub.png" width="1071" height="59" alt="Sample Footer Sub" />
+  </div>
+</template>

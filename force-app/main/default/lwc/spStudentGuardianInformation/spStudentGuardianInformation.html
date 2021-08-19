@@ -1,0 +1,377 @@
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+          <lightning-spinner alternative-text="Loading" variant="brand"
+            size="large">
+          </lightning-spinner>
+        </template>
+      </div>
+    <div class="slds-grid f-comp pledge-header">
+        <div class="slds-col">
+            <h1>Apply for a Scholarship</h1>
+        </div>
+
+    </div>
+    <!-- STEPS -->
+    <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+        <div class="slds-col">
+            <div class="btn-wiz-new active">
+                <span class="num"><span>1</span></span> <span class="title">Student Information</span>
+            </div>
+        </div>
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>2</span></span> <span class="title">Parent/Guardian Information</span>
+            </div>
+        </div>
+        <!-- <template if:true={displayStudentQuestions}> -->
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>3</span></span> <span class="title">Scholarship
+                    Requirements</span>
+            </div>
+        </div>
+        <!-- </template> -->
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <!-- <template if:true={displayStudentQuestions}> -->
+                <span class="num"><span>4</span></span> <span class="title">Student
+                    Responsibilities</span>
+                <!-- </template>
+                <template if:false={displayStudentQuestions}>
+                    <span class="num"><span>2</span></span> <span class="title">Student Responsibilites</span>
+                </template> -->
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content">
+        <div class="slds-col slds-size_1-of-1 slds-large-size_8-of-12">
+            <div class="pledge-card-wrap">
+                <div class="pledge-inner">
+                    <h1 class="text-normal">Student Information</h1>
+                    <p>Provide the below information for the Student.</p>
+
+                    <div class="slds-grid box-light-gray-inputs">
+                        <div class="slds-col slds-var-p-around_x-small
+                            slds-size_12-of-12">
+                            <hr>
+
+
+                            <div class="slds-form__item" role="listitem">
+                                <div class="slds-form-element
+                                    slds-form-element_stacked">
+                                    <label class="slds-form-element__label"
+                                        for="select-01">Relationship to Student</label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <select class="slds-select"
+                                                name="accountType"
+                                                onchange={handleRelationshipToStudentSelection}>
+                                                <option disabled selected value>Select
+                                                    Relationship to Student</option>
+                                                <template
+                                                    if:true={relationshipList}>
+                                                    <template
+                                                        for:each={relationshipList}
+                                                        for:item="item">
+                                                        <option key={item.value}
+                                                            value={item.value}>{item.label}
+                                                        </option>
+                                                    </template>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- STUDENT INFO -->
+                        <template if:true={showExistingStudentInfo}>
+                            <div class="slds-form__item" role="listitem">
+                                <div class="slds-form-element
+                                    slds-form-element_stacked">
+                                    <label class="slds-form-element__label"
+                                        for="select-01">Select Existing Student</label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <select class="slds-select"
+                                                name="accountType"
+                                                onchange={handleExistingStudentSelection}>
+                                                <option disabled selected value>Select
+                                                    Existing Student</option>
+                                                <template
+                                                    if:true={existingStudents}>
+                                                    <template
+                                                        for:each={existingStudents}
+                                                        for:item="item">
+                                                        <option key={item.value}
+                                                            value={item.value}>{item.label}
+                                                        </option>
+                                                    </template>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                            
+
+                            <!-- GENERAL INFO ============================= -->
+                            <c-contact-info-component
+                                onhandlecontactgeneralinfo={handleContactGeneralInfo}>
+                            </c-contact-info-component>
+
+
+                            <div class="slds-grid slds-gutters slds-container_x-large slds-container_center">
+                                <div class="slds-col slds-size_12-of-12">
+                                    <fieldset class="slds-form-element slds-form-element_compound">
+                                        <legend class="slds-form-element__legend slds-form-element__label
+                                          sr-only">General Info</legend>
+                                        <div class="slds-form-element__control">
+                                          <div class="slds-form-element__row">
+                                  
+                                            <div class="slds-size_12-of-12">
+                                              <div class="slds-form-element">
+                                                <label class="slds-form-element__label sr-only"
+                                                  for="ssnItin">Enter a date of birth</label>
+                                                <div>
+                                                    <lightning-input name="beneficiaryDate" type="date"
+                                                    placeholder="Enter a date of birth"
+                                                    value={PersonBirthdate}
+                                                    onchange={handleBeneficiaryDateChange}></lightning-input>
+                                                </div>
+                                              </div>
+                                            </div>
+                                  
+                                          </div>
+                                        </div>
+                                      </fieldset>
+                                </div>
+                            </div>
+                            
+                            <!-- CONTACT INFO ============================= -->
+                            <h6 class="mt-30">&nbsp;&nbsp;CONTACT INFO</h6>
+                            <c-address-component onhandleaddressinfo={handleaddressData}></c-address-component>
+                            <!-- <c-residency-verification-component
+                                onhandleresidencydocument=
+                                {handleResidencyDocument}>
+                            </c-residency-verification-component> -->
+                            <c-profile-image-component onhandleprofileimage=
+                                {handleProfileImage}></c-profile-image-component>
+                            <br>
+                            <!-- <div class="pledge-card-wrap mt-10">
+
+                                <div class="pledge-inner">
+
+                                    <h5 class="mt-30">Student Affiliation</h5>
+                                    <p>Please select any of the below
+                                        organizations your student is
+                                        associated with. By adding an
+                                        organization you authorize the
+                                        affiliation to see scholarship
+                                        application information.
+                                    </p>
+
+                                    <div class="slds-grid
+                                        box-light-gray-inputs">
+                                        <div class="slds-col
+                                            slds-var-p-around_x-small
+                                            slds-size_12-of-12">
+                                            <c-custom-lookup-component
+                                                label-name="Search
+                                                Organization(s)"
+                                                object-api-name="Account"
+                                                field-api-names="Id,Name"
+                                                filter-field-api-name="Name"
+                                                icon-name="standard:account"
+                                                onretrieve={selectItemEventHandler}
+                                                onremove={deleteItemEventHandler}>
+                                            </c-custom-lookup-component>
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+                            </div> -->
+
+
+                            <div class="pledge-card-wrap mt-10">
+
+                                <div class="pledge-inner">
+
+                                    <h5 class="mt-30">Student Interests</h5>
+
+                                    <p>Please complete the below additional information related to the Student.</p>
+
+                                    <div class="slds-grid
+                                        box-light-gray-inputs">
+                                        <div class="slds-col
+                                            slds-var-p-around_x-small
+                                            slds-size_12-of-12">
+
+                                            <!-- STUDENT INTERESTS INFO -->
+                   
+                                            <div class="slds-form-element
+                                                mt-20">
+                                                <label
+                                                    class="slds-form-element__label"
+                                                    for="newID1">What is
+                                                    your favorite subject in
+                                                    school?</label>
+                                                <div
+                                                    class="slds-form-element__control">
+                                                    <input type="text"
+                                                        name="subject"
+                                                        onchange={handleFavSubjectChange}
+                                                        placeholder="" value={favSubject}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+
+                                            <div class="slds-form-element
+                                                mt-20">
+                                                <label
+                                                    class="slds-form-element__label"
+                                                    for="newID1">Please
+                                                    list your top three hobbies
+                                                    and/or
+                                                    interests:</label>
+                                                <div
+                                                    class="slds-form-element__control">
+                                                    <input type="text"
+                                                    onchange={handleHobby1Change}
+                                                        placeholder="1)"
+                                                        value={hobby1}
+                                                        class="slds-input" />
+                                                </div>
+                                                <div
+                                                    class="slds-form-element__control
+                                                    mt-10">
+                                                    <input type="text"
+                                                    onchange={handleHobby2Change}
+                                                        placeholder="2)"
+                                                        value={hobby2}
+                                                        class="slds-input" />
+                                                </div>
+                                                <div
+                                                    class="slds-form-element__control
+                                                    mt-10">
+                                                    <input type="text"
+                                                      onchange={handleHobby3Change}
+                                                        placeholder="3)"
+                                                        value={hobby3}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+
+                                            <div class="slds-form-element
+                                                mt-20">
+                                                <label
+                                                    class="slds-form-element__label"
+                                                    for="newID1">What
+                                                    clubs/organizations do you
+                                                    belong to, if
+                                                    any?</label>
+                                                <div
+                                                    class="slds-form-element__control">
+                                                    <input type="text"
+                                                        onchange={handleOrganizationChange}
+
+                                                        placeholder="" value={orgList}
+                                                        class="slds-input" />
+                                                </div>
+                                            </div>
+
+                                            <div class="slds-form-element
+                                                mt-20">
+                                                <label
+                                                    class="slds-form-element__label"
+                                                    for="newID1">What is
+                                                    your goal or plan for your
+                                                    future/career?</label>
+                                                <div
+                                                    class="slds-form-element__control">
+                                                    <textarea
+                                                        id="textarea-id-01"
+                                                        placeholder=" "
+                                                        onchange={handleGoalsChange}
+                                                        class="slds-textarea">{goals}</textarea>
+                                                </div>
+                                            </div>
+
+                                            <!-- <button class="slds-button slds-button_brand btn-sm
+                                            px-40" data-gtmid="Student & Guardian Information -
+                                            Next"
+                                            onclick={handleSave}>Save</button> -->
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <a
+                            href="" onclick={backToHomePage}
+                            role="button" class="slds-button slds-button_brand
+                            btn-sm px-20 btn-reverse mr-10"
+                            data-gtmid="Student & Guardian Information -
+                            Previous">Go
+                            Back</a>
+
+                        <button class="slds-button slds-button_brand btn-sm
+                            px-40" data-gtmid="Student & Guardian Information -
+                            Next"
+                            onclick={handleNext}>Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SELECTED PROGRAM -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_4-of-12">
+            <div class="pledge-card-wrap card-gradient card-right">
+
+                <div class="pledge-card pb-20">
+                    <div class="pledge-my">
+                    </div>
+                    <template if:true={productImgURL}>
+                        <div class="img-wrap">
+                            <img src={productImgURL} alt="program" />
+                        </div>
+                    </template>
+
+                    <h3>{productName}</h3>
+                    <p>{priductDescription}</p>
+                    <a href={productLearnMoreURL} id="productLearnMoreURL"
+                        target="_blank" class="text-bold fs-16">Learn more about
+                        this program ></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>

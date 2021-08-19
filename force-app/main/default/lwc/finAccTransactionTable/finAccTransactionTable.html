@@ -1,0 +1,51 @@
+<template>
+    <h6 class="divider mb-0">TRANSACTION HISTORY</h6>
+      
+
+    <template if:true={records}>
+        <c-custom-data-table
+            title="TRANSACTION HISTORY"
+            records={records}
+            show-table="true"
+            columns={columns}
+            recordsperpage="2"
+            onactions={handleRowActions}
+            onpagination={handlePagination}
+        >
+        </c-custom-data-table>
+    </template>
+
+
+    <!-- <table class="slds-table slds-table_cell-buffer slds-table_bordered override">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Method</th>
+          <th>Amount</th>
+          <th>Balance</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+          <template for:each={finAccTransactionDetail} for:item="item">
+              <tr key ={item.Id}>
+                  <td>  <lightning-formatted-date-time
+                      value={item.tdate}
+                      time-zone="UTC">
+                   </lightning-formatted-date-time></td>
+                  <td>{item.sourceType}</td>
+                  <td>
+                      <lightning-formatted-number
+                       value={item.amount} 
+                       format-style="currency" 
+                       currency-code="USD"
+                       ></lightning-formatted-number>
+                      </td>
+                  <td>$8,123.64</td>
+                  <td>{item.status}</td>
+                </tr>
+          </template>
+       
+      </tbody>
+    </table> -->
+</template>

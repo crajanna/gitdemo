@@ -1,0 +1,10 @@
+.THIS {
+}
+
+.THIS .slds-form-element__legend {
+    padding-bottom: 5px !important;
+}
+
+.THIS .slds-radio {
+    padding-bottom: 5px !important;
+}

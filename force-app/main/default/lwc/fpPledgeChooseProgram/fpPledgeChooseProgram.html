@@ -1,0 +1,100 @@
+<template>
+
+  <div class="slds-grid f-comp pledge-header">
+    <div class="slds-col">
+
+      <h1>Become a Donor</h1>
+      <p>Select the program you would like to support.</p>
+
+    </div>
+  </div>
+  <!-- STEPS -->
+  <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+    <div class="slds-col">
+      <div class="btn-wiz-new active">
+        <span class="num"><span>1</span></span> <span class="title">Choose Program</span>
+      </div>
+    </div>
+    <div class="slds-col">
+      <div class="btn-wiz-new">
+        <span class="num"><span>2</span></span> <span class="title">Make A Pledge</span>
+      </div>
+    </div>
+    <div class="slds-col">
+      <div class="btn-wiz-new">
+        <span class="num"><span>3</span></span> <span class="title">Specify Payment</span>
+      </div>
+    </div>
+    <div class="slds-col">
+      <div class="btn-wiz-new">
+        <span class="num"><span>4</span></span> <span class="title">Finish</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="slds-grid slds-wrap f-comp pledge-content">
+    <!-- HIGHTLIGHTED PROGRAM -->
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+      <div class="pledge-card-wrap-new">
+        <div class="slds-form-element__control card-grid-new spotlight">
+          <div class="slds-visual-picker slds-visual-picker_large plum">
+            <input type="radio" id={spotLightId} data-gtmid={spotLightGtmid} value={spotLightId} name="options"
+              onchange={handleSelectProgram} />
+            <label for={spotLightId}>
+              <span class="slds-visual-picker__figure slds-visual-picker__text">
+                <span class="ai-flex-start">
+                  <div class="img-wrap">
+                    <img src={spotLightImgUrl} alt="student" />
+                    <p><img src={starIcon} alt="star icon" /> Spotlight</p>
+                  </div>
+                  <div class="text-wrap">
+                    <h3 class="fs-20 mt-20">{spotLightName}</h3>
+                    <p>{spotLightDescription}</p>
+                    <div class="spotlight-btn-wrap">
+                      <span class="slds-button slds-button_brand btn-outline spotlight-btn"><img src={whitePlusIcon}
+                          alt="plus icon" /> Select Program</span>
+                      <a href={spotLightLearnMoreURL} target="_blank"
+                        class="slds-button slds-button_brand btn-outline spotlight-link"
+                        style="padding: 10px 20px;">Learn More</a>
+                    </div>
+                  </div>
+                </span>
+              </span>
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- OTHER PROGRAMS -->
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12">
+      <div class="pledge-card-wrap-new card-right">
+        <fieldset class="slds-form-element">
+          <legend class="slds-form-element__legend slds-form-element__label sr-only">Choose a program to support.
+          </legend>
+          <div class="slds-form-element__control card-grid-new">
+            <template if:true={programs}>
+              <template for:each={programs} for:item="program">
+                <div class={program.Color_Code__c} key={program.Id}>
+                  <input type="radio" key={program.Id} data-gtmid={program.gtmid} id={program.Id} value={program.Id}
+                    name="options" onchange={handleSelectProgram} />
+                  <label for={program.Id}>
+                    <span class="slds-visual-picker__figure slds-visual-picker__text">
+                      <span>
+                        <h3>{program.Name}</h3>
+                        <p class="mb-20">{program.Description}</p>
+                        <div class="btn-plus"><span>+</span>&nbsp;Select Program</div>
+                      </span>
+                    </span>
+                  </label>
+                </div>
+              </template>
+            </template>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,30 @@
+<template>
+      <c-enrollment-header title={currentStepTitle} contact-number ="1-800-552-4723" business-hours="MONDAY-FRIDAY, 8AM-6PM EST"></c-enrollment-header>
+       <br/>
+       <c-progress-bar steps={enrollementSteps} type="bar" current-step={currentStep} ></c-progress-bar>
+
+
+        <template if:true={planSelectionStep}>
+            <c-plan-selection-fpp onnext={goToNextStep}></c-plan-selection-fpp>
+        </template>
+        <template if:true={beneficiaryInfoStep}>
+            <c-beneficiary-info-fpp onnext={goToNextStep} contract-id={contractId}  ></c-beneficiary-info-fpp>
+        </template>
+        <template if:true={reviewSelectionStep}>
+            <c-review-selection-fpp onnext={goToNextStep} contract-id={contractId} ></c-review-selection-fpp>
+        </template>
+        <template if:true={yourProfileStep}>
+            <c-profile-fpp onnext={goToNextStep} contract-id={contractId} ></c-profile-fpp>
+        </template>
+        <template if:true={billingInfoStep}>
+            <c-billing-info-fpp onnext={goToNextStep} contract-id={contractId}></c-billing-info-fpp>
+        </template>
+        <template if:true={agreementStep}>
+            <c-agreement-fpp onnext={goToNextStep} contract-id={contractId}></c-agreement-fpp>
+        </template>
+        <template if:true={applicationSubmittedStep}>
+            <c-application-submitted-fpp onnext={goToNextStep} contract-id={contractId}></c-application-submitted-fpp>
+        </template>
+
+        <c-enrollment-footer></c-enrollment-footer>
+</template>

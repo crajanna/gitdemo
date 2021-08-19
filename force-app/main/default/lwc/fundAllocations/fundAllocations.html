@@ -1,0 +1,227 @@
+<template>
+  <lightning-card>
+    <div class="spinner">
+      <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="brand"
+          size="large">
+        </lightning-spinner>
+      </template>
+    </div>
+    <lightning-tabset variant="scoped">
+      <lightning-tab label="Future Allocations" value='FA' onactive={handleTab}>
+        <lightning-card>
+
+          <c-fund-allocations-component show-age-based={showAgeBased} show-static-portfolios={showStaticPortfolios} record-id = {recordId}
+          show-ind-fund-options={showIndFundOptions} dob ={birthdate} onallocationselection={onAllocationSelection}></c-fund-allocations-component>
+
+          <p class="slds-clearfix slds-m-top_medium">
+            <strong> <i>Existing holdings share in market value.</i></strong> -  <span class="slds-badge slds-theme_success slds-m-left_medium">xx %</span>
+          </p>
+
+          <p class="slds-clearfix slds-m-top_medium">
+            <lightning-button onclick={handleSubmit} label="Save"
+              variant="brand"></lightning-button>
+          </p>
+
+        </lightning-card>
+      </lightning-tab>
+      <lightning-tab label="Rebalancing Allocations" value='RA'
+        onactive={handleTab}>
+        <lightning-card>
+
+          <div class="gray-grid-row">
+            <div class="gray-grid-col" style="width:120px;">
+              <h6 class="gray-grid-title">Age-Based Portfolio</h6>
+            </div>
+            <div class="gray-grid-col gray-grid-row-inner gray-grid-age-based">
+              <div class="gray-grid-col-inner d-flex">
+                <!-- empty -->
+                <div>&nbsp;</div>
+              </div>
+              <div class="gray-grid-col-inner d-flex">
+                <!-- empty -->
+                <div>&nbsp;</div>
+              </div>
+              <div class="gray-grid-col-inner d-flex">
+                <div class="percent-text" style="width:300px">
+                  <span>
+                    <!--<a href="#"><img src={imagePathIconHelp} alt="Help" /></a> -->Age-Based
+                    Portfolio
+                  </span>
+                </div>
+                <div class="slds-form-element percent-input" style="width:90px">
+                  <label class="slds-form-element__label sr-only"
+                    for="percent1">Percent</label>
+                  <div class="slds-form-element__control slds-input-has-icon
+                    slds-input-has-icon_right">
+                    <svg class="slds-icon slds-input__icon
+                      slds-input__icon_right slds-icon-text-default"
+                      aria-hidden="true">
+                      <use
+                        xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#percent"></use>
+                    </svg>
+                    <lightning-input name="ageBasedPercent" type="number"
+                      value="0" onblur={ageBasedChangeHandler} min="0" max="100"
+                      class="plan-percent-input"> </lightning-input>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gray-grid-row">
+            <div class="gray-grid-col" style="width:120px;">
+              <h6 class="gray-grid-title">Static Portfolios</h6>
+            </div>
+            <div class="gray-grid-col gray-grid-row-inner gray-grid-static">
+              <template for:each={reBalAllocList} for:item="item"
+                for:index="index">
+                <template if:true={item.static}>
+                  <div class="gray-grid-col-inner d-flex" key={item.fundSecId}>
+                    <div class="percent-text" style="width:300px">
+                      <span>
+                        <!--<a href="#"><img src={imagePathIconHelp} alt="Help" /></a> -->{item.fundName}
+                        <template if:true={item.marketFAPercentage}>
+                          <span class="slds-badge slds-theme_success
+                            slds-m-left_medium">{item.marketFAPercentage}%</span>
+                        </template>
+                      </span>
+                    </div>
+                    <div class="slds-form-element percent-input"
+                      style="width:90px">
+                      <label class="slds-form-element__label sr-only"
+                        for="percent1">Percent</label>
+                      <div class="slds-form-element__control slds-input-has-icon
+                        slds-input-has-icon_right">
+                        <svg class="slds-icon slds-input__icon
+                          slds-input__icon_right slds-icon-text-default"
+                          aria-hidden="true">
+                          <use
+                            xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#percent"></use>
+                        </svg>
+                        <lightning-input name="initialRAPercentage"
+                          access-key={index} type="number"
+                          onblur={changeHandler}
+                          value={item.allocationPercentage} min="0" max="100"
+                          class="plan-percent-input"> </lightning-input>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </template>
+            </div>
+          </div>
+          <div class="gray-grid-row">
+            <div class="gray-grid-col" style="width:120px;">
+              <h6 class="gray-grid-title">Individual Fund Options</h6>
+            </div>
+            <div class="gray-grid-col gray-grid-row-inner gray-grid-individual">
+              <template for:each={reBalAllocList} for:item="item"
+                for:index="index">
+                <template if:true={item.individual}>
+                  <div class="gray-grid-col-inner d-flex" key={item.fundSecId}>
+                    <div class="percent-text" style="width:300px">
+                      <span>
+                        <!--<a href="#"><img src={imagePathIconHelp} alt="Help" /></a> -->{item.fundName}
+                        <template if:true={item.marketFAPercentage}>
+                          <span class="slds-badge slds-theme_success
+                            slds-m-left_medium">{item.marketFAPercentage}%</span>
+                        </template>
+                      </span>
+                    </div>
+                    <div class="slds-form-element percent-input"
+                      style="width:90px">
+                      <label class="slds-form-element__label sr-only"
+                        for="percent1">Percent</label>
+                      <div class="slds-form-element__control slds-input-has-icon
+                        slds-input-has-icon_right">
+                        <svg class="slds-icon slds-input__icon
+                          slds-input__icon_right slds-icon-text-default"
+                          aria-hidden="true">
+                          <use
+                            xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#percent"></use>
+                        </svg>
+                        <lightning-input name="initialRAPercentage"
+                          access-key={index} type="number"
+                          onblur={changeHandler}
+                          value={item.allocationPercentage} min="0" max="100"
+                          class="plan-percent-input"
+                          field-level-help={item.comments}
+                          > </lightning-input>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </template>
+            </div>
+          </div>
+          <div class="box-gray-bottom">
+            <div class="text-14">ALLOCATED</div>
+            <div class="slds-form-element percent-input-bottom" style="width:90px">
+              <label class="slds-form-element__label sr-only" for="percent1">Percent</label>
+              <div class="slds-form-element__control slds-input-has-icon
+                slds-input-has-icon_right">
+                <svg class="slds-icon slds-input__icon slds-input__icon_right
+                  slds-icon-text-default" aria-hidden="true">
+                  <use
+                    xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#percent"></use>
+                </svg>
+                <lightning-input name="totalPercentage" type="number"
+                  value={totalRAPercentage} disabled="true"
+                  class="plan-percent-allocated"> </lightning-input>
+              </div>
+            </div>
+            <div class="text-14">OUT OF 100%</div>
+          </div>
+          <div style="margin-top: 10px;">
+            
+            <strong> <i>Existing holdings share in market value.</i></strong> - <span class="slds-badge slds-theme_success slds-m-left_medium">xx %</span>
+          </div>
+          
+          <!--
+                <div class="slds-p-horizontal_small">
+                  <table class="slds-table slds-table--bordered slds-max-medium-table--stacked-horizontal slds-no-row-hover">
+                    <thead>
+                      <tr>
+                        <th class="slds-text-heading--label slds-text-heading--large slds-text-color_success slds-size--1-of-2" scope="col">Plan Name</th>
+                        <th class="slds-text-heading--label slds-text-heading--large slds-text-color_success slds-size--1-of-2" scope="col">Allocation Percentage ({totalRAPercentage}%)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <template for:each={reBalAllocList} for:item="item" for:index="index">
+                        <tr key={item.fundSecId} class="slds-hint-parent">
+                            <td class="slds-truncate slds-size--1-of-2">
+                                {item.fundName}
+                                <template if:true={item.marketFAPercentage}>
+                                  <span class="slds-badge slds-theme_success slds-m-left_medium">{item.marketFAPercentage}%</span>
+                               </template>
+                            </td>
+                            <td class="slds-truncate slds-size--1-of-2">
+                                <lightning-input name="initialRAPercentage" access-key={index} type="number" onblur={changeHandler}  value={item.allocationPercentage} min="0" max="100" > </lightning-input>
+                            </td>
+                        </tr>
+                    </template>
+                    <tr>
+                        <td class="slds-truncate slds-size--1-of-2">
+                            Total Allocation (%)
+                        </td>
+                        <td class="slds-truncate slds-size--1-of-2">
+                            <lightning-input name="totalPercentage" type="number" value={totalRAPercentage}  disabled="true"> </lightning-input>
+                        </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div> -->
+          <p class="slds-clearfix slds-m-top_medium">
+            <lightning-button onclick={handleSubmit} label="Save" variant="brand" class="slds-float_left"></lightning-button>
+            <lightning-button onclick={handleRebalance} label="Trigger Rebalance" variant="brand" class="slds-float_right"></lightning-button>
+          </p>
+          <div class="slds-float_right slds-text-body_small">
+            <i>Used <span class="" > {rebalanceCount} </span> of 2.</i>
+          </div>
+        </lightning-card>
+      </lightning-tab>
+    </lightning-tabset>
+
+  </lightning-card>
+
+</template>

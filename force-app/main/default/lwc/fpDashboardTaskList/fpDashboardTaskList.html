@@ -1,0 +1,26 @@
+<template>
+    <div class="f-comp">
+        <template for:each={taskData} for:item="task">
+            <div class="icon-step d-flex incomplete" key={task.Id} >
+                <span class="slds-icon_container slds-icon-utility-routing_offline">
+                    <img src={task.icon} class="slds-icon slds-icon-text-default" />
+                    <span class="slds-assistive-text">Step not complete</span>
+                </span>
+                <div style="display: flex;">
+                    <template if:true={task.isCompleted}>
+                        <span class="info">{task.Subject}</span>
+                    </template>
+                    <template if:false={task.isCompleted}>
+                        <template if:true={task.description}>
+                            <span class="info"><a href="javascript:void(0)" name={task.Id}
+                                onclick={handleNavigte}>{task.Subject}</a></span>
+                        </template>
+                        <template if:false={task.description}><span class="info">{task.Subject}</span></template>
+                        
+                    </template>
+                </div>
+
+            </div>
+        </template>
+    </div>
+</template>

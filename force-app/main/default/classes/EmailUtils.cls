@@ -1,0 +1,12 @@
+global class EmailUtils {
+    global static void sendMessage(AsyncApexJob job, Integer recordsProcessed){
+        
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        String[] toAddresses = new String[]{'crajanna@kyrasolutions.com'};
+        mail.setToAddresses(toAddresses);
+        mail.setSubject('Quarterly Account Summary Batch Status ' + job.Status);
+        mail.setPlainTextBody('records processed ' + recordsProcessed);
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
+        
+    }
+}

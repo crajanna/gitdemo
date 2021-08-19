@@ -1,0 +1,132 @@
+<template>
+  
+<!-- STEPS -->
+<div class="slds-grid slds-gutters_x-small f-comp pledge-steps">
+
+    <div class="slds-col">
+      <div class="btn-wiz done">
+        <a href="#">1. Choose Program</a>
+      </div>
+    </div>
+  
+    <div class="slds-col">
+      <div class="btn-wiz done">
+        <a href="#">2. Make a Pledge</a>
+      </div>
+    </div>
+  
+    <div class="slds-col">
+      <div class="btn-wiz active">
+        <a href="#">3. Specify Payment</a>
+      </div>
+    </div>
+  
+    <div class="slds-col">
+      <div class="btn-wiz">
+        <a href="#">4. Finish</a>
+      </div>
+    </div>
+  
+  </div>
+  
+  
+  <!-- CONTENT -->
+  <div class="slds-grid slds-wrap f-comp pledge-content">
+  
+  
+    <!-- OTHER PROGRAMS -->
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12">
+      <div class="pledge-card-wrap">
+  
+        <div class="pledge-inner">
+  
+          <h1 class="text-normal">Confirm Your Payment Details</h1>
+
+          <div class="slds-grid slds-gutters_x-small slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+  
+  
+              <div class="pledge-info mb-20">
+                <div class="d-flex space-between mb-10">
+                  <h5>Payment Method</h5>
+                  <div>
+                     <a href="#" onclick={handleGoBack}>Change</a>
+                  </div>
+                </div>
+                <p>PayPal</p>
+   
+              </div>
+  
+  
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12">
+  
+  
+              <div class="pledge-info mb-20">
+                <div class="d-flex space-between mb-10">
+                  <h5>Contribution Summary</h5>
+                  <div></div>
+                </div>
+                <div class="d-flex space-between">
+                  <p>Amount</p>
+                  <div>$500.00</div>
+                </div>
+                <div class="d-flex space-between">
+                  <p>Vendor Fee*</p>
+                  <div>$11.00</div>
+                </div>
+  
+                <hr />
+  
+                <div class="d-flex space-between">
+                  <h5>Total</h5>
+                  <div>
+                    <strong>$511.00</strong>
+                  </div>
+                </div>
+                <p>* Paypal fee of 2.2% applies.</p>
+              </div>
+  
+  
+            </div>
+          </div>
+  
+   
+          <div>
+            <a href="#"><strong>Go Back</strong></a>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  
+  
+    <!-- SELECTED PROGRAM -->
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+      <div class="pledge-card-wrap card-gradient card-right">
+  
+        <div class="pledge-card pb-20">
+          <div class="pledge-my">
+            <div>
+              <h6> MY PLEDGE</h6>
+            </div>
+            <div>
+              <span><strong>$0</strong> / $----</span>
+            </div>
+          </div>
+          <div class="img-wrap">
+          </div>
+          <h3>Path to Prosperity</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipiscing elit purus nascetur, enim vestibulum netus interdum praesent pharetra nibh mus, senectus molestie tortor sed auctor malesuada fames posuere.</p>
+          <h6>Did you know?</h6>
+          <p class="mb-40">Incentivizing fact lorem ipsum dolor sit amet tellum aqui lorem ipsum amet sit colleque.</p>
+          <a href="#" class="text-bold fs-16">Learn more about this program ></a>
+        </div>
+  
+      </div>
+    </div>
+  
+  </div>
+
+</template>

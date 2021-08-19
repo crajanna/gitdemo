@@ -1,0 +1,142 @@
+<template>
+  
+    <!-- FORM + FAQ WRAP -->
+    <div class="slds-grid slds-gutters slds-container_x-large slds-container_center slds-p-bottom_xx-large">
+      <div class="slds-col slds-size_9-of-12 mt-30">
+  
+   
+        <!-- PLAN PAYMENTS ============================= -->
+        <h6>SET UP PLAN PAYMENTS</h6>
+  
+        <div class="slds-form mb-10">
+          <div class="slds-form-element slds-form-element_horizontal">
+            <label class="slds-form-element__label" for="horizontal-input-id-01">How would you like to make your payment?</label>
+            <div class="slds-form-element__control">
+              <lightning-combobox class="paymentmodeCmp" name="paymentMode" value="" options={paymentOptions}
+                onchange={handlePaymentOptionsChange}></lightning-combobox>
+            </div>
+          </div>
+        </div>
+
+        <template if:true={showACH} >
+          <c-bank-accounts-component onhandlefinaccountinfo={handleFinAccountInfo}></c-bank-accounts-component>
+        </template>
+  
+        <div class="box-light-gray mt-20">
+  
+          <h6>PLAN BILLING OPTIONS</h6>
+          <p>Instructions ipsum dolor sit amet, consectetur adipiscing elit. Nulla nibh tortor, mattis vitae porta a, finibus quis risus.</p>
+  
+  
+          <h6 class="mt-40">SAVINGS PLAN</h6>
+          <div class="slds-form-element">
+            <label class="slds-form-element__label sr-only" for="savingsPlan">Savings Plan</label>
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <lightning-combobox
+                            name="savingsplanbillingoption"                      
+                            value={savingsplanbillingvalue}
+                            options={savingPlanBillingOptions}
+                            onchange={handleSavingPlanBillingChange} ></lightning-combobox>      
+
+              </div>
+            </div>
+          </div>
+  
+        </div><!-- /.box-light-gray -->
+  
+  
+  
+        <!-- APPLICATION FEE ============================= -->
+        <h6 class="mt-40">APPLICATION FEE</h6>
+        <p>Instructions ipsum dolor sit amet, consectetur adipiscing elit. Nulla nibh tortor, mattis vitae porta a, finibus quis risus.</p>
+  
+  
+        <h6 class="mt-5">Amount due: $50.00</h6>
+  
+        <div class="slds-form-element mt-10">
+          <label class="slds-form-element__label sr-only" for="payment">Payment</label>
+          <div class="slds-form-element__control">
+            <div class="slds-select_container">
+              <select class="slds-select" id="payment">
+                <option>Pay via Credit Card</option>
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="box-light-gray mt-20">
+  
+          <div class="card-dots">
+            <span>&nbsp;</span> <span>&nbsp;</span> <span>&nbsp;</span> <span>&nbsp;</span>
+          </div>
+  
+          <!-- NAME ON CREDIT CARD -->
+          <div class="slds-form-element">
+            <label class="slds-form-element__label sr-only" for="nameOnCard">Name on Card</label>
+            <div class="slds-form-element__control">
+              <input type="text" id="nameOnCard" class="slds-input" placeholder="Name on Card" />
+            </div>
+          </div>
+  
+          <!-- ADDRESS CITY, ST, ZIP -->
+          <fieldset class="slds-form-element slds-form-element_compound mt-10">
+            <legend class="slds-form-element__legend slds-form-element__label sr-only">Card Details</legend>
+            <div class="slds-form-element__control">
+              <div class="slds-form-element__row">
+  
+                <div class="slds-size_6-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only" for="cardName">Card Name</label>
+                    <div class="slds-form-element__control">
+                      <input type="text" id="cardName" class="slds-input" placeholder="Card Name" required="required" />
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="slds-size_2-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only" for="cvc">CVC</label>
+                    <div class="slds-form-element__control">
+                      <input type="text" id="cvc" class="slds-input" placeholder="CVC" required="required" />
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="slds-size_4-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only" for="expDate">Expiration Date</label>
+                    <div class="slds-form-element__control">
+                      <input type="text" id="expDate" class="slds-input" placeholder="Expiration Date MM/YY" />
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </fieldset>
+  
+        </div><!-- /.box-light-gray -->
+  
+  
+        <!-- CONTINUE -->
+        <div class="mt-5">
+          <button onclick={saveBillingInfo}  class="slds-button slds-button_brand mt-20 px-40">Continue</button>
+          <!-- <button onclick={createBillingInfoApex}  class="slds-button slds-button_brand mt-20 px-40">Continue</button> -->
+          
+        </div>
+  
+  
+      </div>
+      <div class="slds-col slds-size_3-of-12 mt-30">
+ 
+        <c-new-plans-beneficiary contract-id={contractId}> </c-new-plans-beneficiary>
+  
+      </div>
+    </div>
+  
+  </template>

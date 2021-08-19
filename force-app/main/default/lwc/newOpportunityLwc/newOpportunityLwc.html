@@ -1,0 +1,39 @@
+<!--
+  @description       : 
+  @author            : Pradeep Landge
+  @group             : 
+  @last modified on  : 01-12-2021
+  @last modified by  : Pradeep Landge
+  Modifications Log 
+  Ver   Date         Author           Modification
+  1.0   01-12-2021   Pradeep Landge   Initial Version
+-->
+<template>
+    <lightning-card variant="Narrow" title="New Opportunity" icon-name="standard:opportunity">
+        <div class="cardStyle">
+            <template if:true={page1}>
+                <lightning-radio-group name="Choose_Beneficiary" label="Choose Beneficiary" options={options}
+                    value={value} type="radio" onchange={handleOnChange}></lightning-radio-group>
+
+                <template if:true={isExiting}>
+                    <template if:true={recid}>
+                        <c-custom-lookup iconname="standard:account" searchfield="Name" accid={recid}
+                            onselectedrec={hanldeSelectedrec}>
+                        </c-custom-lookup>
+                    </template>
+                </template>
+
+               
+                    <div style="text-align: right;">
+                    <lightning-button variant="brand" label="Next" title="Primary action with lighter look"
+                        onclick={handlePage1Next} class="slds-m-right_x-small" slot="actions"></lightning-button>
+                    </div>
+              
+
+
+
+
+            </template>
+        </div>
+    </lightning-card>
+</template>

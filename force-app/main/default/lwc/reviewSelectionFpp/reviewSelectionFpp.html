@@ -1,0 +1,128 @@
+<template>
+       
+        <main role="main" class="bg-white">
+
+    
+      
+        <!-- FORM WRAP -->
+        <div class="slds-grid slds-gutters slds-container_x-large slds-container_center slds-p-bottom_xx-large">
+          <div class="slds-col">
+      
+      
+            <!-- Review -->
+            <h3 class="mt-40">Please review your plan selection for {beneficiaryAccountName}</h3>
+      
+            <div class="box-light-gray alt py-4">
+              <template for:each={productList} for:item="item" for:index="index">
+              <!-- PREPAID -->
+              <div class="d-flex justify-content-between" key={item.id}>
+                <h6>PREPAID PLANS</h6>
+                <p class="text-13">High School graduation estimated for <b>2038</b></p>
+              </div>
+      
+              <div class="box-plain-wrap" key={item.id}>
+                <div class="box-plain">
+
+                    <div class="d-flex py-2" key={item.id}>
+                      <img src={imageFpo90} class="tnail rounded ml-20" alt="tnail">
+                      <p class="text-stack px-3">{item.name} <br><span class="sub-text">{item.description}</span></p>
+                      <p class="text-stack px-3 mr-auto ml-5">1 Payment<br><span class="sub-text">LUMP SUM</span></p>
+                      <p class="text-stack px-3"><lightning-formatted-number value={item.lumpSumPrice} format-style="currency" currency-code="USD"></lightning-formatted-number> <br><span class="sub-text">ONE TIME</span></p>
+                    </div>
+                </div>                               
+              </div>
+            </template>
+                  <!-- SAVINGS -->
+             <div class="d-flex justify-content-between pt-4">
+                    <h6>SAVINGS PLAN</h6>
+                    <p class="text-13">&nbsp;</p>
+                  </div>
+
+                  <div class="box-plain-wrap">
+                    <div class="box-plain">
+                      <div class="d-flex py-2">
+                        <img src={imageFpo90} class="tnail rounded ml-20" alt="tnail">
+                        <p class="text-stack px-3">529 Savings Plan <br><span class="sub-text">INDIVIDUAL</span></p>
+                        <p class="text-stack px-3 mr-auto ml-5">{X529_Savings_Plan_Option__c} <br><span class="sub-text">PORTFOLIO</span></p>
+                        <p class="text-stack px-3">${Initial_Contribution__c}<br><span class="sub-text">INITIAL CONTRIBUTION</span></p>
+                        <p class="text-stack px-3">${SP_Amount__c}<br><span class="sub-text">{SP_Frequency__c}</span></p>
+                      </div>
+                    </div>
+                  </div>
+           
+
+                
+             
+      
+              <!-- ADDITIONS -->
+              <!-- <div class="d-flex justify-content-between pt-4">
+                <h6>PLAN ADDITIONS</h6>
+                <p class="text-13">&nbsp;</p>
+              </div>
+      
+              <div class="box-plain-wrap">
+                <div class="box-plain">
+                  <div class="d-flex py-2">
+                    <img src={imageFpo90} class="tnail rounded ml-20" alt="tnail">
+                    <p class="text-stack px-3">University Dorm Plan <br><span class="sub-text">1 YEAR</span></p>
+                    <p class="text-stack px-3 mr-auto ml-5">221 Payments <br><span class="sub-text">MONTHLY</span></p>
+                    <p class="text-stack px-3">$53.<span class="sub-text-xs">95</span> <br><span class="sub-text">PER MONTH</span></p>
+                  </div>
+                </div>
+              </div> -->
+      
+              <!-- FEES -->
+              <div class="d-flex justify-content-between pt-4">
+                <h6>ADDITIONAL FEES</h6>
+                <p class="text-13">&nbsp;</p>
+              </div>
+      
+              <div class="box-plain-wrap">
+                <div class="box-plain">
+                  <div class="d-flex py-2">
+                    <img src={imageFpo90} class="tnail rounded ml-20" alt="tnail">
+                    <p class="text-stack px-3 mr-auto ml-5">Application Fee <br><span class="sub-text">SUBMISSION PROCESSING FEE</span></p>
+                    <p class="text-stack px-3"><lightning-formatted-number value={applicationProcessingFee} format-style="currency" currency-code="USD"></lightning-formatted-number> <br><span class="sub-text">ONE TIME</span></p>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="d-flex mt-5">
+                <div class="slds-form-element ml-auto">
+                  <label class="slds-form-element__label sr-only" for="promoCode">Promo Code</label>
+                  <div class="slds-form-element__control">
+                    <input type="text" id="promoCode" placeholder="Promo Code" class="slds-input mt-20" />
+                  </div>
+                </div>
+                <div class="ml-2">
+                  <button onclick={handleApply}  class="slds-button slds-button_brand mt-20 px-40">Apply</button>
+
+                </div>
+              </div>
+      
+              <h3 class="text-right mt-40">First Payment</h3>
+              <p class="text-right h3"> <lightning-formatted-number value={firstPaymentAmount} format-style="currency" currency-code="USD"></lightning-formatted-number> </p>
+      
+      
+            </div><!-- /.box-light-gray -->
+      
+      
+      
+            <!-- CONTINUE -->
+            <div class="text-right mt-5">
+              <a href="#"><b>Update Plan Selection</b></a> <span class="px-4">or</span>
+                <button onclick={handleFinalizeSelection}  class="slds-button slds-button_brand mt-20 px-40">Finalize Selection</button>
+
+            </div>
+      
+      
+      
+          </div>
+        </div>
+      
+      
+      </main>
+        
+        
+       
+  </template>

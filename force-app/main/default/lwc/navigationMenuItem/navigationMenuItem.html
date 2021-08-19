@@ -1,0 +1,17 @@
+<template >
+    <template if:true ={isProfileMenu}>
+        <div class ="pmenu" >
+            <a href={href} role="menuitem" onclick={handleClick} >
+                <span class="profile-custom-text-color">{item.label}</span>
+            </a>
+        </div>
+        
+    </template>
+    <template if:false ={isProfileMenu}>
+        <a href={href} role="menuitem" onclick={handleClick}>
+            <!-- {item.label} -->
+            <span class="navigation-custom-text-color">{item.label}</span>
+        </a>
+    </template>
+   
+</template>

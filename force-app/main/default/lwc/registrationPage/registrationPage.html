@@ -1,0 +1,140 @@
+<template>
+  <!-- MAIN CONTENT -->
+<div class="slds-grid slds-container_large slds-container_center slds-p-top_xx-large">
+  <div class="slds-col slds-size_7-of-12 box-white box-left box-pad">
+
+
+    <div class="d-flex justify-content-between">
+      <img src={imagePath} width="140" alt="Florida Prepaid">
+      <p><small>Already have an account? <b><a href="#">Sign in</a></b></small></p>
+    </div>
+
+    <h3 class="pt-5">Let’s Get Started</h3>
+    <p class="pb-20">College savings is just a few more clicks away lorem ipsum.</p>
+
+    <div class="slds-form-element mt-20">
+      <label class="slds-form-element__label sr-only" for="exampleInputFirstName">First Name</label>
+      <div class="slds-form-element__control">
+        <input id="exampleInputFirstName" name="conFirstName" type="text" placeholder="First Name"
+                      onchange={handleFirstNameChange} class="slds-input" />
+      </div>
+    </div>
+    <div class="slds-form-element mt-20">
+      <label class="slds-form-element__label sr-only" for="exampleInputEmail">Last Name</label>
+      <div class="slds-form-element__control">
+        <input name="conLastName" type="text" placeholder="Last Name"
+         onchange={handleLastNameChange} class="slds-input" />
+      </div>
+    </div>
+
+    <div class="slds-form-element mt-20">
+      <label class="slds-form-element__label sr-only" for="exampleInputEmail">Email Address</label>
+      <div class="slds-form-element__control">
+        <input type="email" id="exampleInputEmail" placeholder="Email Address" class="slds-input" />
+      </div>
+    </div>
+
+    <div class="slds-form-element mt-20">
+      <label class="slds-form-element__label sr-only" for="exampleInputUserName">User Name</label>
+      <div class="slds-form-element__control">
+        <input type="text" id="exampleInputUserName" placeholder="User Name" class="slds-input" />
+      </div>
+    </div>
+
+    <div class="slds-grid slds-gutters slds-gutters_x-small">
+
+      <div class="slds-col slds-size_1-of-2">
+        <div class="slds-form-element mt-20">
+          <label class="slds-form-element__label sr-only" for="exampleInputPassword">Password</label>
+          <div class="slds-form-element__control">
+            <input type="password" id="exampleInputPassword" placeholder="Password" class="slds-input" />
+          </div>
+        </div>
+      </div>
+
+      <div class="slds-col slds-size_1-of-2">
+        <div class="slds-form-element mt-20">
+          <label class="slds-form-element__label sr-only" for="exampleInputVerifyPassword">Verify Password</label>
+          <div class="slds-form-element__control">
+            <input type="password" id="exampleInputVerifyPassword" placeholder="Verify Password" class="slds-input" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slds-grid slds-gutters slds-gutters_x-small">
+
+      <div class="slds-col slds-size_1-of-2">
+        <div class="slds-form-element mt-20">
+          <label class="slds-form-element__label sr-only" for="exampleSelectSecurityQuestion">Security Question</label>
+          <div class="slds-form-element__control">
+            <div class="slds-select_container">
+              <select class="slds-select" id="exampleSelectSecurityQuestion">
+                <option>Security Question</option>
+                <option>What was you mother's maiden name?</option>
+                <option>What was the name of your first pet?</option>
+                <option>Where were you born?</option>
+                <option>What was your first vehicle?</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slds-col slds-size_1-of-2">
+        <div class="slds-form-element mt-20">
+          <label class="slds-form-element__label sr-only" for="exampleInputSecurityAnswer">Answer</label>
+          <div class="slds-form-element__control">
+            <input type="text" id="exampleInputSecurityAnswer" placeholder="Answer" class="slds-input" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br/>
+    <lightning-button label="Continue" onclick={createRec} variant="brand"></lightning-button>
+
+  </div>
+  <div class="slds-col slds-size_5-of-12 box-gray bg-img-fpo box-right box-pad d-flex flex-column justify-content-end">
+
+    <h2 class="text-center pb-20">Before you start, you will need:</h2>
+    <div class="d-flex justify-content-between icon-block">
+      <div class="text-center">
+        <img src={imageMugFpoPath} class="rounded-circle" alt="icon">
+        <p class="mt-1">Thing You Need</p>
+      </div>
+      <div class="text-center">
+        <img src={imageMugFpoPath} class="rounded-circle" alt="icon">
+        <p class="mt-1">Thing You Need</p>
+      </div>
+      <div class="text-center">
+        <img src={imageMugFpoPath} class="rounded-circle" alt="icon">
+        <p class="mt-1">Thing You Need</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-top_xx-large slds-p-bottom_xx-large">
+  <div class="slds-col slds-size_8-of-12 slds-p-left_none">
+
+    <p><small><b>Important Note About Your Security</b></small></p>
+    <p><small>The Florida Prepaid College Program will never ask you to provide your username and password (or any other personal information) in an email. If you ever receive an email message or phone call requesting that you provide such information in an email or on a web site, do not reply and please promptly report it to our Call Center at 1-800-553-GRAD (4723).</small></p>
+
+  </div>
+  <div class="slds-col slds-size_4-of-12 slds-p-right_none">
+
+    <div class="more-info img-left">
+      <img src={imagesymblack} height="34" width="34" class="img-34" alt="Florida Prepaid">
+      <p class="img-left-text pl-10"><small>For more information on our privacy policy or Plans, please visit <b><a href="#">MyFloridaPrepaid.com</a></b></small></p>
+    </div>
+
+  </div>
+</div>
+
+</template>

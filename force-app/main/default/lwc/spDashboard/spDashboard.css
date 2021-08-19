@@ -1,0 +1,27 @@
+/* @import 'c/cssLibraryFpp'; */
+@import 'c/spCssLibraryNew';
+html,
+body {
+    background: #eaeaea;
+}
+
+p,
+li,
+div {
+    font-size: 14px;
+    color: #1d2939;
+}
+
+body.dash {
+    position: relative;
+}
+
+.chat-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.username {
+    font-weight: 300;
+}

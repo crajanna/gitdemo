@@ -1,0 +1,148 @@
+<template>
+    <div class="slds-grid">
+        <div class="slds-col slds-size_2-of-12 p-4">
+      
+            <c-beneficiary-list-component record-id ={userAccountId}></c-beneficiary-list-component>
+      
+     
+        </div>
+        <div class="slds-col slds-large-size_10-of-12 bg-gray">
+
+          <h1 class="mb-40 ml-30">{beneficiaryName}</h1>
+      
+      
+          <!-- GENERAL OVERVIEW -->
+          <div class="d-flex space-between ml-34 mr-34 mb-10">
+            <h3 class="text-20">General Overview</h3>
+            <a href="#" class="ml-auto"><b>View Documents</b></a>
+          </div>
+      
+      
+          <div class="col-inner-wrap">
+      
+      
+            <div class="slds-grid slds-gutters">
+      
+              <!-- PERSONAL INFO -->
+              <div class="slds-col slds-large-size_8-of-12">
+      
+                <c-beneficiary-info-component record-id = {beneficiaryAccountId}></c-beneficiary-info-component>
+      
+                     
+              </div>
+      
+      
+              <!-- BALANCES AND HOURS -->
+              <div class="slds-col slds-large-size_4-of-12 slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+      
+      
+                  <div class="box-dash mb-20">
+                    <div class="plan-amt text-center">
+                      <h5><span>$</span>0</h5>
+                      <h6 class="text-gray">TOTAL PREPAID SAVINGS</h6>
+                    </div>
+                  </div>
+      
+      
+                  <div class="box-dash">
+                    <div class="plan-amt text-center">
+                      <h5>0</h5>
+                      <h6 class="text-gray">TOTAL UNIVERSITY CREDIT HOURS</h6>
+                    </div>
+                  </div>
+      
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+      
+      
+                  <div class="box-dash mb-20">
+                    <div class="plan-amt text-center">
+                        <h5><span>$</span>0</h5>
+                      <h6 class="text-gray">CURRENT SAVINGS BALANCE</h6>
+                    </div>
+                  </div>
+      
+      
+                  <div class="box-dash">
+                    <div class="plan-amt text-center">
+                      <h5>0</h5>
+                      <h6 class="text-gray">TOTAL COLLEGE CREDIT HOURS</h6>
+                    </div>
+                  </div>
+      
+      
+                </div>
+              </div>
+      
+            </div>
+      
+      
+          </div>
+      
+      
+      
+      
+          <!-- ACTIONS ROW -->
+          <div class="col-inner-wrap">
+      
+            <div class="slds-grid slds-gutters">
+              <div class="slds-col slds-large-size_4-of-12">
+      
+      
+                <div class="box-dash">
+      
+                  <div class="img-link-alt">
+                    <a href="#" onclick={handleManageAccount}>
+                      <img src={imagecirclefpo30} alt="icon" /><span class="mr-auto pl-10">Make or Manage Payments</span>
+                    </a>
+                  </div>
+      
+                </div>
+      
+              </div>
+              <div class="slds-col slds-large-size_8-of-12">
+      
+                <div class="box-dash d-flex space-between">
+      
+                  <div class="img-link-alt fb-33p">
+                    <a href="#" onclick={hanldeDummyPage}>
+                        <img src={imagecirclefpo30} alt="icon" /><span class="mr-auto pl-10">Change Plans</span>
+                    </a>
+                  </div>
+      
+                  <div class="img-link-alt fb-33p line-left">
+                    <a href="#" onclick={hanldeDummyPage}>
+                        <img src={imagecirclefpo30} alt="icon" /><span class="mr-auto pl-10">Use Plans</span>
+                    </a>
+                  </div>
+      
+                  <div class="img-link-alt fb-33p line-left">
+                    <a href="#" onclick={hanldeDummyPage}>
+                        <img src={imagecirclefpo30} alt="icon" /><span class="mr-auto pl-10">Manage Users</span>
+                    </a>
+                  </div>
+      
+                </div>
+      
+              </div>
+            </div>
+      
+          </div>
+      
+         <!-- SAVINGS PLAN -->
+         <c-beneficiary-savings-plan-component user-account-id={userAccountId} beneficiary-account-id={beneficiaryAccountId} ></c-beneficiary-savings-plan-component>
+
+
+          <!-- RETURN AND PRINT -->
+          <div class="d-flex space-between ml-34 mr-34 mb-60">
+            <a href="#"><b>Return to List</b></a>
+            <a href="#" class="ml-auto"><b>Print</b></a>
+          </div>
+      
+      
+        </div>
+      </div>
+      
+
+</template>

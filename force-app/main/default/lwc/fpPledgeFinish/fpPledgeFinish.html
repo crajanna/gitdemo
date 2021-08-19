@@ -1,0 +1,125 @@
+<template>
+  <div class="spinner">
+    <template if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+      </lightning-spinner>
+    </template>
+  </div>
+  <div class="slds-grid f-comp pledge-header">
+    <div class="slds-col">
+
+      <h1>Become a Donor</h1>
+      <p>Congratulation, you’re done!</p>
+
+    </div>
+  </div>
+  <!-- STEPS -->
+  <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+
+    <div class="slds-col">
+      <div class="btn-wiz-new done">
+        <span class="num"><span>1</span></span> <span class="title">Choose Program</span>
+      </div>
+    </div>
+
+    <div class="slds-col">
+      <div class="btn-wiz-new done">
+        <span class="num"><span>2</span></span> <span class="title">Make A Pledge</span>
+      </div>
+    </div>
+
+    <div class="slds-col">
+      <div class="btn-wiz-new done">
+        <span class="num"><span>3</span></span> <span class="title">Specify Payment</span>
+      </div>
+    </div>
+
+    <div class="slds-col">
+      <div class="btn-wiz-new active">
+        <span class="num"><span>4</span></span> <span class="title">Finish</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- CONTENT -->
+  <div class="slds-grid slds-wrap f-comp pledge-content">
+
+
+    <!-- OTHER PROGRAMS -->
+    <div class="slds-col">
+      <div class="pledge-card-wrap">
+
+        <div class="pledge-inner text-centered bg-confetti">
+
+          <div class="mb-20">
+            <img src={imgCelebration} width="520" height="320" alt="celebration of a student" />
+          </div>
+
+          <template if:true={isP2P}>
+            <template if:true={showFullAmountText}>
+              <h3 class="mb-20 mt-20">Thank you for your payment of <lightning-formatted-number value={totalAmount}
+                  format-style="currency" currency-code="USD"></lightning-formatted-number>.</h3>
+            </template>
+            <h3 class="mb-20 mt-10">You are making a pivotal difference in a child's future.</h3>
+            <h1 class="mb-40 px-25p"><span class="text-normal">You've made a pledge to donate </span><span
+                class="text-burgundy">
+                <lightning-formatted-number value={pledgeAmount} format-style="currency" currency-code="USD">
+                </lightning-formatted-number>
+              </span> <span class="text-normal"> to the</span><span class="text-burgundy"> {pledgeName}</span><span
+                class="text-normal"> Scholarship Program.</span></h1>
+            <template if:true={showAmountText}>
+              <h3 class="mb-40 px-25p"><span class="text-normal">Your donation of </span>
+                <lightning-formatted-number value={amt} format-style="currency" currency-code="USD">
+                </lightning-formatted-number> <span class="text-normal"> is going to change a child’s life.</span>
+              </h3>
+            </template>
+            <p class="mb-60 px-20p">Because of you, a deserving student will be gifted with higher education. Your
+              contribution will be matched dollar-for-dollar by the Florida Prepaid College Foundation, doubling the
+              impact of your efforts.</p>
+            <p class="mb-60 px-20p">Thank you for your participation in the {pledgeName} Scholarship Program led by the
+              Florida Prepaid College Foundation and the Florida Chamber Foundation, in support of the Chamber's Florida
+              Equality of Opportunity Initiative.</p>
+
+          </template>
+          <template if:false={isP2P}>
+            <template if:true={showFullAmountText}>
+              <h3 class="mb-20 mt-20">Thank you for your payment of <lightning-formatted-number value={totalAmount}
+                  format-style="currency" currency-code="USD"></lightning-formatted-number>.</h3>
+            </template>
+            <h3 class="mb-20 mt-10">You are making a difference in a child's future.</h3>
+            <h1 class="mb-40 px-25p"><span class="text-normal">Thank you for your pledge to donate </span><span
+                class="text-burgundy">
+                <lightning-formatted-number value={pledgeAmount} format-style="currency" currency-code="USD">
+                </lightning-formatted-number>
+              </span><span class="text-normal"> to the</span><span class="text-burgundy"> {pledgeName}</span><span
+                class="text-normal"> Scholarship Program.</span></h1>
+            <template if:true={showAmountText}>
+              <h3 class="mb-40 px-25p"><span class="text-normal">Your donation of </span>
+                <lightning-formatted-number value={amt} format-style="currency" currency-code="USD">
+                </lightning-formatted-number> <span class="text-normal"> is going to change a child’s life.</span>
+              </h3>
+            </template>
+            <p class="mb-60 px-20p">Because of you, a deserving student will be gifted with higher education.</p>
+          </template>
+
+          <div>
+            <div>
+              <button onclick={handleGoToDashboard} class="slds-button slds-button_brand btn-sm px-20 mr-10"
+                data-gtmid="Finish - Return to Dashboard">Return to Dashboard</button>
+
+              <button onclick={handleAnotherPledge} class="slds-button slds-button_brand btn-sm px-20 btn-revers"
+                data-gtmid="Finish - Make Another Pledge">Make Another Pledge</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</template>

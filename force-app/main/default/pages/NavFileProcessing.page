@@ -1,0 +1,48 @@
+<apex:page standardController="Investment_Transaction__c" recordSetVar="invTransactions" extensions="NavFileProcessing">
+    <apex:form >
+        <html>
+            <head>
+                <P>Bulk Processing - Click Process NAV Button to start status completion process</P>
+                <P>****Following table will show only 'Processing' Status Investment transaction records.****</P>
+            </head>
+            <body>
+                <apex:pageMessages />
+                <table>
+                    <tr>
+                        <td>Inv Transaction Name</td>
+                        <td>    </td>
+                        <td>Status</td>
+                        <td>    </td>
+                        <td>Financial Account</td>
+                    </tr>
+                    <apex:repeat value="{!invTransactions}" var="invTran">
+                        <tr>
+                            <td>
+                                <apex:inputField value="{!invTran.Name}"/>
+                            </td>
+                            <td>==></td>
+                            <td>
+                                <apex:outputField value="{!invTran.Status__c}"/>
+                            </td>
+                            <td>==></td>
+                            <td>
+                                <apex:outputField value="{!invTran.Financial_Account__r.Name}"/>
+                            </td>
+                        </tr>
+                       
+                    </apex:repeat> 
+                </table>
+            </body>
+            <apex:actionStatus id="AddStatus">
+
+            <apex:facet name="start">
+            <apex:outputText value="Work In Progress"/>
+            </apex:facet>
+            <apex:facet name="stop">
+                <apex:commandButton value="Process Nav File" action="{!save}" disabled="{!!showProcess}"/>
+            </apex:facet>
+            </apex:actionStatus>
+            
+        </html>
+    </apex:form>
+</apex:page>

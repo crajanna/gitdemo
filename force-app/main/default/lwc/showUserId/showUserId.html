@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Show User Detail" icon-name="custom:custom15">
+        <div class="slds-m-around_medium">
+            <p>User Id: {userId} </p>
+        </div>
+        <div class="slds-m-around_medium">
+            <p>User Name: {userName} </p>
+        </div>
+        <div class="slds-m-around_medium">
+            <p>User Email: {email} </p>
+        </div>
+        <div class="slds-m-around_medium">
+            <p>Account Id: {accountId} </p>
+        </div>
+    </lightning-card>
+    <template if:true={accountId}>
+        <div class="slds-m-top_small">
+            <lightning-layout>
+                <lightning-layout-item size="12" class="slds-p-right_x-small">
+                    <lightning-card variant="Narrow" title="Account" icon-name="standard:account">
+                        <div class="slds-p-horizontal_medium">
+                            <lightning-record-form 
+                                record-id={accountId} 
+                                object-api-name="Account"
+                                fields={fields}
+                                columns="2"
+                                mode="readonly"     
+                            ></lightning-record-form> 
+                        </div>   
+                    </lightning-card>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </template>
+</template>

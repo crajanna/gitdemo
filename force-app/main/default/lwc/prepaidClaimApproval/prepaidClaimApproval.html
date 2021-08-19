@@ -1,0 +1,80 @@
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+
+        <template if:true={approveClaim}>
+
+            <header class="slds-modal__header">
+                <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Approve Claim</h2>
+            </header>
+            <br>
+
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_12-of-12"><h6 class="gray-grid-title">Claim Type</h6>     
+                <lightning-formatted-text value={claimTypeValue} ></lightning-formatted-text></div>
+             </div>
+             <br>
+             <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_12-of-12"><h6 class="gray-grid-title">Payment Methodology</h6>     
+                    <lightning-formatted-text value={paymentMethodValue} ></lightning-formatted-text></div>
+             </div>
+             <br>
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_12-of-12">
+                    <lightning-input type="number" name="requestedUnits" label="Requested Units" value={requestedUnitsValue}
+                    onchange={handleRequestedUnitValueChange}>
+                </lightning-input>
+                </div>
+            </div>
+        
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">     
+                <div class="slds-size_12-of-12">
+                    <lightning-input type="number" name="requested Amount" step="0.01" formatter="currency" label="Requested Amount"
+                    value={requestedAmountValue} onchange={handleRequestedAmountValueChange}>
+                </lightning-input>
+                </div>
+            </div>
+
+            <lightning-button class="slds-float_right slds-p-around_medium" variant="brand" label="Confirm" title="Confirm" onclick={goToApprove}
+            ></lightning-button>
+        </template>
+
+        <template if:true={claimConfirmation}>    
+            <div class="slds-modal__header">
+                <h2 class="slds-modal__title slds-hyphenate slds-text-heading--medium">
+                    Confirm Claim Details
+                </h2>
+            </div>
+            <br/>
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Requested Units</h6>     
+                <lightning-formatted-number value={requestedUnitsValue} ></lightning-formatted-number></div>
+                <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Requested Amount</h6>     
+                    <lightning-formatted-number value={requestedAmountValue} ></lightning-formatted-number></div>
+             </div>
+    
+             <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Claim Type</h6>     
+                <lightning-formatted-text value={claimTypeValue} ></lightning-formatted-text></div>
+                <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Payment Methodology</h6>     
+                    <lightning-formatted-text value={paymentMethodValue} ></lightning-formatted-text></div>
+             </div>
+    
+            <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+                <div class="slds-size_12-of-12"><h6 class="gray-grid-title">Claim Amount</h6>     
+                    <lightning-formatted-number value={claimAmountValue} ></lightning-formatted-number></div>
+             </div>      
+             <br/>    
+
+             <div class="slds-float_right slds-p-around_medium slds-m-top_xx-large">
+                <lightning-button variant="brand" label="Approve" title="Approve" onclick={goToConfirm}
+                ></lightning-button>
+            </div>
+
+        </template>
+      
+       
+    
+
+    </template>

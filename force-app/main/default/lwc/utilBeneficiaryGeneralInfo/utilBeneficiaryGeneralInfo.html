@@ -1,0 +1,97 @@
+<template>
+    <h6 class="mt-30">GENERAL INFO</h6>
+
+    <!-- NAME -->
+    <fieldset class="slds-form-element slds-form-element_compound">
+        <legend class="slds-form-element__legend slds-form-element__label
+                  sr-only">General Info</legend>
+        <div class="slds-form-element__control">
+            <div class="slds-form-element__row">
+
+                <div class="slds-size_4-of-12">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label sr-only" for="firstName">First Name</label>
+                        <div>
+                            <lightning-input name="FirstName" type="text" placeholder="First Name"
+                                value={conRecord.FirstName} onchange={handleChange}></lightning-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-size_2-of-12">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label sr-only" for="middleInitial">Middle Initial</label>
+                        <div class="slds-form-element__control">
+                            <lightning-input name="MiddleName" type="text" placeholder="M.I."
+                                value={conRecord.MiddleName} onchange={handleChange}></lightning-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-size_4-of-12">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label sr-only" for="lastName">Last Name</label>
+                        <div>
+                            <lightning-input name="LastName" type="text" placeholder="Last Name"
+                                value={conRecord.LastName} onchange={handleChange}></lightning-input>
+                        </div>
+                    </div>
+                </div>
+                <template if:true={suffixListValues.data}>
+                    <div class="slds-size_2-of-12">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label sr-only" for="suffix">Suffix</label>
+
+                            <lightning-combobox name="Suffix" value={value} placeholder="Suffix"
+                                options={suffixListValues.data.values} onchange={handleChange}>
+                            </lightning-combobox>
+
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </fieldset>
+
+    <!-- SSN -->
+    <div class="slds-form-element mt-10">
+        <label class="slds-form-element__label sr-only" for="SSN__c">SSN or
+            ITIN</label>
+        <div>
+            <lightning-input name="SSN__c" type="password" placeholder="SSN or ITIN" value={conRecord.SSN__c}
+                onchange={handleChange}></lightning-input>
+        </div>
+    </div>
+
+    <!-- RACE + GENDER -->
+    <fieldset class="slds-form-element slds-form-element_compound mt-16">
+        <legend class="slds-form-element__legend slds-form-element__label
+                  sr-only">General Info</legend>
+        <div class="slds-form-element__control">
+            <div class="slds-form-element__row">
+                <template if:true={raceListValues.data}>
+
+                    <div class="slds-size_6-of-12">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label sr-only" for="Race__c">Race</label>
+                            <lightning-combobox name="Race__c" value={value} placeholder="Race"
+                                options={raceListValues.data.values} onchange={handleChange}></lightning-combobox>
+
+                        </div>
+                    </div>
+
+                </template>
+                <template if:true={genderListValues.data}>
+                    <div class="slds-size_6-of-12">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label sr-only" for="FinServ__Gender__c">Gender</label>
+                            <lightning-combobox name="FinServ__Gender__c" value={value} placeholder="Gender"
+                                options={genderListValues.data.values} onchange={handleChange}>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </fieldset>
+</template>

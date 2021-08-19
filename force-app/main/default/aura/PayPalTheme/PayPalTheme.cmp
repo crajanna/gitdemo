@@ -1,0 +1,73 @@
+<aura:component implements="forceCommunity:themeLayout" access="global" description="Paypal Content Layout">
+    <aura:attribute name="header" type="Aura.Component[]" required="false"></aura:attribute>
+    <aura:attribute name="bottom" type="Aura.Component[]" required="false"></aura:attribute>
+    <aura:attribute name="cernterVal1" type="Aura.Component[]" required="false"></aura:attribute>
+    <aura:attribute name="cernterVal2" type="Aura.Component[]" required="false"></aura:attribute>
+    <aura:attribute name="rightVal" type="Aura.Component[]" required="false"></aura:attribute>
+    <aura:attribute name="profileMenu" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="navBar" type="Aura.Component[]" required="false"/>
+    <div class="profileMenuRegion">
+      {!v.profileMenu}
+  </div>
+  <div class="navigation">
+      {!v.navBar}
+  </div>
+  <div class="mainContentArea">
+      {!v.body}
+  </div>
+
+    <div class="THIS container">
+        <div class="contentPanel">
+      
+      
+          <!-- HEADER -->
+          <div class="centerheader">
+            <div class="temp">{!v.header}</div>
+          </div>
+      
+      
+          <!-- CONTENT -->
+          <div class="row">
+      
+            <!-- LEFT COLUMN WRAPPER -->
+            <div class="column fb-75p">
+      
+              <div class="row">
+                <div class="column">
+      
+                  <!-- LEFT COLUMN TOP -->
+                  <div class="row">
+                    <div class="column">
+                      {!v.cernterVal1}
+                    </div>
+                  </div>
+      
+                  <!-- LEFT COLUMN BOTTOM -->
+                  <div class="row">
+                    <div class="column">
+                      {!v.cernterVal2}
+                    </div>
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+      
+            <!-- RIGHT COLUMN FULL -->
+            <div class="column fb-25p">
+              {!v.rightVal}
+            </div>
+          </div>
+      
+      
+          <!-- FOOTER -->
+          <div class="bottonfooter">
+            {!v.bottom}
+          </div>
+      
+      
+        </div>
+      </div>
+      
+    
+</aura:component>

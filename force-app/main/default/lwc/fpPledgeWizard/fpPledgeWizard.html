@@ -1,0 +1,24 @@
+<template>
+<div class="light-grey">
+  
+    <!-- <c-progress-bar steps={pledgeSteps} type="bar" current-step={currentStep} ></c-progress-bar> -->
+    <!-- <c-progress-bar steps={pledgeSteps} type="path" current-step={currentStep} ></c-progress-bar> -->
+    <template if:true={chooseProgramStep}>
+      <c-fp-pledge-choose-program onnext={goToNextStep}></c-fp-pledge-choose-program>
+    </template>
+    <template if:true={makePledge}>
+          <!-- <c-fp-pledge-make-a-pledge onnext={goToNextStep} select-program-id={selectProgramId} display-product={displayProduct} product-img-url={productImgURL} onprevious={goToPreviousStep}></c-fp-pledge-make-a-pledge> -->
+          <c-fp-pledge-make-a-pledge onnext={goToNextStep} select-program-id={selectProgramId} contract-id={contractId}  onprevious={goToPreviousStep}></c-fp-pledge-make-a-pledge>
+    </template>
+   
+    <template if:true={specifyPayment}>
+      <c-fp-pledge-specify-payment onnext={goToNextStep} 
+            select-program-id={selectProgramId}
+            county={county} 
+            zip={zip} 
+            pledge={pledge}
+            onprevious={goToPreviousStep}></c-fp-pledge-specify-payment>
+    </template>
+  
+</div>
+</template>

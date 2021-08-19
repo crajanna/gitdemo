@@ -1,0 +1,85 @@
+<template>
+    <!-- CONTENT -->
+    <!-- <div class="slds-grid slds-wrap f-comp pledge-content">
+       
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12">
+            <div class="pledge-card-wrap-new card-right">
+                <fieldset class="slds-form-element">
+                    <div class="slds-form-element__control card-grid-new">
+                        <template if:true={programs.data}>
+                            <template for:each={programs.data} for:item="program">
+                                <div class={program.Color_Code__c} key={program.Id}>
+                                    <span class="slds-visual-picker__figure slds-visual-picker__text">
+                                        <span class="ai-flex-start">
+                                            <div class="img-wrap">
+                                                <img src='/scholarship/resource/1625217723000/FoundationImages/img/thumb-PathToProsperity.jpg'
+                                                    alt="program" />
+                                                <h3>{program.Name}</h3>
+                                                <button class="slds-button slds-button_brand inline px-30"
+                                                    onclick={handleMakePledge}>Apply Now</button>
+                                            </div>
+
+                                        </span>
+                                    </span>
+                                </div>
+                            </template>
+</template>
+</div>
+</fieldset>
+</div>
+</div>
+</div> -->
+
+
+
+
+    <!-- APPLY FOR SCHOLARSHIPS -->
+    <div class="box-dash f-comp">
+        <!-- <h6 class="mb-20">APPLY FOR A SCHOLARSHIP</h6> -->
+        <div class="d-flex space-between mb-20">
+            <div class="icon-box icon-primary mr-10">
+                <!-- <img src="img/icon-pledges.svg" class="icon" alt="scholarships icon" /> -->
+            </div>
+            <h6 class="card-heading">Apply for a Scholarship</h6>
+            <h6 class="card-heading ml-auto">&nbsp;</h6>
+        </div>
+        <template if:true={scholarshipPrograms.data}>
+            <template for:each={scholarshipPrograms.data} for:item="program">
+
+                <div key={program.Id}>
+                    <div class="card-pledge">
+                        <div class="card-pledge-img">
+                            <img src={program.imgUrl} height="106" alt="fpo" style="width: 500px;" />
+                        </div>
+                        <div class="card-pledge-info" id={program.name}>
+                            <h5>{program.name}</h5>
+                            <div>
+                                <template if:true={program.endDate}>
+                                    <p class="amount"><strong>Apply By:</strong> {program.endDate}</p>
+                                </template>
+
+                            </div>
+                            <div>
+                                <button class="slds-button slds-button_brand inline px-30" style="margin-bottom: 10px;"
+                                    onclick={gotoScholarshipPage} data-gtmid={program.name}
+                                    data-target-name={program.name} data-target-id={program.id}>Apply Now</button>
+                                <button class="slds-button slds-button_brand inline px-30" style="margin-bottom: 10px;"
+                                    onclick={gotoLearnMorePage} data-gtmid={program.name}
+                                    data-target-name={program.learnMoreUrl} data-target-id={program.learnMoreUrl}>Learn
+                                    More</button>
+
+                                <!-- <button class="slds-button slds-button_brand btn-sm mr-20" onclick={gotoScholarshipPage} data-gtmid={program.name} data-target-name={program.name} data-target-id={program.id}>
+            Apply Now
+          </button>
+    <a href="#" onclick={gotoLearnMorePage} data-gtmid={program.name} data-target-name={program.learnMoreUrl} data-target-id={program.learnMoreUrl}><strong>Learn More</strong></a> -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </template>
+        </template>
+
+    </div>
+</template>

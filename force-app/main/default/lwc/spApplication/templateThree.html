@@ -1,0 +1,150 @@
+<template>
+
+    <!-- TITLE -->
+    <div class="slds-grid f-comp pledge-header">
+        <div class="slds-col">
+
+            <h1>Apply for Scholarships</h1>
+            <!-- <p>Choose a program to support lorem ipsum.</p> -->
+
+        </div>
+    </div>
+
+
+    <!-- STEPS -->
+    <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+
+        <div class="slds-col">
+            <div class="btn-wiz-new done">
+                <span class="num"><span>1</span></span> <span class="title">Student &amp; Guardian Information</span>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz-new done">
+                <span class="num"><span>2</span></span> <span class="title">Financial Information</span>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz-new active">
+                <span class="num"><span>3</span></span> <span class="title">Student Interests</span>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>4</span></span> <span class="title">Student Responsibilites</span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content">
+
+
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col slds-size_1-of-1 slds-large-size_12-of-12">
+            <div class="pledge-card-wrap">
+
+                <div class="pledge-inner">
+
+                    <h1 class="text-normal">Student Interests</h1>
+
+                    <p>Any relevant explanation of what the user needs to do. Lorem ipsum dolor sit amet nam in sociosqu
+                        eget conubia tempor non mattis.</p>
+
+                    <div class="slds-grid box-light-gray-inputs">
+                        <div class="slds-col slds-var-p-around_x-small slds-size_12-of-12">
+
+
+                            <hr>
+
+
+                            <!-- STUDENT INTERESTS INFO -->
+                            <h3 class="mt-40">Student Interests Overview</h3>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="newID1">What is your favorite subject in
+                                    school?</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="newID1" placeholder="" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="newID1">Please list your top three hobbies
+                                    and/or interests:</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="newID11" placeholder="1)" value="" class="slds-input" />
+                                </div>
+                                <div class="slds-form-element__control mt-10">
+                                    <input type="text" id="newID111" placeholder="2)" value="" class="slds-input" />
+                                </div>
+                                <div class="slds-form-element__control mt-10">
+                                    <input type="text" id="newID1111" placeholder="3)" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="newID1">What clubs/organizations do you
+                                    belong to, if any?</label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" id="newID11111" placeholder="" value="" class="slds-input" />
+                                </div>
+                            </div>
+
+                            <div class="slds-form-element mt-20">
+                                <label class="slds-form-element__label" for="newID1">What is your goal or plan for your
+                                    future/career?</label>
+                                <div class="slds-form-element__control">
+                                    <textarea id="textarea-id-01" placeholder="Placeholder text…"
+                                        class="slds-textarea"></textarea>
+                                </div>
+                            </div>
+
+
+
+
+                            <hr>
+
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div>
+
+                        <lightning-button label="Next"  onclick={studentResponsibilites}> </lightning-button> &nbsp;
+                        <!-- <a href="#" role="button" class="slds-button slds-button_brand inline px-30 mr-20"  onclick={studentResponsibilites}>Next</a> -->
+                        <!-- <a href="#"><strong> Go Back</strong></a> -->
+                        <lightning-button label="< Go Back " onclick={financialInformationHandler}> </lightning-button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        
+
+    </div>
+
+
+
+    <!-- PORTAL FOOTER IMAGE: FPO -->
+    <div class="f-comp f-comp-footer-fpo">
+        <img src="img/fpo-sample-footer.png" width="1130" height="379" alt="Sample Footer" />
+    </div>
+    <div class="f-comp f-comp-footer-sub-fpo">
+        <img src="img/fpo-sample-footer-sub.png" width="1071" height="59" alt="Sample Footer Sub" />
+    </div>
+
+
+
+</template>

@@ -1,0 +1,175 @@
+<template>
+    <!-- HEADER -->
+    <div class="slds-grid f-comp f-comp-header">
+        <img src="img/logo-flpp-symbol-gray.svg" width="40" height="40" alt="FLPP" />
+    </div>
+
+
+    <!-- TITLE -->
+    <div class="slds-grid f-comp pledge-header">
+        <div class="slds-col">
+
+            <h1>Become a Donor</h1>
+            <p>Choose a program to support lorem ipsum.</p>
+
+        </div>
+    </div>
+
+
+    <!-- STEPS -->
+    <div class="slds-grid slds-gutters_x-small f-comp pledge-steps">
+
+        <div class="slds-col">
+            <div class="btn-wiz done">
+                <a href="#">1. Choose Program</a>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz active">
+                <a href="#">2. Make a Pledge</a>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz">
+                <a href="#">3. Specify Payment</a>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz">
+                <a href="#">4. Finish</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content">
+
+
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12">
+            <div class="pledge-card-wrap">
+
+                <div class="pledge-inner">
+
+                    <h1 class="text-normal">Setup Pledge</h1>
+
+                    <p>Explanation of what the pledge is. Any relevant explanation of what the user needs to do, how
+                        flexible changing at a later date might be, etc. Lorem ipsum dolor sit amet nam in sociosqu eget
+                        conubia tempor non mattis.</p>
+
+                    <div class="slds-form mt-30 mb-20">
+                        <div class="slds-form-element slds-form-element_horizontal">
+                            <label class="slds-form-element__label" for="horizontal-input-id-01">How would you like to
+                                contribute?</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select class="slds-select" name="contribution" id="select-01"
+                                        onchange={handleChange}>
+                                        <option>County</option>
+                                        <option selected="selected">Florida</option>
+                                        <option>Zip</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <template if:true={enableCounty}>
+                        <div class="slds-form mb-20">
+                            <div class="slds-form-element slds-form-element_horizontal">
+                                <label class="slds-form-element__label" for="horizontal-input-id-01">Which county? <span
+                                        class="label-question"><a href="#">Why don't I see my county?</a></span></label>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-select_container">
+                                        <select class="slds-select" id="select-02" name="county" onchange={handleChange}>
+                                            <template if:true={isCounty}>
+                                                <option selected="selected">All</option>
+                                                <template if:true={countyNames}>
+                                                    <template for:each={countyNames} for:item="countyName">
+                                                        <option key={countyName}>{countyName}</option>
+                                                    </template>
+                                                </template>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={enableZipCodes}>
+                        <div class="slds-form mb-20">
+                            <div class="slds-form-element slds-form-element_horizontal">
+                                <label class="slds-form-element__label" for="horizontal-input-id-01">Zip Codes</label>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-select_container">
+                                        <select class="slds-select" id="select-03" name="zip" onchange={handleChange} >
+                                            <option selected="selected">All</option>
+                                            <template if:true={zipCodes}>
+                                                <template for:each={zipCodes} for:item="zipCode">
+                                                    <option key={zipCode}>{zipCode}</option>
+                                                </template>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="slds-form mb-60">
+                        <div class="slds-form-element slds-form-element_horizontal">
+                            <label class="slds-form-element__label" for="howMuch">How much?</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" id="howMuch" name="howMuch" value={howMuch} class="slds-input"
+                                    placeholder="$0.00" onchange={handleChange} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a href="#" role="button" class="slds-button slds-button_brand inline px-30 mr-20">Next</a>
+                        <a href="#"><strong>
+                                Go Back</strong></a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- SELECTED PROGRAM -->
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+            <div class="pledge-card-wrap card-gradient card-right">
+
+                <div class="pledge-card pb-20">
+                    <div class="pledge-my">
+                        <div>
+                            <h6> <img src={heartLogo} alt="heart" width="16" height="16" class="mr-5" /> MY
+                                PLEDGE</h6>
+                        </div>
+                        <div>
+                            <span><strong>$0</strong> / $----</span>
+                        </div>
+                    </div>
+                    <div class="img-wrap">
+                        <img src={programLogo} alt="program" />
+                    </div>
+                    <h3>Path to Prosperity</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit purus nascetur, enim vestibulum netus
+                        interdum praesent pharetra nibh mus, senectus molestie tortor sed auctor malesuada fames
+                        posuere.</p>
+                    <h6>Did you know?</h6>
+                    <p class="mb-40">Incentivizing fact lorem ipsum dolor sit amet tellum aqui lorem ipsum amet sit
+                        colleque.</p>
+                    <a href="#" class="text-bold fs-16">Learn more about this program ></a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</template>

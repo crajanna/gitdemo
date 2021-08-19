@@ -1,0 +1,98 @@
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+          <lightning-spinner alternative-text="Loading" variant="brand"
+            size="large">
+          </lightning-spinner>
+        </template>
+      </div>
+
+      <div class="box-dash">
+        <div class="slds-grid slds-grid_align-center">
+            <div class="slds-col">
+                <div class="slds-grid slds-grid_align-center ">
+        <div class="slds-size_12-of-12">
+
+            <div class="slds-form-element__control mb-20">
+                <div class="slds-form-element__row">
+
+                        <div class="slds-form-element">
+                            <div>
+                                <lightning-combobox
+                                    name="SavignsPlanAccount"
+                                    label="Select Plan"
+                                    value=""
+                                    placeholder="Select 529 savings plan"
+                                    options={fromAccountList}
+                                    onchange={handleAccountTypeChange}></lightning-combobox>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
+           
+
+                <div class="slds-form-element mb-20">
+                    <div>
+                        <lightning-input class="amountCmp" name="amount"
+                            type="text" value={fullAmount} label="Amount"
+                            formatter="currency" placeholder="$0.00"
+                            onchange={handleAmountChange}></lightning-input>
+                    </div>
+                </div>
+
+                <div class="slds-form-element mb-20">
+                    <div>
+                        <lightning-input type="date" name="startdate" label="Starts" value=""></lightning-input>
+                    </div>
+                </div>
+
+
+                <div class="slds-form-element__row mb-20">
+
+                    <template if:true={frequencyPicklist.data}>
+                            <div class="slds-form-element">
+                                <div>
+                                    <lightning-combobox
+                                        name="frequency"
+                                        label="Frequency"
+                                        value=""
+                                        placeholder="Select Frequency"
+                                        options={frequencyPicklist.data.values}
+                                        onchange={handleFrequencyChange}>
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                    </template>
+
+                </div>
+
+                <div class="slds-form-element">
+                    <div>
+                        <c-bank-accounts-component onhandlefinaccountinfo={handleFinAccountInfo}></c-bank-accounts-component>
+                    </div>
+                </div>
+
+                    <div class="slds-form-element">
+                        <div class="slds-align_absolute-center">
+                            <button class="slds-button slds-button_brand mt-20
+                                px-40"
+                                onclick={handleWithdraw}>Recurring Payment</button>
+                            <button class="slds-button slds-button_brand mt-20
+                                px-40"
+                                onclick={handleCancel}>Cancel</button>
+
+                        </div>
+                    </div>
+
+
+            </div>
+
+        </div>
+           
+    </div>
+</div>
+
+</div>
+</template>

@@ -1,0 +1,109 @@
+<template>
+
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    <!-- STEPS -->
+    <div class="slds-grid slds-gutters_x-small f-comp pledge-steps">
+  
+      <div class="slds-col">
+        <div class="btn-wiz active">
+          <a href="#">1. Choose Program</a>
+        </div>
+      </div>
+  
+      <div class="slds-col">
+        <div class="btn-wiz">
+          <a href="#">2. Make a Pledge</a>
+        </div>
+      </div>
+  
+      <div class="slds-col">
+        <div class="btn-wiz">
+          <a href="#">3. Specify Payment</a>
+        </div>
+      </div>
+  
+      <div class="slds-col">
+        <div class="btn-wiz">
+          <a href="#">4. Finish</a>
+        </div>
+      </div>
+  
+    </div>
+  
+  
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content">
+  
+      <!-- HIGHTLIGHTED PROGRAM -->
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+        <div class="pledge-card-wrap">
+          <div class="slds-form-element__control card-grid spotlight">
+  
+            <div class="slds-visual-picker slds-visual-picker_large plum">
+              <input type="radio" id={spotLightId} value={spotLightProductCode} name="options"
+                onchange={handleChooseProgram} />
+              <label for={spotLightId}>
+                <span class="slds-visual-picker__figure slds-visual-picker__text">
+                  <span>
+                    <div class="img-wrap">
+                      <!-- /resource/1619192701000/FoundationImages/img/spledge3.jpeg -->
+                      <img src={spotLightImgUrl} alt="program" />
+                      <p>Spotlight</p>
+                    </div>
+                    <h3 class="fs-20 mt-20">{spotLightName}</h3>
+                    <p>{spotLightDescription}</p>
+                    <span class="slds-button slds-button_brand btn-outline py-6">Select</span>
+                  </span>
+                </span>
+              </label>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
+  
+      <!-- OTHER PROGRAMS -->
+      <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12">
+        <div class="pledge-card-wrap card-right">
+  
+  
+          <fieldset class="slds-form-element">
+            <legend class="slds-form-element__legend slds-form-element__label">Choose a program to support.</legend>
+            <div class="slds-form-element__control card-grid">
+              <template if:true={programs.data}>
+                <template for:each={programs.data} for:item="program">
+                  <div class={program.Color_Code__c} key={program.Id}>
+                    <input type="radio" key={program.Id} id={program.Id} value={program.Id} name="options"
+                      onchange={handleSelectProgram} />
+                    <label for={program.Id}>
+                      <span class="slds-visual-picker__figure slds-visual-picker__text">
+                        <span>
+                          <h3>{program.Name}</h3>
+                          <p class="mb-20">{program.Description}</p>
+                          <span class="slds-button slds-button_brand btn-outline">Select</span>
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                </template>
+              </template>
+            </div>
+  
+          </fieldset>
+  
+        </div>
+      </div>
+  
+    </div>
+  
+  
+    <!-- BOTTOM -->
+    <div class="slds-grid f-comp pledge-bottom">
+      <div class="slds-col text-right">
+  
+        <a href="#" role="button" class="slds-button slds-button_brand inline px-30" onclick={handleChooseProgram}>Next</a>
+  
+      </div>
+    </div>
+  </template>

@@ -1,0 +1,13 @@
+.THIS .row     {display: flex;}
+.THIS .column  {flex-basis: 100%;}
+.THIS .column.fb-75p  {flex-basis: 75%;}
+.THIS .column.fb-25p  {flex-basis: 25%;}
+.THIS .column  {background-color: white; border: 1px solid white;}
+
+.THIS .centerheader {
+    width: 100%;
+}
+.THIS .bottonfooter {
+    float: left;
+    width: 100%;
+}

@@ -1,0 +1,31 @@
+<template>
+    <template if:true={isNavigationMenu}>
+        <div id ="pnav" class="navbar slds-p-top_x-large">
+            <nav role="navigation" >
+               <ul class="slds-list_horizontal slds-has-dividers_right slds-has-block-links_space">
+                   <template for:each={menuItems} for:item="item">
+                       <li key={item.id} class="slds-item">
+                           <c-navigation-menu-item item={item}></c-navigation-menu-item>
+                       </li>
+                   </template>
+               </ul>
+           </nav>
+        </div>
+    </template>
+    <template if:true={isProfileMenu}>
+
+      <div style="padding-top: 25px;" class="custom-text-color-profile">
+
+        <p>{name}</p>
+     
+        <lightning-button-menu alternative-text="Show menu" variant="bare" menu-alignment="right" class="custom-text-color-profile-menu">    
+         <div class="dropdown-content">
+           <template for:each={menuItems} for:item="item">
+             <c-navigation-menu-item item={item} key={item.id} menu-type={menuType}> </c-navigation-menu-item>
+           </template>        
+         </div>
+        </lightning-button-menu>
+      </div>
+    </template>
+
+</template>

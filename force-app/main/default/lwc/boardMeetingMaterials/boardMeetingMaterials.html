@@ -1,0 +1,278 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-02-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   05-20-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+
+    <template if:true={displayFPB}>
+        <div class="f-table-logo-title">
+            <img src="../resource/BoardPortalImages/board-portal-images/logo-prepaid-table.png" alt="Prepaid Board" width="108" height="40" />
+            <h2 id="element-with-table-label1" class="slds-text-heading_medium slds-m-bottom_xx-small mt-30">Meeting Materials - Florida Prepaid Board</h2>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+            aria-labelledby="element-with-table-label other-element-with-table-label">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Board Meeting">Board Meeting</div> 
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Location">Location</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Prepaid Board">Board</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Prepaid Board">Audit Committee</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Prepaid Board">Investment Committee</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Prepaid Board">Workshops</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template if:true={meetingMaterialList}>
+                    
+                    <template for:each={meetingMaterialList} for:item="meetingMaterial">
+                        <tr class="slds-hint-parent" key={meetingMaterial.eventId}>
+                            <th data-label="Board Meeting" scope="row">
+                                <div class="slds-truncate" title="First Quarter 2021">
+                                    <b>{meetingMaterial.eventSubject}</b><br />{meetingMaterial.eventTime} &middot; {meetingMaterial.eventDate}
+                                </div>
+                            </th>
+                            <td data-label="Location">
+                                <div class="slds-truncate" title="Board Office">{meetingMaterial.eventLocation}</div>
+                            </td>
+
+                            <!-- Board Docs-->
+                            <template if:true={meetingMaterial.boardDocSize}>
+                                <td data-label="Board">
+                                    <div><a href={meetingMaterial.boardDocURL} download>Board Meeting Packet</a>
+                                        ({meetingMaterial.boardDocSize} KB)</div>
+                                </td>
+                            </template>
+                            <template if:false={meetingMaterial.boardDocSize}>
+                                <td data-label="Board">
+                                    <div><a href="#"></a> </div>
+                                </td>
+                            </template>
+
+                            <!-- Audit Committee Docs-->
+                            <template if:true={meetingMaterial.auditCommitteeDocSize}>
+                                <td data-label="Audit Committee">
+                                    <div><a href={meetingMaterial.auditCommitteeDocURL} download>Audit Committee
+                                            Packet</a> ({meetingMaterial.auditCommitteeDocSize} KB)</div>
+                                </td>
+                            </template>
+                            <template if:false={meetingMaterial.auditCommitteeDocSize}>
+                                <td data-label="Audit Committee">
+                                    <div><a href="#"></a> </div>
+                                </td>
+                            </template>
+
+                            <!-- Investment Committee Docs-->
+                            <template if:true={meetingMaterial.investmentCommitteeDocSize}>
+                                <td data-label="Investment Committee">
+                                    <div><a href={meetingMaterial.investCommitteeDocURL} download>Investment Committee
+                                            Packet</a> ({meetingMaterial.investmentCommitteeDocSize} KB)</div>
+                                </td>
+                            </template>
+                            <template if:false={meetingMaterial.investmentCommitteeDocSize}>
+                                <td data-label="Investment Committee">
+                                    <div><a href="#"></a> </div>
+                                </td>
+                            </template>
+
+                            <!-- Workshop Docs-->
+                            <template if:true={meetingMaterial.workshopsDocSize}>
+                                <td data-label="Workshops">
+                                    <div><a href={meetingMaterial.workshopsDocURL} download>Workshops</a>
+                                        ({meetingMaterial.workshopsDocSize} KB)</div>
+                                </td>
+                            </template>
+                            <template if:false={meetingMaterial.workshopsDocSize}>
+                                <td data-label="Workshops">
+                                    <div><a href="#"></a> </div>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                </template>
+            </tbody>
+        </table>
+    </template>
+
+    <template if:true={displayFB}>
+        <div class="f-table-logo-title">
+            <img src="../resource/BoardPortalImages/board-portal-images/logo-foundation-table.png" alt="Foundation Board" width="108" height="40" />
+            <h2 id="element-with-table-label" class="slds-text-heading_medium slds-m-bottom_xx-small mt-30">Meeting Materials - Foundation Board</h2>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered f-table">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Board Meeting">Board Meeting</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Location">Location</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Prepaid Board">Meeting Packets</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template if:true={meetingMaterialList}>
+
+                    <template for:each={meetingMaterialList} for:item="meetingMaterial">
+                        <tr class="slds-hint-parent" key={meetingMaterial.eventId}>
+                            <th data-label="Board Meeting" scope="row">
+                                <div class="slds-truncate" title="First Quarter 2021">
+                                    <b>{meetingMaterial.eventSubject}</b><br />{meetingMaterial.eventTime} . {meetingMaterial.eventDate}
+                                </div>
+                            </th>
+                            <td data-label="Location">
+                                <div class="slds-truncate" title="Board Office">{meetingMaterial.eventLocation}</div>
+                            </td>
+
+                            <!-- Board Docs-->
+                            <template if:true={meetingMaterial.boardDocSize}>
+                                <td data-label="Board">
+                                    <div><a href={meetingMaterial.boardDocURL} download>Board Meeting Packet</a>
+                                        ({meetingMaterial.boardDocSize} KB)</div>
+                                </td>
+                            </template>
+                            <template if:false={meetingMaterial.boardDocSize}>
+                                <td data-label="Board">
+                                    <div><a href="#"></a> </div>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                </template>
+            </tbody>
+        </table>
+    </template>
+
+    <template if:true={displayAB}>
+        <div class="f-table-logo-title">
+            <img src="../resource/BoardPortalImages/board-portal-images/logo-able-table.png" alt="ABLE Board" width="108" height="40" />
+            <h2 id="element-with-table-label2" class="slds-text-heading_medium slds-m-bottom_xx-small mt-30">Meeting Materials - ABLE Board</h2>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered f-table">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Board Meeting">Board Meeting</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Location">Location</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Prepaid Board">Meeting Packets</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template if:true={meetingMaterialList}>
+
+                    <template for:each={meetingMaterialList} for:item="meetingMaterial">
+                        <tr class="slds-hint-parent" key={meetingMaterial.eventId}>
+                            <th data-label="Board Meeting" scope="row">
+                                <div class="slds-truncate" title="First Quarter 2021">
+                                    <b>{meetingMaterial.eventSubject}</b><br />{meetingMaterial.eventTime} . {meetingMaterial.eventDate}
+                                </div>
+                            </th>
+                            <td data-label="Location">
+                                <div class="slds-truncate" title="Board Office">{meetingMaterial.eventLocation}</div>
+                            </td>
+
+                            <!-- Board Docs-->
+                            <template if:true={meetingMaterial.boardDocSize}>
+                                <td data-label="Board">
+                                    <div><a href={meetingMaterial.boardDocURL} download>Board Meeting Packet</a>
+                                        ({meetingMaterial.boardDocSize} KB)</div>
+                                </td>
+                            </template>
+                            <template if:false={meetingMaterial.boardDocSize}>
+                                <td data-label="Board">
+                                    <div><a href="#"></a> </div>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                </template>
+            </tbody>
+        </table>
+    </template>
+
+
+
+    <template if:true={displaySCM}>
+        <div class="f-table-logo-title">
+            <img src="../resource/BoardPortalImages/board-portal-images/logo-steering-committee-table.png" alt="Steering Committee Materials" width="108" height="40" />
+            <h2 id="element-with-table-label3" class="slds-text-heading_medium slds-m-bottom_xx-small mt-30">Meeting Materials - Steering Committee</h2>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered f-table">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Board Meeting">Steering Committee Meeting</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Location">Location</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Prepaid Board">Meeting Packets</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template if:true={meetingMaterialList}>
+
+                    <template for:each={meetingMaterialList} for:item="meetingMaterial">
+                        <tr class="slds-hint-parent" key={meetingMaterial.eventId}>
+                            <th data-label="Board Meeting" scope="row">
+                                <div class="slds-truncate" title="First Quarter 2021">
+                                    <!-- <b>{meetingMaterial.eventSubject}</b><br />{meetingMaterial.eventTime} . {meetingMaterial.eventDate} -->
+                                    {meetingMaterial.eventDate}
+                                </div>
+                            </th>
+                            <td data-label="Location">
+                                <div class="slds-truncate" title="Board Office">{meetingMaterial.eventLocation}</div>
+                            </td>
+
+                            <!-- Board Docs-->
+                            <template if:true={meetingMaterial.steeringCommitteeDocSize}>
+                                <td data-label="Board">
+                                    <div><a href={meetingMaterial.steeringCommitteeDocURL} download>Board Meeting Packet</a>
+                                        ({meetingMaterial.steeringCommitteeDocSize} KB)</div>
+                                </td>
+                            </template>
+                            <template if:false={meetingMaterial.steeringCommitteeDocSize}>
+                                <td data-label="Board">
+                                    <div><a href="#"></a> </div>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+                </template>
+            </tbody>
+        </table>
+    </template>
+
+
+
+
+
+
+</template>

@@ -1,0 +1,41 @@
+<template>
+
+    <div class="slds-p-horizontal--small slds-col slds-m-bottom--medium">
+        <div class="slds-form-element">
+            <lightning-input type="text" label="First Name" value={firstName} placeholder="First Name" onchange={contactChangeVal}></lightning-input>
+        </div>
+    </div>
+    <div class="slds-p-horizontal--small slds-col slds-m-bottom--medium">
+        <div class="slds-form-element">
+            <lightning-input type="text" label="Last Name" value={lastName} placeholder="Last Name" required onchange={contactChangeVal}></lightning-input>
+        </div>
+    </div>
+    <div class="slds-p-horizontal--small slds-col slds-m-bottom--medium">
+        <div class="slds-form-element">
+            <lightning-input type="email" label="Email" value={email} placeholder="Email" required onchange={contactChangeVal}></lightning-input>
+            <template if:true={uniqueEmail}>
+                <div class="slds-m-vertical_medium">
+                    <lightning-formatted-text style="color:red" value="Email existed. Try with different email." ></lightning-formatted-text>
+                </div>
+            </template>
+        </div>
+    </div>
+    
+    
+    <div class="slds-p-horizontal--small slds-col slds-m-bottom--medium">
+        <div class="slds-form-element">
+            <lightning-input type="text" label="Bunisess Name" value={businessName} required placeholder="Business Name" onchange={contactChangeVal}></lightning-input>
+        </div>
+    </div>
+
+    <div class="slds-align_absolute-center slds-m-top_small slds-m-bottom_medium">
+        <template if:true={enableSignup}>
+            <lightning-button variant="brand" label="Sign Up" title="Page 1" onclick={handleClick}  class="slds-m-left_x-small"></lightning-button>
+        </template>
+        <template if:false={enableSignup}>
+            <lightning-button variant="brand" label="Sign Up" title="Page 1" onclick={handleClick} disabled class="slds-m-left_x-small"></lightning-button>
+        </template>
+    </div>
+
+   
+</template>

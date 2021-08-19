@@ -1,0 +1,7 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+
+    <aura:handler event="forceCommunity:routeChange" action="{!c.handleRouteChange}"/>
+    <aura:attribute type="Integer" name="randomNum"></aura:attribute>
+
+    <c:fpDashboard recId="{!v.recordId}" randomNum="{!v.randomNum}"></c:fpDashboard>
+</aura:component>

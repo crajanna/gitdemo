@@ -1,0 +1,162 @@
+<template>
+     
+      
+    <main role="main" class="bg-white">
+    
+    
+      <!-- FORM + FAQ WRAP -->
+      <div class="slds-grid slds-gutters slds-container_x-large slds-container_center slds-p-bottom_xx-large">
+        <div class="slds-col slds-size_9-of-12 mt-30">
+      
+
+          <!-- GENERAL INFO ============================= -->
+          <!-- <h6>User INFO</h6>
+          {userName}-
+          {email}-
+          {accountIduser}-
+          {userContactId}
+
+          <h6>Account INFO</h6>
+          {accountIdpc}-
+          {accountFirstName}-
+          {accountLastName}-
+          {accountPersonBirthDate}
+
+          <h6>Billing Info</h6>
+          {accountBillingStreet}-
+          {accountBillingCity}-
+          {accountBillingState}-
+          {accountBillingPostalCode}-
+          {accountBillingCountry}-
+          {accountBillingCountryCode}--
+          {accountBillingStateCode}
+
+          <h6>Contact INFO</h6>
+          {contactFirstName}-
+          {contactLastName}-
+          {contactSsn}-
+          {contactRace}-
+          {contactGender} -->
+      
+          <h1>Contact Information</h1>
+          <fieldset class="slds-form-element slds-form-element_compound">
+            <legend class="slds-form-element__legend slds-form-element__label sr-only">Contact Info</legend>
+            <div class="slds-form-element__control">
+              <div class="slds-form-element__row">
+    
+                <!-- <div class="slds-size_2-of-12">
+                    <div class="slds-form-element">
+                      <label class="slds-form-element__label sr-only" for="firstName">Tilte</label>
+                      <div>
+                        <lightning-input name="conFirstName" type="text" placeholder="Title"
+                        value={conRecord.Title} onchange={handleTitleChange}></lightning-input>
+                      </div>
+                    </div>
+                  </div> -->
+
+                <div class="slds-size_4-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only" for="firstName">First Name</label>
+                    <div>
+                      <lightning-input name="conFirstName" type="text" placeholder="First Name"
+                      value={conRecord.FirstName} onchange={handleFirstNameChange}></lightning-input>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="slds-size_2-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only" for="middleInitial">Middle Initial</label>
+                    <div class="slds-form-element__control">
+                      <lightning-input name="conMiddleName" type="text" placeholder="M.I."
+                      value={conRecord.MiddleName} onchange={handleMiddleNameChange}></lightning-input>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="slds-size_4-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only" for="lastName">Last Name</label>
+                    <div >
+                      <lightning-input name="conLastName" type="text" placeholder="Last Name"
+                      value={conRecord.LastName} onchange={handleLastNameChange}></lightning-input>                      </div>
+                  </div>
+                </div>
+
+              
+        
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="slds-form-element slds-form-element_compound">
+            <legend class="slds-form-element__legend slds-form-element__label sr-only">Contact Info</legend>
+            <div class="slds-form-element__control">
+              <div class="slds-form-element__row">
+    
+                <div class="slds-size_4-of-12">
+                  <div class="slds-form-element">
+                    <div>
+                        <lightning-input name="conHomePhone" type="text" placeholder="Primay Phone"
+                        value={conRecord.HomePhone} onchange={handlePrimaryPhoneChange}></lightning-input>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="slds-size_6-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only" for="firstName">Position and Company</label>
+                    <div>
+                      <lightning-input name="conFirstName" type="text" placeholder="Position in Company"
+                      value={conRecord.Title} onchange={handleTitleChange}></lightning-input>
+                    </div>
+                  </div>
+                </div>
+  
+        
+              </div>
+            </div>
+          </fieldset>
+    
+
+    
+          <div class="box-light-gray mt-20">
+            <h6>Address</h6>
+            <lightning-input-address
+            street-placeholder = "Street Address"
+            city-placeholder = "City"
+            postal-code-placeholder = "Zip code"             
+            province-placeholder = "State"
+            country-placeholder = "Country"
+            address-lookup-placeholder = "Address lookup"
+            street={conRecord.MailingStreet}
+            city={conRecord.MailingCity}
+            country={conRecord.MailingCountryCode}
+            province={conRecord.MailingStateCode}
+            postal-code={conRecord.MailingPostalCode}
+            country-options={getCountryOptions}
+            province-options={getProvinceOptions}
+            onchange={handleAddressChange} 
+            show-address-lookup>
+            </lightning-input-address>
+    
+          </div><!-- /.box-light-gray -->
+    
+  
+  
+    
+    
+    
+    
+          <!-- CONTINUE -->
+          <div>
+            <button onclick={updateProfileInfo}  class="slds-button slds-button_brand mt-20 px-40">Save</button>
+          </div>
+    
+    
+        </div>
+
+      </div>
+    
+    </main>
+               
+</template>

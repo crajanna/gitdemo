@@ -1,0 +1,38 @@
+<template>
+ 
+       
+<!-- CONTENT -->
+<div class="slds-grid slds-wrap f-comp pledge-content">
+  
+  
+  <!-- OTHER PROGRAMS -->
+  <div class="slds-col">
+    <div class="pledge-card-wrap">
+
+      <div class="pledge-inner text-centered">
+
+        <template if:true={showAmountText}>
+          <h3 class="mb-20 mt-20">Thank you for your payment of <lightning-formatted-number value={totalAmount} format-style="currency" currency-code="USD"></lightning-formatted-number>.</h3>
+          <h1 class="mb-40 px-25p"><span class="text-normal">Your contribution of </span> <lightning-formatted-number value={amt} format-style="currency" currency-code="USD"></lightning-formatted-number> <span class="text-normal"> was applied to your account.</span></h1>
+        </template>
+
+        <template if:false={showAmountText}>
+          <h1 class="mb-40 px-25p"><span class="text-normal">Your contribution of </span> <lightning-formatted-number value={amt} format-style="currency" currency-code="USD"></lightning-formatted-number> <span class="text-normal"> will be applied to your account after processing.</span></h1>
+        </template>
+
+             <div>
+          <div>
+            <button onclick={handleGoToDashboard}  class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10">Return to Dashboard</button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+  </template>

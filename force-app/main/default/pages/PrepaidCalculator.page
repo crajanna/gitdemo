@@ -1,0 +1,9 @@
+<apex:page sidebar="false">
+<apex:outputPanel id="PrepaidCalculator" >
+      <script>
+    Window.location.href="https://www.myfloridaprepaid.com/prepaid-plans/plans-and-pricing/"
+
+      </script>  
+      </apex:outputPanel>    
+       
+</apex:page>

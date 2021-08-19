@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Create Contact Record">
+        <template if:true={conRecord}>
+            <div class="slds-m-around--xx-large">
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <lightning-input label="First Name" name="conFirstName" required="required" type="text"
+                            value={conRecord.FirstName} onchange={handleFirstNameChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Last Name" name="conLastName" required="required" type="text"
+                            value={conRecord.LastName} onchange={handleLastNameChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Phone Number" name="conPhone" type="number"
+                            value={conRecord.Phone} onchange={handlePhoneChange}></lightning-input>
+                    </div>
+                    <div class="form-group">
+                        <lightning-input label="Enter Email" name="conEmail" type="text" value={conRecord.Email}
+                            onchange={handleEmailChange}></lightning-input>
+                    </div>
+                </div>
+                <br />
+                <lightning-button label="Submit" onclick={createRec} variant="brand"></lightning-button>
+            </div>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,63 @@
+<template>
+    <lightning-tabset variant="scoped">
+        <lightning-tab label="Security Performance">
+            <lightning-card>
+                <div>
+                    <lightning-input type="text" name="symbolName" label="Security Name" value={symbolName}></lightning-input>
+                    <lightning-input type="date" name="secFromDt" label="From Date" value={secFromDt}></lightning-input>
+                    <lightning-input type="date" name="secToDt" label="To Date" value={secToDt}></lightning-input>
+                    </br>
+                    <lightning-button  onclick={handleSecuritiesPerformance} label="Calculate" variant="brand" ></lightning-button>
+                </div>
+                <template if:true={secResult}>
+                    <div><lightning-textarea label="Result" value={secResult}></lightning-textarea></div>
+                </template>
+            </lightning-card>
+        </lightning-tab>
+        <lightning-tab label="Monthly Performance">
+            <lightning-card>
+                <div>
+                    <lightning-combobox
+                            name="accAsOfDtMnth"
+                            label="Monthly Date"
+                            value={selectedOption}
+                            placeholder="Select Monthly Date"
+                            options={options}
+                            onchange={handleSelectionChange} ></lightning-combobox>
+                    </br>
+                    <lightning-combobox
+                            name="rangeType"
+                            label="Range"
+                            value={selectedRageOption}
+                            placeholder="Select Range"
+                            options={optionsRange}
+                            onchange={handleSelectionRangeChange} ></lightning-combobox>
+
+                    </br>
+                    <lightning-button  onclick={handleAccountOnMBPerformance} label="Calculate On Monthly Balance" variant="brand" ></lightning-button>
+                </div>
+                <template if:true={monResult}>
+                    <div><lightning-textarea label="Result" value={monResult}></lightning-textarea></div>
+                </template>
+            </lightning-card>
+        </lightning-tab>
+        <lightning-tab label="Dynamic Performance">
+            <lightning-card>
+                <div>
+                    <div class="slds-p-top_medium">
+                        <p><strong>Date Range</strong></p>
+                    </div>
+                    <lightning-input type="date" name="accFromDt" label="From Date" value={accFromDt}></lightning-input>
+                    </br>
+                    <lightning-input type="date" name="accToDt" label="To Date" value={accToDt}></lightning-input>
+                    </br>
+                    <lightning-button  onclick={handleAccountPerformance} label="Calculate" variant="brand" ></lightning-button>
+                </div>
+                <template if:true={accResult}>
+                    <div><lightning-textarea label="Result" value={accResult}></lightning-textarea></div>
+                </template>
+                
+            </lightning-card>
+        </lightning-tab>
+    </lightning-tabset>
+</template>

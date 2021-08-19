@@ -1,0 +1,9 @@
+@import 'c/fpCssLibrary';
+
+.light-grey {
+    background-color:#f2f2f2;
+}
+.azure {
+    color: var(--gray1) !important;
+    text-decoration: none !important;
+}

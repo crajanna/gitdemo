@@ -1,0 +1,283 @@
+<template>
+    <!-- TITLE -->
+    <div class="slds-grid f-comp pledge-header rm-greyLine">
+        <div class="slds-col">
+
+            <h1>My Company</h1>
+            <p>Update my company information used by the Florida Prepaid Foundation.</p>
+
+        </div>
+    </div>
+    <!-- CONTENT -->
+    <div class="slds-grid f-comp pledge-content" style="position:relative">
+
+
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col">
+            <div class="pledge-card-wrap">
+                <div class="pledge-inner">
+
+                    <div class="pledge-fixed">
+                        <div class="slds-form" role="list">
+
+                            <div if:true={showSpinner}>
+                                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                            </div>
+
+                            <h3>General Info</h3>
+
+                            <div class="mb-20 d-flex">
+                                <div>
+                                    <template if:true={showLogo}>
+                                        <div class="slds-grid">
+                                            <div class="slds-col slds-size_1-of-2"
+                                                style="margin-right: -8px; width: 35%">
+                                                <img src={profileVersionId} alt="FPO3" class="add-logo" style="object-fit: contain; border: 1px solid #fff;
+                                                border-radius: 0;" />
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-1">
+                                                <div class="slds-form-element mt-10" style="margin-top: 2px;">
+                                                    <span class="slds-form-element__label"
+                                                        id="file-selector-primary-label">Change Company Logo</span>
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-file-selector slds-file-selector_files">
+                                                            <div class="slds-file-selector__dropzone">
+                                                                <input type="file"
+                                                                    class="slds-file-selector__input slds-assistive-text"
+                                                                    accept="image/png, image/jpeg, image/jpg, image/gif"
+                                                                    id="file-upload-input-01"
+                                                                    aria-labelledby="file-selector-primary-label file-selector-secondary-label"
+                                                                    onchange={handleFileChange} />
+                                                                <label class="slds-file-selector__body"
+                                                                    for="file-upload-input-01"
+                                                                    id="file-selector-secondary-label">
+                                                                    <span
+                                                                        class="slds-file-selector__button slds-button slds-button_neutral text-orange">
+                                                                        <svg class="slds-button__icon slds-button__icon_left icon-orange"
+                                                                            aria-hidden="true">
+                                                                            <use
+                                                                                xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#upload">
+                                                                            </use>
+                                                                        </svg>Upload File</span>
+                                                                    <span
+                                                                        class="slds-file-selector__text slds-medium-show sr-only">or
+                                                                        Drop File</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-form-element__help"
+                                                            id="error-message-unique-id" style="font-size: small;">Only
+                                                            image files &lpar;jpeg, jpg, png, gif&rpar; less than 2.5MB.
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template if:false={showLogo}>
+                                        <label
+                                            style="display: inline-block;position: relative;height: 95px;width: 95px;"
+                                            for="inputFile">
+                                            <div style="position: absolute;left: 0;top: 0;bottom: 0;
+                                                                  width: 100%;display: flex;border-radius: 6px;
+                                                                  align-items: center;justify-content: center;background: #FFF;
+                                                                  border: 2px dashed #bbbcbe; color: #fa842d;">
+                                                Add Logo
+                                            </div>
+                                            <lightning-input
+                                                style="position: absolute;left: 0;opacity: 0;top: 0;bottom: 0;width: 100%;"
+                                                name="file2" type="file" label="Attachment" onchange={handleFileChange}
+                                                accept=".jpeg, .jpg, .png, .gif"
+                                                message-when-pattern-mismatch="Only image less than 2.5MB.">
+                                            </lightning-input>
+                                        </label>
+                                        <div class="slds-form-element__help" style="font-size: smaller;">Only image
+                                            files &lpar;jpeg, jpg, png, gif&rpar; less than 2.5MB.</div>
+
+                                    </template>
+                                </div>
+                            </div>
+
+
+                            <div class="slds-form__row">
+                                <div class="slds-form__item" role="listitem">
+
+                                    <div class="slds-size_1-of-1">
+                                        <div class="slds-form-element mb-20">
+                                            <label class="slds-form-element__label" for="companyName">Company
+                                                Name</label>
+                                            <div class="slds-form-element__control">
+                                                <input type="text" name="companyName" class="slds-input"
+                                                    onfocusout={checkValid} onchange={handleChange}
+                                                    value={accountValues.companyName} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="slds-form__row">
+                                <div class="slds-form__item" role="listitem">
+
+                                    <div class="slds-size_1-of-1">
+                                        <div class="slds-form-element mb-20">
+                                            <label class="slds-form-element__label" for="email">Email Address</label>
+                                            <abbr title="required" class="slds-required">*</abbr>
+                                            <div class="slds-form-element__control">
+                                                <input type="email" name="email" class="slds-input"
+                                                    onfocusout={checkValid} onchange={handleChange}
+                                                    value={accountValues.email} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="slds-form__item" role="listitem">
+
+                                    <div class="slds-size_1-of-1">
+                                        <div class="slds-form-element mb-20">
+                                            <label class="slds-form-element__label" for="phone">Phone Number</label>
+                                            <lightning-input type="tel" variant="label-hidden" name="phone"
+                                                class="phone label-hidden" onfocusout={checkValid}
+                                                onchange={handlePhone} value={accountValues.phone}></lightning-input>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="slds-form__row">
+                                <div class="slds-form__item" role="listitem">
+
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element mb-20">
+                                            <label class="slds-form-element__label" for="website">Website URL</label>
+                                            <div class="slds-form-element__control">
+                                                <input type="url" name="website" class="slds-input"
+                                                    onfocusout={checkValid} onchange={handleChange}
+                                                    value={accountValues.website} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <h3 class="mt-40">Shipping Address</h3>
+
+
+
+                            <div class="slds-form__row">
+                                <div class="slds-form__item" role="listitem">
+
+                                    <div class="slds-size_1-of-1">
+                                        <div class="slds-form-element mb-20">
+                                            <label class="slds-form-element__label" for="address1">Address Line
+                                                1</label>
+                                            <div class="slds-form-element__control">
+                                                <input type="text" name="address1" class="slds-input"
+                                                    onfocusout={checkValid} onchange={handleChange}
+                                                    value={accountValues.address1} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="slds-form__item" role="listitem">
+
+                                    <div class="slds-size_1-of-1">
+                                        <div class="slds-form-element mb-20">
+                                            <label class="slds-form-element__label" for="address2">Address Line 2 <span
+                                                    class="text-normal">(Optional)</span></label>
+                                            <div class="slds-form-element__control">
+                                                <input type="text" name="address2" class="slds-input"
+                                                    onfocusout={checkValid} onchange={handleChange}
+                                                    value={accountValues.address2} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="slds-form__row">
+                                <div class="slds-form__item" role="listitem">
+
+                                    <div class="slds-size_1-of-1">
+                                        <div class="slds-form-element mb-20">
+                                            <label class="slds-form-element__label" for="city">City</label>
+                                            <div class="slds-form-element__control">
+                                                <input type="text" name="city" class="slds-input"
+                                                    onfocusout={checkValid} onchange={handleChange}
+                                                    value={accountValues.city} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="slds-form__item" role="listitem">
+
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element mb-20">
+                                            <label class="slds-form-element__label" for="state">State</label>
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-select_container">
+                                                    <select id="state" class="slds-select" name="state"
+                                                        onchange={handleChange}>
+                                                        <option>Select a Location</option>
+                                                        <template for:each={stateList} for:item="stateItem">
+                                                            <option key={stateItem.value} value={stateItem.value}
+                                                                selected={stateItem.selected}>{stateItem.value}</option>
+                                                        </template>
+                                                        <option>Other</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-size_1-of-2">
+                                        <div class="slds-form-element ml-10">
+                                            <label class="slds-form-element__label" for="website">ZIP</label>
+                                            <div class="slds-form-element__control">
+                                                <input type="text" name="zip" class="slds-input" onchange={handleChange}
+                                                    onfocusout={checkValid} value={accountValues.zip} />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <hr />
+
+
+                            <div>
+                                <button role="button" class="slds-button slds-button_brand btn-sm px-20"
+                                    onclick={handleUpdate}>Update</button>
+                                <button role="button"
+                                    class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10"
+                                    onclick={handleNav}><strong>Cancel</strong></button>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</template>

@@ -1,0 +1,26 @@
+<template>
+    <div class="box-dash f-comp">
+        <h6 class="mb-20">COMPLETED APPLICATIONS</h6>
+        <template for:each={reviews.data} for:item="review">
+            <div key={review.Id}>
+                <div class="card-pledge-grid">
+                    <div class="card-pledge">
+                        <div class="card-pledge-img">
+                            <img src={review.imgUrl} height="106" alt="fpo" style="width: 500px;" />
+                        </div>
+                        <div class="card-pledge-info">
+                            <p><strong>{review.name}</strong></p>
+                            <p><strong>{review.learnMoreUrl}</strong><br />
+                                Status: {review.endDate}</p>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </template>
+</div>
+
+
+
+
+</template>

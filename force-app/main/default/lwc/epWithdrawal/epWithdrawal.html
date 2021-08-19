@@ -1,0 +1,198 @@
+<!-- sldsValidatorIgnore -->
+
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+          <lightning-spinner alternative-text="Loading" variant="brand"
+            size="large">
+          </lightning-spinner>
+        </template>
+      </div>
+    <div class="slds-grid slds-gutters slds-container_x-large
+        slds-container_center">
+        <div class="slds-size_12-of-12">
+
+            <div class="slds-form-element__control mb-20">
+                <div class="slds-form-element__row">
+
+                    <div class="slds-size_6-of-12">
+                        <div class="slds-form-element">
+                            <div>
+                                <lightning-combobox
+                                    name="SavignsPlanAccount"
+                                    label="From Account"
+                                    value=""
+                                    placeholder="Select 529 savings plan"
+                                    options={fromAccountList}
+                                    onchange={handleAccountTypeChange}></lightning-combobox>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="slds-form-element__control mb-20">
+                <div class="slds-form-element__row">
+
+                    <template if:true={tfSourceTypeList.data}>
+                        <div class="slds-size_6-of-12">
+                            <div class="slds-form-element">
+                                <div>
+                                    <lightning-combobox
+                                        name="paymentmethod"
+                                        label="Payment Method"
+                                        value=""
+                                        placeholder="Select payment method"
+                                        options={tfSourceTypeList.data.values}
+                                        onchange={handlePaymentMethodChange}></lightning-combobox>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                </div>
+            </div>
+
+
+            <template if:true={showBankAccount}>
+                <div class="slds-size_6-of-12 mb-20">
+                    <div class="slds-form-element">
+                        <div>
+                            <lightning-combobox
+                                name="bankaccount"
+                                label="Bank Account"
+                                value=""
+                                options={bankAccounts}
+                                onchange={handleFinAccountInfo}></lightning-combobox>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+
+
+            <template if:true={showPayee}>
+                <fieldset class="slds-form-element slds-form-element_compound ">
+                    <legend class="slds-form-element__legend
+                        slds-form-element__label
+                        sr-only">General Info</legend>
+                    <!-- <div class="slds-form-element__control "> -->
+                        <div class="slds-form-element__row">
+
+                            <div class="slds-size_3-of-12 box-dash">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label
+                                        sr-only"
+                                        for="firstName">First Name</label>
+                                    <div>
+                                        <lightning-input name="conFirstName"
+                                            type="text"
+                                            placeholder="First Name"
+                                            value=""
+                                            label="First Name"
+                                            onchange={handleFirstNameChange}></lightning-input>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="slds-size_3-of-12 box-dash">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label
+                                        sr-only"
+                                        for="lastName">Last Name</label>
+                                    <div>
+                                        <lightning-input class="lastNameComp"
+                                            name="conLastName" type="text"
+                                            placeholder="Last Name"
+                                            value=""
+                                            label="Last Name"
+                                            onchange={handleLastNameChange}></lightning-input>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    <!-- </div> -->
+                </fieldset>
+                <div class="slds-size_6-of-12 mb-20">
+                    <div class="slds-form-element box-dash">
+                        <c-address-component
+                            onhandleaddressinfo={handleaddressData}></c-address-component>
+                    </div>
+                </div>
+            </template>
+
+
+            <fieldset class="slds-form-element slds-form-element_compound">
+                <legend class="slds-form-element__legend
+                    slds-form-element__label
+                    sr-only">General Info</legend>
+                <div class="slds-form-element__control">
+                    <div class="slds-form-element__row">
+
+                        <div class="slds-size_2-of-12">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label
+                                    sr-only"
+                                    for="firstName">First Name</label>
+                                <div>
+                                    <lightning-radio-group
+                                    name="fullwithdraw"
+                                    label="Full Withdrawal"
+                                    value=""
+                                    options={fullWithdrawal}
+                                    type="button"
+                                    onchange={handleFullWithDrawOption}>
+                                </lightning-radio-group>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="slds-size_3-of-12 mt-20">
+                            <div class="slds-form-element">
+                                <div>
+                                    Available funds to withdraw: <b><lightning-formatted-number value={availableFunds} format-style="currency" currency-code="USD"></lightning-formatted-number></b>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </fieldset>
+
+
+                <div class="slds-size_2-of-12 mb-20">
+                    <div class="slds-form-element">
+                        <div>
+                            <lightning-input class="amountCmp" name="amount"
+                                type="text" value={fullAmount} label="Amount"
+                                formatter="currency" placeholder="$0.00"
+                                onchange={handleAmountChange}></lightning-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-size_6-of-12 mb-20">
+                    <div class="slds-form-element">
+                        <div class="slds-align_absolute-center">
+                            <button class="slds-button slds-button_brand mt-20
+                                px-40"
+                                onclick={handleWithdraw}>Withdraw funds</button>
+                            <button class="slds-button slds-button_brand mt-20
+                                px-40"
+                                onclick={handleCancel}>Cancel</button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </template>

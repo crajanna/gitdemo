@@ -1,0 +1,196 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global"
+  controller="LightningSelfRegisterController">
+  <ltng:require styles="{!$Resource.ScholarshipPortalCSS}" />
+  <aura:attribute name="accountId" type="String" required="false"
+    description="accountId for creating the user. If not specified, it will create a PersonAccount if possible for B2C scenario. Or otherwise if it's in a community, the community's self-registration accountId will be used." />
+  <aura:attribute name="regConfirmUrl" type="String" required="true" />
+  <aura:attribute name="startUrl" type="String" required="false"
+    description="The url you go to after a successful login" />
+  <aura:attribute name="showError" type="Boolean" required="true" description="" default="false" access="private" />
+  <aura:attribute name="errorMessage" type="String" required="false" description="" access="private" />
+  <aura:attribute name="showEmailErrorMessage" type="String" required="false" description="" access="private" />
+  <aura:attribute name="showLastNameErrorMessage" type="String" required="false" description="" access="private" />
+  <aura:attribute name="acceptTermsCheck" type="Boolean" default="false" required="false" access="private" />
+  <aura:attribute name="showTermsErrorMessage" type="String" required="false" description="" access="private" />
+
+  <aura:attribute name="includePasswordField" type="Boolean" required="false" default="false"
+    description="Whether to include password" />
+  <aura:attribute name="extraFieldsFieldSet" type="String" required="false"
+    description="A field set name whose fields are desired for user registration" />
+  <aura:attribute name="extraFields" type="list" required="false"
+    description="A field set name whose fields are desired for user registration" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.initialize}" />
+  <aura:attribute name="expid" type="String" required="false" description="The branding experience ID" />
+  <aura:attribute name="loginUrl" type="String" required="false" default="./" />
+  <aura:registerevent name="sitePropagatedStartUrl" type="c:setStartUrl" />
+  <aura:handler name="init" value="{!this}" action="{!c.initialize}" />
+  <aura:dependency resource="c:setStartUrl" type="EVENT" />
+
+  <aura:dependency resource="siteforce:registerQueryEventMap" type="EVENT" />
+
+  <aura:handler event="c:setStartUrl" action="{!c.setStartUrl}" />
+  <aura:handler event="c:setExpId" action="{!c.setExpId}" />
+  <aura:dependency resource="c:setExpId" type="EVENT" />
+
+
+    <!--aura handler with waiting and donewaiting events-->
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <div>
+      <lightning:spinner aura:id="mySpinner" class="slds-hide"/>
+     </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="slds-grid slds-grid_vertical-align-center slds-wrap f-comp">
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 f-form-wrap-alt">
+
+
+      <!-- FORM -->
+      <div class="mb-40">
+        <a href="https://www.floridaprepaidcollegefoundation.com/" target="_blank"><img src="{!$Resource.FoundationImages + '/img/logo-fl-prepaid-black-320px.png'}"
+            width="157" alt="Stanley G. Tate Florida Prepaid College Foundation" /></a>
+      </div>
+
+      <div class="mb-40">
+        <h1>Let&rsquo;s Get Started</h1>
+        <p class="text-gray">Already have an account? <a href="{!v.loginUrl}">Sign In</a></p>
+      </div>
+
+      <fieldset class="slds-form-element slds-form-element_compound">
+        <legend class="slds-form-element__legend slds-form-element__label sr-only">Full Name</legend>
+        <div class="slds-form-element__control">
+          <div class="slds-form-element__row">
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element">
+                <label class="slds-form-element__label" for="firstName">First Name</label>
+                <div class="slds-form-element__control">
+                  <ui:inputText value="" aura:id="firstname" placeholder="{!v.firstnameLabel}" keyup="{!c.onKeyUp}"
+                    class="slds-input" />
+                  <!-- <input type="text" id="firstName" class="slds-input" /> -->
+                </div>
+              </div>
+            </div>
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element">
+                <label class="slds-form-element__label" for="lastName">Last Name<span
+                    style="color: red;">*</span></label>
+                <div class="slds-form-element__control">
+                  <ui:inputText value="" aura:id="lastname" keyup="{!c.onKeyUp}" class="slds-input" />
+                  <p style="color: red;">{!v.showLastNameErrorMessage}</p>
+                  <!-- <input type="text" id="lastName" class="slds-input" /> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="slds-form-element mb-20">
+        <label class="slds-form-element__label" for="email">Email<span style="color: red;">*</span></label>
+        <div class="slds-form-element__control">
+          <ui:inputText value="" aura:id="email" keyup="{!c.onKeyUp}" class="slds-input" required="true" />
+          <!-- <input type="email" id="email" class="slds-input" /> -->
+          <p style="color: red;">{!v.showEmailErrorMessage}</p>
+        </div>
+
+      </div>
+
+      <!--<fieldset class="slds-form-element slds-form-element_compound mb-40">
+        <legend class="slds-form-element__legend slds-form-element__label sr-only">Password</legend>
+        <div class="slds-form-element__control">
+          <div class="slds-form-element__row">
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element">
+                <label class="slds-form-element__label" for="password">Password</label>
+                <div class="slds-form-element__control">
+                    <ui:inputSecret value="" aura:id="password"  keyup="{!c.onKeyUp}" class="slds-input"/>
+                </div>
+              </div>
+            </div>
+            <div class="slds-size_1-of-2">
+              <div class="slds-form-element">
+                <label class="slds-form-element__label" for="confirmPassword">Confirm Password</label>
+                <div class="slds-form-element__control">
+                    <ui:inputSecret value="" aura:id="confirmPassword"  keyup="{!c.onKeyUp}" class="slds-input"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>-->
+     
+      <!-- <div >
+        <ui:inputCheckbox aura:id="checkbox" label="Select?" change="{!c.onCheck}" class="checkboxcss"/>
+      </div> -->
+      <div class="slds-form-element mb-40">
+        <div class="slds-form-element__control">
+          <div style="display:flex;">
+            <ui:inputCheckbox aura:id="checkbox1" label="" change="{!c.onCheck}"  class="checkboxcss" />
+            <div style="float:left;">
+            <span class="slds-form-element__label f-comp-label-lite">&nbsp;&nbsp; Creating an account means you
+                accept our <a href="https://www.myfloridaprepaid.com/terms-conditions/ " target="_blank">Terms of
+                    Service</a> &amp; <a href="https://www.floridaprepaidcollegefoundation.com/privacy-policy/" target="_blank">Privacy Policy</a>. </span>
+                  </div>
+            <label class="slds-checkbox__label d-flex" for="checkbox-unique-id-73">
+              <div class="check-inline">
+                <div class="slds-checkbox_faux check-inline"></div>
+              </div>
+              
+
+            </label>
+          </div>
+          <p style="color: red;">{!v.showTermsErrorMessage}</p>
+
+        </div>        
+      </div>
+      <!-- <div class="slds-form-element mb-40">
+        <div class="slds-form-element__control">
+            <div class="slds-checkbox">
+                <input type="text" name="acceptTerms" id="acceptTerms2"
+                    onchange="{c.handleAcceptTerms}" />
+                <label class="slds-checkbox__label d-flex" for="acceptTerms">
+                    <div class="check-inline">
+                        <div class="slds-checkbox_faux check-inline"></div>
+                    </div>
+                    <span class="slds-form-element__label f-comp-label-lite">Creating an account means you
+                        accept our <a href="https://www.myfloridaprepaid.com/terms-conditions/ " target="_blank">Terms of
+                            Service</a> &amp; <a href="/foundation/s/privacy-policy" target="_blank">Privacy Policy</a>. </span>
+                </label>
+            </div>
+        </div>
+    </div> -->
+        <!-- <div class="slds-form-element mb-40">
+          <div class="slds-form-element__control">
+        <ui:inputCheckbox aura:id="checkbox1"  class="slds-checkbox" label="Select?" change="{!c.onCheck}"/>
+        <label class="slds-checkbox__label d-flex" for="acceptTerms">
+          <div class="check-inline">
+              <div class="slds-checkbox_faux check-inline"></div>
+          </div>
+          <span class="slds-form-element__label f-comp-label-lite">Creating an account means you
+              accept our <a href="https://www.myfloridaprepaid.com/terms-conditions/ " target="_blank">Terms of
+                  Service</a> &amp; <a href="/foundation/s/privacy-policy" target="_blank">Privacy Policy</a>. </span>
+      </label>
+      </div>
+    </div> -->
+      <div>
+        <ui:button aura:id="submitButton" label="Create an Account" press="{!c.handleSelfRegister}"
+          class="slds-button sfdc_button" />
+        <!-- <button class="slds-button slds-button_brand">Create an Account</button> -->
+      </div>
+
+
+
+    </div>
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-grid slds-grid_vertical-align-end slds-wrap f-cover f-cover-signup">
+
+
+
+      <c:bgImageTextComp bgImage="bg-grad-dad.jpg"
+      titleText="Give aspiring students the opportunity to build a better future for themselves." >
+      </c:bgImageTextComp>
+
+    </div>
+  </div>
+</aura:component>

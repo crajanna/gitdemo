@@ -1,0 +1,38 @@
+<template>
+    <div class="boarder">
+        <lightning-record-view-form record-id={recordId} object-api-name="InsurancePolicy">
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Name"></lightning-output-field>
+                    <lightning-output-field field-name="Enrollment__c"></lightning-output-field>
+                    <lightning-output-field field-name="Purchase_Price__c"></lightning-output-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="PremiumFrequency"></lightning-output-field>
+                    <lightning-output-field field-name="PremiumAmount"></lightning-output-field>
+                    <lightning-output-field field-name="GrossWrittenPremium"></lightning-output-field>
+                </div>
+            </div>
+        </lightning-record-view-form>
+    </div>
+    <br/>   
+
+    <lightning-input name="startDate" type="date" label="Start Date" onchange={startDateHandler}></lightning-input>
+    <br>
+    <lightning-input name="financeCharge" type="number" formatter="percent" label="Finance Charge"></lightning-input>
+    <br>
+    <lightning-input name="endDate" type="date" label="End Date" datestyle="short" onchange={endDateHandler}></lightning-input>
+    <br>
+    <lightning-input name="noOfPayments" type="Number" label="# Future Payments as of Start Date "></lightning-input>
+    <br>
+    <lightning-input name="principalAsOfStartDate" type="Number" label="Principal as of Start Date" readonly="true"></lightning-input>
+    <br>
+    <lightning-input name="principalReduction" type="Number" label="Principal Reduction" readonly="true"></lightning-input>
+    <br>
+    <lightning-input name="noOfPayments" type="Number" label="# Future Payments as of Start Date " id = "noOfPayments"></lightning-input>
+
+    <!--<lightning-button variant="brand" label="Save" title="Save" class="slds-float_right slds-p-around_medium"></lightning-button>-->
+
+    
+
+</template>

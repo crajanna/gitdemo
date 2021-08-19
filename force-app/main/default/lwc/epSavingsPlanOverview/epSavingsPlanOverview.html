@@ -1,0 +1,380 @@
+<template>
+
+
+    <div class="slds-grid">
+        <div class="slds-col slds-size_2-of-12 p-4">
+      
+               
+            <c-beneficiary-list-component record-id ={userAccountId}></c-beneficiary-list-component>
+
+    
+        </div>
+
+          <div class="slds-col slds-large-size_10-of-12 bg-gray">
+            
+            <h1 class="mb-40 ml-30">{savingsPlanDetail.beneficiaryName}&rsquo;s Savings Plan</h1>
+            <template if:false={showInvestmentPage}>
+            <!-- GENERAL OVERVIEW -->
+            <div class="d-flex space-between ml-34 mr-34 mb-10">
+              <h3 class="text-20">General Overview</h3>
+              <a href="#" class="ml-auto"><b>View Documents</b></a>
+            </div>
+        
+        
+            <div class="col-inner-wrap pb-0">
+        
+        
+              <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-large-size_4-of-12">
+        
+        
+                  <div class="box-dash">
+        
+                    <div class="line-graph">
+                      <p>Line graph showing general progression</p>
+                    </div>
+        
+                    <div class="d-flex mt-20">
+                      <div class="pymt-amt">
+                          <lightning-formatted-number value={savingsPlanDetail.currentBalance} maximum-fraction-digits="2" format-style="currency" currency-code="USD">
+                          </lightning-formatted-number>
+                         </div>
+                      <div>
+                        <h6 style="margin: 16px 10px 10px 20px;">TOTAL CONTRIBUTIONS</h6>
+                      </div>
+                    </div>
+        
+                  </div>
+        
+        
+                </div>
+                <div class="slds-col slds-large-size_4-of-12">
+        
+        
+                  <div class="box-dash">
+        
+                    <h6>UPCOMING PAYMENT DATES</h6>
+        
+                    <div class="tasks dates">
+        
+                      <div class="task">
+                        <p class="task-text">June 11, zxcv</p>
+                        <p><b>$150.55</b></p>
+                      </div>
+                      <div class="task">
+                        <p class="task-text">June 11, zxcv</p>
+                        <p><b>$150.55</b></p>
+                      </div>
+                      <div class="task">
+                        <p class="task-text">June 11, zxcv</p>
+                        <p><b>$150.55</b></p>
+                      </div>
+                      <div class="task">
+                        <p class="task-text">June 11, zxcv</p>
+                        <p><b>$150.55</b></p>
+                      </div>
+                      <div class="task">
+                        <p class="task-text">June 11, zxcv</p>
+                        <p><b>$150.55</b></p>
+                      </div>
+                      <div class="task">
+                        <p class="task-text">June 11, zxcv</p>
+                        <p><b>$150.55</b></p>
+                      </div>
+        
+                    </div>
+        
+                  </div>
+        
+        
+                </div>
+                <div class="slds-col slds-large-size_4-of-12">
+        
+        
+                  <div class="box-dash mb-40 cta">
+        
+                    <h5>Set a goal to help save for the future!</h5>
+                    <button  class="slds-button slds-button_brand mt-20 px-40">Manage Goal</button>
+        
+                  </div>
+        
+        
+                  <div class="box-dash cta">
+        
+                    <h5>Graduation is near! Do you know how to use your Prepaid Plans for college?</h5>
+                    <button  class="slds-button slds-button_brand mt-20 px-40">How to Use</button>
+  
+                  </div>
+        
+        
+                </div>
+              </div>
+        
+        
+            </div>
+        
+        
+        
+        
+            <!-- ACTIONS ROW -->
+            <div class="col-inner-wrap">
+        
+              <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-large-size_4-of-12">
+        
+        
+                  <div class="box-dash">
+        
+                      <div class="img-link-alt">
+                        <a href="#">
+                          <img src={imagecirclefpo30} alt="icon" /><span class="mr-auto pl-10">Make or Manage Payments</span>
+                        </a>
+                      </div>
+          
+                    </div>
+        
+                </div>
+                <div class="slds-col slds-large-size_8-of-12">
+        
+                  <div class="box-dash d-flex space-between">
+        
+                    <div class="img-link-alt fb-33p">
+                      <a href="#" onclick={handleChangePlans}>
+                          <img src={imagecirclefpo30} alt="icon" /><span class="mr-auto pl-10">Change Plans</span>
+                      </a>
+                    </div>
+        
+                    <div class="img-link-alt fb-33p line-left">
+                      <a href="#">
+                          <img src={imagecirclefpo30} alt="icon" /><span class="mr-auto pl-10">Use Plans</span>
+                      </a>
+                    </div>
+        
+                    <div class="img-link-alt fb-33p line-left">
+                      <a href="#">
+                          <img src={imagecirclefpo30} alt="icon" /><span class="mr-auto pl-10">Manage Users</span>
+                      </a>
+                    </div>
+        
+                  </div>
+        
+                </div>
+              </div>
+        
+            </div>
+        
+        
+        
+            <!-- ACTIVE PLANS -->
+            <div class="d-flex space-between ml-34 mr-34">
+              <h3 class="text-20">Active Plans</h3>
+            </div>
+        
+            <div class="col-inner-wrap">      
+        
+              <div class="box-dash d-flex hard-botm">
+        
+                <div class="img-link-alt2 flex-1">
+                  <a href="#" class="d-flex">
+                      <img src={imagecirclefpo30} alt="icon" />
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                      <span><b>529 Savings Plan</b></span>
+                      <span class="small">Plan Acct # {savingsPlanDetail.faNumber}</span>
+                    </div>
+                  </a>
+                </div>
+        
+                <div class="img-link-alt2 px-4">
+                  <a href="#" role="button" class="btn-lite">Payment<br />Scheduled</a>
+                </div>
+        
+                <div class="img-link-alt2 px-4">
+                  <a href="#" class="d-flex">
+                      <img src={imagecirclefpo30} alt="icon" />
+                    <div class="d-flex flex-column justify-content-center ml-10">
+                      <span class="small">Account Owner</span>
+                      <span><b>{savingsPlanDetail.accountOwnerName}</b></span>
+                    </div>
+                  </a>
+                </div>
+        
+                <div class="img-link-alt2 px-4">
+                  <a href="#" class="d-flex">
+                      <img src={imagecirclefpo30} alt="icon" />
+                    <div class="d-flex flex-column justify-content-center ml-10">
+                      <span class="small">Survivor</span>
+                      <span><b>{savingsPlanDetail.survivorName}</b></span>
+                    </div>
+                  </a>
+                </div>
+        
+                <div class="img-link-alt2 px-4">
+                  <a href="#" class="d-flex">
+                    <div class="d-flex flex-column justify-content-center align-items-center ml-10">
+                      <img src={imagecirclefpo30} height="19" width="19" alt="icon" />
+                      <span><b>View</b></span>
+                    </div>
+                  </a>
+                </div>
+        
+              </div>
+        
+        
+              <div class="box-dash hard-top">
+        
+        
+                <div class="d-flex justify-content-between">
+        
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small">Next Payment Amount</span>
+                        <span class="text-20"><b>--</b></span>
+                      </div>
+                    </span>
+                  </div>
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small">Next Payment Amount</span>
+                        <span class="text-20"><b>--</b></span>
+                      </div>
+                    </span>
+                  </div>
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small">Next Payment Date</span>
+                        <span class="text-20"><b>--</b></span>
+                      </div>
+                    </span>
+                  </div>
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small">Pay Frequency</span>
+                        <span class="text-20">--</span>
+                      </div>
+                    </span>
+                  </div>
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small">Enrollment Date</span>
+                        <span class="text-20">
+                          <lightning-formatted-date-time
+                                  value={savingsPlanDetail.openDate}
+                                  time-zone="UTC">
+                               </lightning-formatted-date-time>  
+                          </span>
+                      </div>
+                    </span>
+                  </div>
+        
+        
+                </div>
+        
+        
+        
+                <h6 class="divider">OVERALL PROGRESS</h6>
+        
+        
+                <div class="d-flex justify-content-between">
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small">Account Type</span>
+                        <b>{savingsPlanDetail.accountType}</b>
+                      </div>
+                    </span>
+                  </div>
+        
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small"> YTD Contributions</span>
+                        <span><b>--</b></span>
+                      </div>
+                    </span>
+                  </div>
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small">YTD Withdrawals</span>
+                        <span><b>--</b></span>
+                      </div>
+                    </span>
+                  </div>
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small">YTD Fees</span>
+                        <span><b>--</b></span>
+                      </div>
+                    </span>
+                  </div>
+        
+                  <div class="img-link-alt2 px-4">
+                    <span class="d-flex">
+                      <div class="d-flex flex-column justify-content-center ml-10">
+                        <span class="small">YTD Gains/Losses</span>
+                        <span class="text-green"><b>--</b></span>
+                      </div>
+                    </span>
+                  </div>
+        
+        
+                </div>
+        
+        
+                <c-fin-acc-transaction-table record-id={financialAccountId}>  </c-fin-acc-transaction-table>
+  
+        
+                <div class="d-flex justify-content-between">
+                  <div>
+  
+                      <button  class="slds-button slds-button_brand mt-20 px-40">Set up a Payment</button>
+                      <button  class="slds-button slds-button_brand mt-20 px-40">Manage Contributions</button>
+  
+                  </div>
+                  <div>
+                      <button  class="slds-button slds-button_brand mt-20 px-40 ml-auto" onclick={handleInvestmentOptions}>Change Investment Options</button>
+                  </div>
+                </div>
+        
+        
+              </div>
+        
+        
+            </div>
+        
+        
+        
+            <!-- RETURN AND PRINT -->
+            <div class="d-flex space-between ml-34 mr-34 mb-60">
+              <a href="#"><b>Return to List</b></a>
+              <a href="#" class="ml-auto"><b>Print</b></a>
+            </div>
+        
+          </template>
+          <template if:true={showInvestmentPage}>
+              <c-fund-allocations record-id={financialAccountId}></c-fund-allocations>
+
+          </template>
+        
+          </div>
+
+
+      </div>
+
+      
+</template>

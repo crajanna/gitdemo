@@ -1,0 +1,21 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" >
+    <aura:html tag="style">
+        .slds-modal__container{
+        margin: 0 auto;
+        width: calc(70% - 20px);
+        max-width: calc(70% - 20px);
+        }
+        .modal-body{
+        height : 800px;
+        max-height: 850px;
+        }
+        
+    </aura:html> 
+    <div class="modal-header slds-modal__header ">
+        <h4 class="title slds-text-heading--medium" >School Invoice</h4>
+    </div>
+    <div class="slds-modal__content" aura:id="modalbody" id="modalbody">
+    <c:submitInvoice onclose="{!c.closeQA}" recordId="{!v.recordId}" />
+    </div>
+    
+</aura:component>

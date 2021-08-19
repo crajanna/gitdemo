@@ -1,0 +1,117 @@
+<template>
+  <div class="spinner">
+      <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="brand"
+          size="large">
+        </lightning-spinner>
+      </template>
+    </div>
+
+  <!-- CONTENT -->
+  <div class="slds-grid slds-gutters slds-container_x-large
+  slds-container_center slds-p-bottom_xx-large  f-comp slds-container_center">
+      <div class="slds-col  slds-size_12-of-12">
+          <div class="pledge-card-wrap">
+              <div class="pledge-inner">
+                  <h1 class="text-normal">My Profile</h1>
+                 
+
+                  <div class="slds-grid box-light-gray-inputs">
+                      <div class="slds-col slds-var-p-around_x-small
+                          slds-size_12-of-12">
+                          <hr>
+
+                        
+
+                          <!-- GENERAL INFO ============================= -->
+                          <c-contact-info-component
+                              onhandlecontactgeneralinfo={handleContactGeneralInfo}>
+                          </c-contact-info-component>
+
+
+                          <div class="slds-grid slds-gutters slds-container_x-large slds-container_center">
+                              <div class="slds-col slds-size_6-of-12">
+                                  <fieldset class="slds-form-element slds-form-element_compound">
+                                      <legend class="slds-form-element__legend slds-form-element__label
+                                        sr-only">General Info</legend>
+                                      <div class="slds-form-element__control">
+                                        <div class="slds-form-element__row">
+                                
+                                          <div class="slds-size_12-of-12">
+                                            <div class="slds-form-element">
+                                              <label class="slds-form-element__label sr-only"
+                                                for="ssnItin">Enter a date of birth</label>
+                                              <div>
+                                                  <lightning-input name="beneficiaryDate" type="date"
+                                                  placeholder="Enter a date of birth"
+                                                  value={PersonBirthdate}
+                                                  onchange={handleBeneficiaryDateChange}></lightning-input>
+                                              </div>
+                                            </div>
+                                          </div>
+                                
+                                        </div>
+                                      </div>
+                                    </fieldset>
+                              </div>
+                              <div class="slds-col slds-size_6-of-12">
+                                <fieldset class="slds-form-element slds-form-element_compound">
+                                    <legend class="slds-form-element__legend slds-form-element__label
+                                      sr-only">General Info</legend>
+                                    <div class="slds-form-element__control">
+                                      <div class="slds-form-element__row">
+                              
+                                        <div class="slds-size_12-of-12">
+                                          <div class="slds-form-element">
+                                            <label class="slds-form-element__label sr-only"
+                                              for="ssnItin">Enter Phone</label>
+                                            <div>
+
+                                              <!-- <lightning-input type="tel" name="conPhoneNumber"                                                 
+                                                  value={phone}
+                                                  pattern="([0-9]{3}) [0-9]{3}-[0-9]{4}">
+                                           </lightning-input> -->
+
+                                              <lightning-input name="conPhoneNumber" type="text"
+                                              placeholder="Phone number"
+                                              value={phone}
+                                              onchange={handlePhoneChange}></lightning-input> 
+                                            </div>
+                                          </div>
+                                        </div>
+                              
+                                      </div>
+                                    </div>
+                                  </fieldset>
+                            </div>
+                          </div>
+                          
+                          <!-- CONTACT INFO ============================= -->
+                          <h6 class="mt-40"></h6>
+                          <c-address-component onhandleaddressinfo={handleaddressData}></c-address-component>
+                         <br>
+                          <c-profile-image-component onhandleprofileimage=
+                              {handleProfileImage}></c-profile-image-component>
+                          <br>
+
+                      </div>
+                  </div>
+
+                  <div>
+
+                      <button class="slds-button slds-button_brand btn-sm
+                          px-40" data-gtmid="Student & Guardian Information -
+                          Next"
+                          onclick={handleNext}>Update</button>
+
+                          <button  class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10"
+                          data-gtmid="Student Responsibilities - Previous" onclick={backToHomePage}>Cancel</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+  </div>
+
+</template>

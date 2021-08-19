@@ -1,0 +1,16 @@
+<template>
+    <div class="slds-box">
+        <lightning-input name="beneficiaryDate" type="date" placeholder="Enter a date"
+        value={conRecord.beneficiaryDate} onchange={handleBeneficiaryDateChange}></lightning-input>    
+        <!-- <template if:true={stageValues.data}>
+            <lightning-combobox name="progress" label="Opportunity Stage" value={value} 
+                options={stageValues.data.values} onchange={handleChange}>
+            </lightning-combobox>
+        </template> -->
+    </div>
+    <div class="mt-5">
+        
+        <button onclick={updateProfileInfo}  class="slds-button slds-button_brand mt-20 px-40">Continue</button>
+
+    </div>
+</template>

@@ -1,0 +1,40 @@
+<template>
+    
+    <div class="callout">
+
+        <h6 class="mb-20">NEW PLANS FOR {beneficiaryAccountName}</h6>
+
+        <template if:true={displaySavingsPlanInfo}>
+          <div class="box-plain border-0 pl-0">
+            <div class="d-flex">
+              <img src={imageFpo90} class="tnail rounded" alt="tnail">
+              <p class="text-stack px-3">Florida 529 Savings Plan<br><span class="sub-text">Billed {SP_Frequency__c}</span></p>
+            </div>
+          </div>
+        </template>
+
+        <template for:each={productList} for:item="item" for:index="index">
+
+          <div class="box-plain border-0 pl-0" key={item.id}>
+            <div class="d-flex">
+              <img src={imageFpo90} class="tnail rounded" alt="tnail">
+              <p class="text-stack px-3">{item.name} <br><span class="sub-text">1 Payment LUMP SUM</span></p>
+            </div>
+          </div>
+<!-- 
+
+          <div class="d-flex py-2" key={item.id}>
+            <img src={imageFpo90} class="tnail rounded ml-20" alt="tnail">
+            <p class="text-stack px-3">{item.name} <br><span class="sub-text">1 Payment LUMP SUM</span></p>
+          </div> -->
+        </template>
+
+        <h5 class="mb-0 mt-5">First Payment</h5>
+        <p class="h3"><lightning-formatted-number value={firstPaymentAmount} format-style="currency" currency-code="USD"></lightning-formatted-number></p>
+          <div class="mt-3">
+            <a href="#"><small><b>Updated Plan Selection</b></small></a>
+          </div>
+
+      </div>
+
+</template>

@@ -1,0 +1,92 @@
+<template>
+      <main role="main">
+  
+          <div class="pt-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+        
+                  <div class="card card-jumbo mb-4 shadow-sm">
+                    <div class="card-body p-0">
+        
+                      <div class="container-fluid p-0">
+                        <div class="row">
+                          <div class="col-md-7">
+        
+                            <div class="mr-30 ml-30">
+                              <div class="d-flex justify-content-between mt-3">
+                                <img src={imagePath}  width="140" alt="Florida Prepaid">
+                                <p><small>Already have an account? <b><a href="#">Sign in</a></b></small></p>
+                              </div>
+                              <h3 class="pt-5">Let’s Get Started</h3>
+                              <p class="text-secondary">College savings is just a few more clicks away lorem ipsum.</p>
+        
+                              <div >
+                                <lightning-input name="conFirstName" type="text" placeholder="First Name"
+                                    value={conRecord.FirstName} onchange={handleFirstNameChange}></lightning-input>
+                            </div>
+                            <div >
+                                <lightning-input name="conLastName" type="text" placeholder="Last Name"
+                                    value={conRecord.LastName} onchange={handleLastNameChange}></lightning-input>
+                            </div>
+                            <div >
+                              <lightning-input  type="text" placeholder="Email Address"></lightning-input>
+                            </div>
+                            <div class="form-row">
+                              <div class="col">
+                                <lightning-input  type="text" placeholder="Password"></lightning-input>
+                              </div>
+                              <div class="col">
+                                <lightning-input  type="text" placeholder="Verify Password"></lightning-input>
+                              </div>
+                            </div>
+                                      <br/>
+                                <lightning-button label="Continue" onclick={createRec} variant="brand"></lightning-button>
+                              </div>
+                            </div>
+        
+                            </div>
+        
+                          </div>
+                          <div class="col-md-5">
+        
+                            <div class="box-gray box-gray-right">
+                              <div class="pb-5 mt-6">
+                                <div class="d-flex justify-content-center">
+                                  <img src={imageFpoGrayPath} width="68" height="62" class="text-center" alt="FPO">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <p class="tiny-text">bright, colorful, fun image to keep the mood bright and encouraging</p>
+                                </div>
+                              </div>
+                              <h2 class="pb-3 text-center">Before you start, you will need:</h2>
+                              <div class="d-flex justify-content-between icon-block">
+                                <div class="text-center">
+                                  <img src={imageMugFpoPath} class="rounded-circle" alt="icon">
+                                  <p class="mt-1">Thing You Need</p>
+                                </div>
+                                <div class="text-center">
+                                  <img src={imageMugFpoPath} class="rounded-circle" alt="icon">
+                                  <p class="mt-1">Thing You Need</p>
+                                </div>
+                                <div class="text-center">
+                                  <img src={imageMugFpoPath} class="rounded-circle" alt="icon">
+                                  <p class="mt-1">Thing You Need</p>
+                                </div>
+                              </div>
+                            </div>
+        
+                          </div>
+                        </div>
+                      </div>
+        
+                    </div>
+                  </div><!-- /.card -->
+        
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </main>
+  </template>

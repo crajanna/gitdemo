@@ -1,0 +1,89 @@
+<template>
+
+  <!-- TITLE -->
+  <div class="slds-grid f-comp pledge-header fixed-1000">
+    <div class="slds-col">
+
+      <div if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+      </div>
+
+      <h1>My Documents</h1>
+      <!--<p>View receipts and invoices in my Florida Prepaid Foundation account.</p>-->
+
+    </div>
+  </div>
+
+
+
+  <!-- CONTENT -->
+  <div class="slds-grid f-comp pledge-content fixed-1000">
+
+
+    <!-- OTHER PROGRAMS -->
+    <div class="slds-col">
+      <div class="pledge-card-wrap">
+        <div class="pledge-inner">
+
+          <div class="pledge-fixed">
+
+
+            <div class="slds-form" role="list">
+
+
+
+              <h3>Receipts</h3>
+
+
+              <div class="doc-items">
+                <template for:each={receipts} for:item="receipt">
+                  <div key={receipt.id} class="doc-item slds-grid slds-wrap">
+                    <div class="slds-col slds-size_4-of-8 ">
+                      <a href={receipt.displayUrl} target="_blank">{receipt.filename}</a>
+                    </div>
+                    <div class="slds-col slds-size_3-of-8 ">
+                      <span class="alt">{receipt.lastUpdated}</span>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8 ">
+                      <a href={receipt.downloadUrl}>Download</a>
+                    </div>
+                  </div>
+                </template>
+
+
+              </div><!-- /.doc-items -->
+
+
+
+              <h3 class="mt-40">Invoices</h3>
+
+
+
+              <div class="doc-items">
+                <template for:each={invoices} for:item="invoice">
+                  <div key={invoice.id} class="doc-item slds-grid slds-wrap">
+                    <div class="slds-col slds-size_4-of-8 ">
+                      <a href={invoice.displayUrl} target="_blank">{invoice.filename}</a>
+                    </div>
+                    <div class="slds-col slds-size_3-of-8 ">
+                      <span class="alt">{invoice.lastUpdated}</span>
+                    </div>
+                    <div class="slds-col slds-size_1-of-8 ">
+                      <a href={invoice.downloadUrl}>Download</a>
+                    </div>
+                  </div>
+                </template>
+              </div><!-- /.slds-form -->
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</template>

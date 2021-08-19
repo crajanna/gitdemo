@@ -1,0 +1,289 @@
+<template>
+
+  <div class="spinner">
+    <template if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+      </lightning-spinner>
+    </template>
+  </div>
+  <!-- <template if:false={disableAmountField}> -->
+  <div class="slds-grid f-comp pledge-header">
+    <div class="slds-col">
+
+      <h1>Become a Donor</h1>
+      <p>Specify how you will make your payment.</p>
+
+    </div>
+  </div>
+  <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+
+    <div class="slds-col">
+      <div class="btn-wiz-new done">
+        <span class="num"><span>1</span></span> <span class="title">Choose a Program</span>
+      </div>
+    </div>
+
+    <div class="slds-col">
+      <div class="btn-wiz-new done">
+        <span class="num"><span>2</span></span> <span class="title">Make a Pledge</span>
+      </div>
+    </div>
+
+    <div class="slds-col">
+      <div class="btn-wiz-new active">
+        <span class="num"><span>3</span></span> <span class="title">Specify Payment</span>
+      </div>
+    </div>
+
+    <div class="slds-col">
+      <div class="btn-wiz-new">
+        <span class="num"><span>4</span></span> <span class="title">Completed Donation</span>
+      </div>
+    </div>
+
+  </div>
+  <!-- </template> -->
+
+
+  <!-- CONTENT -->
+  <div class="slds-grid slds-wrap f-comp pledge-content">
+
+
+    <!-- OTHER PROGRAMS -->
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12">
+      <div class="pledge-card-wrap">
+
+        <div class="pledge-inner">
+
+          <!-- <h1 class="text-normal">Select Payment Option</h1> -->
+          <h2>Specify Payment</h2>
+          <p class="hr-botm">Select how and when you would like to make your donation payment, as well as the amount you
+            will submit today.</p>
+
+          <div class="slds-form" role="list">
+
+            <div if:false={hidePayment} class="slds-form__row mb-20">
+
+
+              <div class="slds-form__item" role="listitem">
+                <div class="slds-form-element slds-form-element_stacked">
+                  <label class="slds-form-element__label" for="horizontal-input-id-01">When would you like to make your
+                    payment?</label>
+                  <div class="slds-form-element__control">
+                    <div class="slds-select_container">
+                      <select class="slds-select" id="pledgeFulfillDurationOption" name="pledgeFulfillDurationOption"
+                        onchange={handlePledgeFulfillDurationChange}>
+                        <option  disabled selected value>-- select an option --</option>
+                        <template if:true={pledgeFulfillDurationOptions}>
+                          <template for:each={pledgeFulfillDurationOptions} for:item="pledgeFulfillDurationValue">
+                            <option key={pledgeFulfillDurationValue.label}>{pledgeFulfillDurationValue.value}</option>
+                          </template>
+                        </template>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <template if:true={showdisplay}>
+                <div class="slds-form__item" role="listitem">
+                  <div class="slds-form-element slds-form-element_stacked">
+                    <label class="slds-form-element__label" for="select-01">How would you like to make your
+                      payment?</label>
+                    <div class="slds-form-element__control">
+                      <div class="slds-select_container">
+                        <select class="slds-select" id="pledgeFulfillModeOption" name="pledgeFulfillModeOption"
+                          onchange={handlePledgeFulfillModeChange}>
+                          <template if:true={pledgeFulfillModeOptions}>
+                            <template for:each={pledgeFulfillModeOptions} for:item="pledgeFulfillModeOption">
+                              <option key={pledgeFulfillModeOption.label}>{pledgeFulfillModeOption.value}</option>
+                            </template>
+                          </template>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div>
+
+
+            <div if:true={showPaymentAccounts} class="outline-group mb-20">
+              <template if:true={showPaymentAccounts}>
+                <c-bank-accounts-component onhandlefinaccountinfo={handleFinAccountInfo}>
+                </c-bank-accounts-component>
+              </template>
+              <template if:true={showPaymentAccounts}>
+
+                <div class="slds-form__row">
+
+
+                  <div class="slds-form__item" role="listitem">
+                    <fieldset class="slds-form-element slds-form-element_stacked">
+                      <legend class="slds-form-element__legend slds-form-element__label float-none">ACH Disclosure
+                      </legend>
+                      <p>I hereby authorize the Florida Prepaid College Board to initiate a debit entry to my financial
+                        institution account indicated above at the depository financial institution named above via a
+                        one-time ACH transaction, which will post within 2 to 3 business days. In the event that the
+                        Florida Prepaid College Board is unable to secure funds from the financial institution account
+                        for this transaction for any reason, including but not limited to, insufficient funds, or
+                        insufficient or inaccurate information provided with submitting my electronic payment, further
+                        collection action may be undertaken by the Florida Prepaid College Board, including returned
+                        check fees to the extent permitted by law. I understand that I may cancel my transaction, obtain
+                        a paper copy of the electronic record of this authorization, and of the Florida Prepaid College
+                        Board electronic records related to the debit entry covered by this authorization by contacting
+                        customer service at 850.922.6740. Due to the timing of the debit entry processing, transactions
+                        may only be cancelled same day. Refunds may be requested thereafter.</p>
+                      <div class="slds-form-element__control">
+                        <div class="slds-checkbox">
+                          <input type="checkbox" name="acceptach" id="acceptach" value="acceptach"
+                          onchange={handleACHCheckboxSelection} />
+                          <label class="slds-checkbox__label" for="acceptach">
+                            <span class="slds-checkbox_faux"></span>
+                            <span class="slds-form-element__label">Agree to ACH disclosure above</span>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+              </template>
+            </div>
+
+
+
+            <template if:true={showdisplay}>
+              <div class="slds-form__row mb-20">
+                <div class="slds-form__item" role="listitem">
+                  <div class="slds-form-element slds-form-element_stacked">
+                    <template if:false={disableAmountField}>
+                      <label class="slds-form-element__label" for="howMuch">How much will you donate today?</label>
+                    </template>
+                    <div class="slds-form-element__control">
+                      <template if:true={disableAmountField}>
+                        <div class="pledge-info" style="margin-bottom: 0;">
+                          <div class="d-flex space-between mb-1">
+                            <h5>Contribution Summary</h5>
+                          </div>
+                          <div class="d-flex space-between">
+                            <p class="mb-5">Amount</p>
+                            <div class="mb-5">
+                              <lightning-formatted-number value={originalamt} format-style="currency" currency-code="USD">
+                              </lightning-formatted-number>
+                            </div>
+                          </div>
+                          <div class="d-flex space-between">
+                            <p class="mb-5">PayPal Processing Fee</p>
+                            <div class="mb-5">
+                              <lightning-formatted-number value={vendorfee} format-style="currency" currency-code="USD">
+                              </lightning-formatted-number>
+                            </div>
+                          </div>
+                  
+                          <hr />
+                  
+                          <div class="d-flex space-between">
+                            <h5 class="mb-5">Total</h5>
+                            <div class="mb-5">
+                              <strong>
+                                <lightning-formatted-number value={amount} format-style="currency" currency-code="USD">
+                                </lightning-formatted-number>
+                              </strong>
+                            </div>
+                          </div>
+                          <!-- <p class="mb-5">* PayPal fee of 2.2% + $0.30 applies.</p> -->
+                        </div>
+                  
+                      </template>
+                      <template if:false={disableAmountField}>
+                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                          <img src={dollarIcon} class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true" />
+                          <input class="slds-input" name="amount" id="amount" type="number" formatter="currency"
+                            placeholder="0.00" onchange={handleAmountChange}></input>
+                  
+                        </div>
+                      </template>
+                </div>
+
+                  </div>
+                </div>
+              </div>
+            </template>
+
+
+            <template if:true={showCheckAddress}>
+              <div class="pledge-info">
+                <div>
+                  <p>Please include your account number when you submit your payment by check to the following address:
+                  </p>
+                </div>
+                <div>
+                  Cash Account Number: {cashAccountNumber.data}
+                </div>
+                <div>
+                  Florida Prepaid College Foundation
+                </div>
+                <div>
+                  PO Box 31088
+                </div>
+                <div>
+                  Tampa, FL 33631
+                </div>
+
+              </div>
+            </template>
+
+
+          </div>
+
+          <div class="text-right">
+            <template if:false={hidePayment}>
+              <button onclick={handleGoBack} 
+                class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10"
+                data-gtmid="Specify Payment - Go Back">Go Back</button>
+            </template>
+            <template if:true={showCheckoutPaypal}>
+              <button onclick={handleSpecifyPayment1} class="slds-button slds-button_brand btn-sm px-40"
+                data-gtmid={buttonText}>{buttonText}</button>
+            </template>
+
+            
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SELECTED PROGRAM -->
+
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+      <div class="pledge-card-wrap card-right p-0">
+        <div class="pledge-card">
+          <template if:true={productImgURL}>
+            <div class="img-wrap">
+              <img src={productImgURL} alt="program" />
+            </div>
+          </template>
+          <div class="pledge-card-body">
+            <div class="d-flex space-between mb-20 mt-20 hr-botm">
+              <div class="icon-box icon-burgundy mr-10">
+                <img src={pledgeIcon} class="icon" alt="tasks icon" />
+              </div>
+              <h6 class="card-heading">My Pledges</h6>
+              <h6 class="card-heading ml-auto">TOTAL: <span class="text-gray1">
+                  <lightning-formatted-number value={donationAmount} format-style="currency" currency-code="USD">
+                  </lightning-formatted-number>
+                </span> <span class="text-400">/ <lightning-formatted-number value={pledgeAmout} format-style="currency"
+                    currency-code="USD"></lightning-formatted-number></span></h6>
+            </div>
+            <h3>{productName}<a href={productLearnMoreURL} target="_blank"><img src={externalLinkIcon} class="icon-shift ml-5"
+                  alt="open external link" /></a></h3>
+            <p>{priductDescription}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>

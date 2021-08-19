@@ -1,0 +1,25 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="AccountController" >
+                <aura:attribute name="firstName" type="String"/>
+                <aura:attribute name="lastName" type="String"/>
+
+                <div class="slds-p-around_medium">
+                    <lightning:input name="FirstName" 
+                                     required="true" 
+                                     value="{!v.firstName}" 
+                                     label="First Name" 
+                                     maxlength="255"/>
+                    
+                    <lightning:input name="LastName" 
+                                     required="true" 
+                                     value="{!v.lastName}" 
+                                     label="Last Name" 
+                                     maxlength="255"/>
+
+                    <lightning:button variant="Brand" 
+                                     label="Save" 
+                                     title="Save" 
+                                     onclick="{!c.save}"/>                  
+                    
+                </div> 
+
+</aura:component>

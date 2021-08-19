@@ -1,0 +1,231 @@
+<apex:page id="underMaintainance" showHeader="false" standardStylesheets="false" title="{!$Label.site.site_under_construction}">
+  <!-- title="{!$Label.site.change_password}">-->
+  <apex:stylesheet value="https://fonts.gstatic.com"></apex:stylesheet>
+  <apex:stylesheet value="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"></apex:stylesheet>
+  <apex:stylesheet value="css/salesforce-lightning-design-system.css"></apex:stylesheet>
+  <apex:stylesheet value="css/flpp-foundation.css"></apex:stylesheet>
+
+  <apex:stylesheet value="{$Resource.FoundationPortalCSS}" />
+  <apex:stylesheet value="{$Resource.FoundationPortalCSS}" />
+  <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <head>
+    <title>Maintainance Break!</title>
+
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" />
+
+
+    <style>
+      .f-comp {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        color: #29292A;
+      }
+
+      .f-form-wrap {
+        padding: 120px;
+        overflow-y: scroll;
+        height: calc(100vh);
+      }
+
+      .f-comp h1 {
+        font-size: 30px;
+        line-height: 34px;
+        font-weight: 700;
+      }
+
+      .f-comp .mb-80 {
+        margin-bottom: 80px;
+      }
+
+      .f-comp .mb-40 {
+        margin-bottom: 40px;
+      }
+
+      .f-comp .mb-20 {
+        margin-bottom: 20px;
+      }
+
+      .f-comp .mb-10 {
+        margin-bottom: 10px;
+      }
+
+      .f-comp .text-gray {
+        color: #84898E;
+      }
+
+      .f-comp .icon-step {
+        margin-bottom: 16px;
+      }
+
+      .f-comp .slds-input {
+        background-color: #f2f2f2;
+        border-color: #f2f2f2;
+        padding-top: 4px;
+        padding-bottom: 4px;
+      }
+
+      .slds-icon {
+        margin-right: 6px;
+      }
+
+      .f-comp .h1-botm {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-size: 46px;
+        line-height: 50px;
+        letter-spacing: -2px;
+        color: #FFF;
+        padding: 60px;
+      }
+
+      .f-comp .f-cover {
+        height: calc(100vh);
+      }
+
+      .f-comp .f-cover-signin {
+        background: url({!URLFOR($Resource.FoundationImages,'img/bg-grad-mom.jpg')
+      }
+
+      ) no-repeat center right fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      }
+
+      .f-comp h1,
+      .f-comp h2,
+      .f-comp label {
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .f-comp label {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .f-comp .slds-button_brand {
+        width: 100%;
+        display: block;
+        color: #FFF;
+        background-color: #EE6C2D;
+        border-color: #EE6C2D;
+        font-size: 16px;
+        padding: 10px;
+        font-weight: 700;
+      }
+
+      .f-comp .px-30 {
+        padding-right: 30px !important;
+        padding-left: 30px !important;
+      }
+
+      .f-comp .slds-button_brand:hover {
+        background-color: #fa842c;
+        border-color: #fa842c;
+      }
+
+      .f-form-wrap-alt {
+        padding: 20px 90px 10px 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow-y: scroll;
+        height: calc(100vh);
+      }
+
+      .f-comp .mb-60 {
+        margin-bottom: 60px;
+      }
+
+      .f-comp .slds-button_brand.inline {
+        display: inline;
+        width: fit-content;
+      }
+
+      .f-comp a {
+        color: #EE6C2D;
+      }
+
+      .f-comp .icon-orange {
+        fill: #f36f21;
+      }
+
+      .slds-icon_container,
+      .slds-icon__container {
+        display: inline-block;
+        border-radius: var(--sds-c-icon-radius-border, 0.25rem);
+        line-height: 1;
+        background-color: var(--sds-c-icon-color-background);
+      }
+
+      p {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+      }
+    </style>
+  </head>
+
+
+  <!-- Import the Design System style sheet -->
+  <apex:slds />
+
+
+  <div class="slds-grid slds-grid_vertical-align-center slds-wrap f-comp">
+
+    <!-- FORM WRAP -->
+    <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 f-form-wrap-alt">
+
+      <!-- FORM -->
+      <div class="mb-60">
+        <a href="https://www.floridaprepaidcollegefoundation.com/" target="_blank">
+          <apex:image url="{!URLFOR($Resource.FoundationImages,'img/logo-flpp-foundation-color.svg')}" width="157" alt="Stanley G. Tate Florida Prepaid College Foundation"
+          />
+        </a>
+      </div>
+
+      <div class="mb-40">
+        <h1>
+          <span class="slds-icon_container slds-icon-utility-clock" title="Description of icon when needed">
+            <!-- <svg class="slds-icon slds-icon-text-default icon-orange" style="position: relative; top:-2px;" aria-hidden="true">
+              <use xlink:href="icons/utility-sprite/svg/symbols.svg#clock"></use>
+            </svg> -->
+            <svg class="slds-icon slds-icon-text-default icon-orange" style="position: relative; top:-2px;" aria-hidden="true">
+              <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#clock')}"></use>
+            </svg>
+            <span class="slds-assistive-text">Clock icon</span>
+          </span>
+          We&rsquo;ll be back online soon&hellip;
+        </h1>
+      </div>
+
+      <p class="mb-40">Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. Feel free to
+        <a href="#">contact us</a>, otherwise we&rsquo;ll be back online shortly.</p>
+
+
+      <div>
+        <a href="#" role="button" class="slds-button slds-button_brand inline px-30">Back to the Foundation Site</a>
+      </div>
+
+
+    </div>
+
+    <!-- MESSAGE WRAP -->
+    <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-grid slds-grid_vertical-align-end slds-wrap f-cover f-cover-signin">
+
+      <!-- MESSAGE -->
+      <div class="slds-col">
+        <h1 class="h1-botm">Give aspiring students the opportunity to build a better future for themselves.</h1>
+      </div>
+
+    </div>
+  </div>
+
+
+  </html>
+
+</apex:page>

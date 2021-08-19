@@ -1,0 +1,447 @@
+<template>
+
+  <!-- PROGRESS WRAP -->
+
+  <div class="spinner">
+    <template if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading" variant="brand"
+        size="large">
+      </lightning-spinner>
+    </template>
+  </div>
+
+  <!-- FORM WRAP -->
+  <div class="slds-grid slds-gutters slds-container_x-large
+    slds-container_center slds-p-bottom_xx-large slds-wrap">
+    <div class="slds-col slds-size_1-of-1">
+
+
+      <!-- WHO IS THIS FOR? -->
+      <h3 class="mt-4">Who is this for?</h3>
+
+      <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs
+        slds-wrap">
+
+        <div class="slds-col slds-var-p-around_x-small slds-size_1-of-1
+          slds-large-size_2-of-12 slds-float_left">
+
+
+          <h6>NEW BENEFICIARY</h6>
+
+          <div class="slds-form-element">
+            <label class="slds-form-element__label sr-only"
+              for="beneficiaryType">Beneficiary Type</label>
+            <div class="slds-form-element__control">
+              <lightning-input name="beneficiaryDate" type="date"
+                placeholder="mm/dd/yyyy"
+                value="" onchange={handleNewBeneficiaryDateChange}></lightning-input>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+        <div class="slds-col slds-var-p-around_x-small slds-size_1-of-1
+          slds-large-size_3-of-12">
+
+          <div class="slds-form-element mt-20">
+            <label class="slds-form-element__label sr-only"
+              for="beneficiaryType">Beneficiary Type</label>
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <template if:true={ageGradeListValues.data}>
+                  <lightning-combobox
+                    name="agegrade"
+                    value={ageGradeValue}
+                    placeholder="Age/Grade"
+                    options={ageGradeListValues.data.values}
+                    onchange={handleRaceChange}></lightning-combobox>
+                </template>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="slds-col slds-var-p-around_x-small slds-size_1-of-1
+          slds-large-size_3-of-12">
+
+          <p class="separator"> - OR - </p>
+
+        </div>
+        <div class="slds-col slds-var-p-around_x-small slds-size_1-of-1
+          slds-large-size_3-of-12 slds-float_right">
+
+          <h6>EXISTING BENEFICIARY</h6>
+          <div class="slds-form-element">
+            <label class="slds-form-element__label sr-only"
+              for="beneficiaryExisting">Existing Beneficiary</label>
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <select class="slds-select" id="beneficiaryExisting">
+                  <option>Select</option>
+                  <option>...</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- AVAILABLE PLAN OPTIONS -->
+      <div class="d-flex justify-content-between mt-40 mob-block-stack">
+        <h3 class="mob-mb-0">Available Plan Options</h3>
+        <p class="mb-0 mt-2 mob-mb-20">High School graduation estimated for <b>{pey}</b></p>
+      </div>
+
+
+      <lightning-accordion allow-multiple-sections-open
+        onsectiontoggle={handleSectionToggle}
+        active-section-name={activeSections}>
+
+        <lightning-accordion-section name="PP" label="PREPAID PLAN"
+          class="slds-accordion__summary-action1"
+          display= none>
+          <div class="box-plan-subhead1">
+            <p class="mb-0"><i>Select up to 120 credit hours / 221 Payments
+                (Monthly), 55 Payments (55 Months), or 1 Lump Sum Payment</i></p>
+          </div>
+          <div class="box-plan-subhead">
+            <p class="mb-0">University Plans can be used for college lorem ipsum
+              dolor sit amet pharetra lectus venenatis netus cras vel non,
+              placerat taciti libero. Learn More<a href="#">Learn More</a></p>
+          </div>
+
+          <template if:false={showPlans}>
+            <div>
+              <h6 class="ml-2 pt-2 mob-mb-0">Please enter beneficiary
+                information above to view available options.</h6>
+            </div>
+
+          </template>
+          <template if:true={showPlans}>
+            <template for:each={productList} for:item="item" for:index="index">
+              <template if:true={item.university}>
+                <div class="d-flex py-2 mob-block-stack
+                  box-light-gray-planselection box-plan-section-body"
+                  key={item.id}>
+
+                  <div class="form-check mr-auto" key={item.id}>
+                    <lightning-input type="checkbox" name={item.id}
+                      id={item.id} access-key={item.id}
+                      data-element="prepaid-checkbox"
+                      onchange={handePrepaidPlanSelection}
+                      class="form-check-input check-tweak"></lightning-input>
+                    &nbsp;&nbsp;&nbsp;<img src={imageFpo90} width="40"
+                      height="40" class="tnail rounded" alt="tnail" />
+                                      <!-- <lightning-formatted-rich-text
+                        value={richtext}
+                    ></lightning-formatted-rich-text> -->
+                    <label class="form-check-label" for={item.id}
+                      style="font-size: 16px;">&nbsp;&nbsp;&nbsp;<b>{item.name}</b><br>&nbsp;&nbsp;&nbsp;{item.description}
+                      
+                    </label>
+
+                  </div>
+                  <div class="position-relative mob-ml-35 mob-mt-20 mob-mr-20"
+                    key={item.id}>
+
+                    <lightning-layout horizontal-align="space"
+                      multiple-rows="false">
+                      <template for:each={item.priceOptions} for:item="rb">
+                        <lightning-layout-item key={rb.value}>
+                          <fieldset key={rb.value} style="display: block; float:
+                            left;">
+                            <div class="slds-form-element__control">
+                              <span class="slds-radio">
+                                <input name={item.id} id={rb.value} type="radio"
+                                  value={rb.value}
+                                  data-element="prepaid-radiogroup"
+                                  onchange={handlePaymentOptionSelected}/>
+                                <label class="slds-radio__label" for={rb.value}>
+                                  <span class="slds-radio_faux"></span>
+                                  <span class="slds-form-element__label"
+                                    style="font-size: 16px;">
+                                    <lightning-formatted-number value={rb.label}
+                                      format-style="currency"
+                                      currency-code="USD"></lightning-formatted-number>
+                                    <br><span class="frequency"
+                                      style="padding-left:25px">1 PAYMENT</span>
+                                  </span>
+                                </label>
+                              </span>
+                            </div>
+
+                          </fieldset>
+                        </lightning-layout-item>
+                      </template>
+                    </lightning-layout>
+                  </div>
+                </div>
+              </template>
+            </template>
+
+          </template>
+
+
+
+
+
+        </lightning-accordion-section>
+        <br/>
+
+          <lightning-accordion-section name="SP" label="SAVINGS PLAN"
+            class="slds-accordion__summary-action1">
+            <div class="box-plan-subhead1">
+              <p class="mb-0"><i>Pay what you want, when you want. Choose from a
+                  pre-created portfolio, or customize to your preferences.</i></p>
+            </div>
+            <div class="box-plan-subhead">
+              <p class="mb-0">How complex do you want your customization lorem
+                ipsum dolor sit amet tellum. <a href="#">Learn More</a></p>
+            </div>
+
+            <template if:false={showPlans}>
+              <div>
+                <h6 class="ml-2 pt-2 mob-mb-0">Please enter beneficiary
+                  information above to view available options.</h6>
+              </div>
+
+            </template>
+            <template if:true={showPlans}>
+              <div class="d-flex py-2 mob-block-stack
+                box-light-gray-planselection
+                box-plan-section-body">
+
+
+
+                <div class="form-check mr-auto">
+                  <lightning-input type="checkbox" name="spcheckbox"
+                    onchange={handleSavingsPlanSelection}
+                    class="form-check-input
+                    check-tweak one-line"></lightning-input>
+                  &nbsp;&nbsp;&nbsp;<img src={imageFpo90} width="40" height="40"
+                    class="tnail one-line rounded" alt="tnail" />
+                  <label class="form-check-label" for="spcheckbox"
+                    style="font-size: 16px;">&nbsp;&nbsp;&nbsp;<b>529 Savings
+                      Plan</b></label>
+                </div>
+
+                <div class="position-relative mob-ml-35 mob-mt-20 mob-mr-20">
+                  <c-savings-plan-radio-group onplanselection={sphandler}></c-savings-plan-radio-group>
+                </div>
+
+              </div>
+            </template>
+            <template if:true={showPlans}>
+              <template if:true={showSavingsPlanDetails}>
+                <hr>
+
+                <div class="d-flex plan-section-margin">
+
+                  <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-1
+                      slds-large-size_9-of-12">
+                      <span> Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. Praesent ac dignissim tellus, vitae dictum nulla.
+                        Suspendisse malesuada lorem eget dui hendrerit, in
+                        bibendum nunc facilisis. Donec imperdiet auctor ligula
+                        sed
+                        vestibulum. Interdum et malesuada fames ac ante ipsum
+                        primis in faucibus. Praesent porta vestibulum feugiat.
+                        ur adipiscing elit. Praesent ac dignissim tellus, vitae
+                        dictuur adipiscing elit. Praesent ac dignissim tellus,
+                        vitae dictu\
+                      </span>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12"
+                      style="height:10px">
+                      <button class="slds-button slds-button_brand px-40"
+                        onclick={handleLearnMoreInvOptions}> Learn More About
+                        Investment Options</button> </div>
+                  </div>
+                </div>
+
+
+                <hr>
+
+                <fieldset class="slds-form-element_compound mb-1
+                  plan-section-margin" style="padding: 5px;">
+                  <div class="slds-grid slds-gutters">
+                    <div class="slds-size_4-of-12">
+                      <lightning-combobox
+                        name=""
+                        value={investmentOptionsValue}
+                        options={investmentOptions}
+                        onchange={handleInvestmentOptionsChange}></lightning-combobox>
+                    </div>
+
+                    <div class="slds-size_2-of-12">
+                      <lightning-input name="initialContribution" type="text"
+                        placeholder="$ Initial Contriubtion"
+                        value="" onchange={handleInitialContributionChange}></lightning-input>
+                    </div>
+
+                    <div class="slds-size_2-of-12" style="padding:20px;">
+                      <lightning-input type="checkbox"
+                        name="scheduleRecurringContr" label="Schedule Recurring
+                        Contributions" onchange={handleScheduleRecurringContr}></lightning-input>
+                    </div>
+                    <div class="slds-size_2-of-12">
+                      <lightning-input name="spamount" type="text"
+                        placeholder="$
+                        Amount"
+                        value="" onchange={handleAmountChange}></lightning-input>
+                    </div>
+                    <div class="slds-size_2-of-12">
+                      <lightning-combobox
+                        name=""
+                        value={investmentOptionsValue}
+                        options={frequencyOptions}
+                        onchange={handleSPFrequncyOptionsChange}></lightning-combobox>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <template if:true={showPortfolios}>
+                  <div>
+
+                    <c-fund-allocations-component show-age-based={showAgeBased}
+                      show-static-portfolios={showStaticPortfolios}
+                      show-ind-fund-options={showIndFundOptions} dob={birthdate}
+                      onallocationselection={onAllocationSelection}></c-fund-allocations-component>
+                    </div>
+                </template>
+
+
+              </template>
+            </template>
+
+
+          </lightning-accordion-section>
+          <br/>
+            <lightning-accordion-section name="AP" label="ADDITIONAL PLANS"
+              class="slds-accordion__summary-action1">
+              <div class="box-plan-subhead1">
+                <p class="mb-0"><i>Choose other standalone options to enhance
+                    your college savings strategy.</i></p>
+              </div>
+              <div class="box-plan-subhead">
+                <p class="mb-0">University Plans can be used for college lorem
+                  ipsum dolor sit amet pharetra lectus venenatis netus cras vel
+                  non, placerat taciti libero. <a href="#">Learn More</a></p>
+              </div>
+              <template if:false={showPlans}>
+                <div>
+                  <h6 class="ml-2 pt-2 mob-mb-0">Please enter beneficiary
+                    information above to view available options.</h6>
+                </div>
+
+              </template>
+              <template if:true={showPlans}>
+                <template for:each={productList} for:item="item"
+                  for:index="index">
+                  <template if:true={item.dorm}>
+                    <div class="d-flex py-2 mob-block-stack
+                      box-light-gray-planselection box-plan-section-body"
+                      key={item.id}>
+
+                      <div class="form-check mr-auto" key={item.id}>
+                        <lightning-input type="checkbox" name="spcheckbox"
+                          id={item.id} access-key={item.id}
+                          data-element="prepaid-checkbox"
+                          onchange={handePrepaidPlanSelection}
+                          class="form-check-input check-tweak one-line"></lightning-input>
+                        &nbsp;&nbsp;&nbsp;<img src={imageFpo90} width="40"
+                          height="40" class="tnail one-line rounded" alt="tnail"
+                          />
+                        <label class="form-check-label" for="spcheckbox"
+                          style="font-size: 16px;">&nbsp;&nbsp;&nbsp;<b>{item.name}</b></label>
+                      </div>
+                      <div class="position-relative mob-ml-35 mob-mt-20
+                        mob-mr-20" key={item.id}>
+
+                        <lightning-layout horizontal-align="space"
+                          multiple-rows="false">
+                          <template for:each={item.priceOptions} for:item="rb">
+                            <lightning-layout-item key={rb.value}>
+                              <fieldset key={rb.value} style="display: block;
+                                float: left;">
+                                <div class="slds-form-element__control">
+                                  <span class="slds-radio">
+                                    <input name={item.id} id={rb.value}
+                                      type="radio" value={rb.value}
+                                      data-element="prepaid-radiogroup"
+                                      onchange={handlePaymentOptionSelected}/>
+                                    <label class="slds-radio__label"
+                                      for={rb.value}>
+                                      <span class="slds-radio_faux"></span>
+                                      <span class="slds-form-element__label"
+                                        style="font-size: 16px;">
+                                        <lightning-formatted-number
+                                          value={rb.label}
+                                          format-style="currency"
+                                          currency-code="USD"></lightning-formatted-number>
+                                        <br><span class="frequency"
+                                          style="padding-left:25px">1 PAYMENT</span>
+                                      </span>
+                                    </label>
+                                  </span>
+                                </div>
+
+                              </fieldset>
+                            </lightning-layout-item>
+                          </template>
+                        </lightning-layout>
+                      </div>
+                    </div>
+                  </template>
+                </template>
+              </template>
+
+
+            </lightning-accordion-section>
+
+          </lightning-accordion>
+
+
+
+          <!-- CONTINUE -->
+          <div class="text-center mt-5">
+            <h3>Saving for the future only gets easier from here.</h3>
+            <button onclick={savePlanSelection} class="slds-button
+              slds-button_brand mt-20 px-40">Continue</button>
+
+          </div>
+
+
+          <!-- PRE-FOOTER -->
+          <div class="slds-grid slds-p-top_xx-large box-light-gray mt-40
+            slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12">
+
+              <h5 class="ml-120 mob-ml-0">Still feeling undecided?<br>
+                Don't Worry</h5>
+
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-large-size_7-of-12">
+
+              <p class="text-14">Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Ut in vestibulum lorem. Curabitur a feugiat
+                lorem. Pellentesque leo lacus, sollicitudin sed lorem vel,
+                gravida volutpat turpis. Aenean rutrum malesuada dapibus.
+                Integer congue ex quis.</p>
+              <p class="text-14 mb-0 mob-mt-20"><a href="#"><b>View Prepaid Plan
+                    Side-by-Side Comparison</b></a> or call us at <b>1-800-XXX-XXXX</b></p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
+    </template>

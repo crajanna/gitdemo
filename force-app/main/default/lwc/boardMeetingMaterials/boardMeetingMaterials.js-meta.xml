@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+     <isExposed>true</isExposed>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>        
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="step" type="String" datasource="Florida Prepaid College Board, Florida Prepaid College Foundation, ABLE United, Workshps, Steering" />
+            <property name="template" type="String" datasource="Florida Prepaid Board, Foundation Board, ABLE Board, Steering" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

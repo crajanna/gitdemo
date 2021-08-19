@@ -1,0 +1,51 @@
+<template>
+    
+
+  <div class="slds-grid slds-gutters slds-container_x-large slds-container_center">
+
+    <div class="slds-col slds-size_12-of-12">
+
+      <div class="slds-form-element mt-10">
+        <label class="slds-form-element__label sr-only" for="addNewAddress">Address</label>
+        <div class="slds-form-element__control">
+          <div class="slds-select_container">
+            <select class="slds-select" name="accountType" onchange={handleAddressChange}>
+              <template if:true={addressList}>
+                <template for:each={addressList} for:item="item">
+                  <option key={item.value} value={item.value}>{item.label}
+                  </option>
+                </template>
+              </template>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="box-light-gray mt-20">
+
+        <lightning-input-address
+        street-placeholder = "Street Address"
+        city-placeholder = "City"
+        postal-code-placeholder = "Zip code"             
+        province-placeholder = "State"
+        country-placeholder = "Country"
+        address-lookup-placeholder = "Address lookup"
+        street={address.street}
+        city={address.city}
+        country={address.country}
+        province={address.province}
+        postal-code={address.postalCode}
+        country-options={getCountryOptions}
+        province-options={getProvinceOptions}
+        onchange={handleAddressChange} 
+        show-address-lookup>
+        </lightning-input-address>
+
+      </div><!-- /.box-light-gray -->
+    </div>
+
+  </div>
+
+
+</template>

@@ -1,0 +1,93 @@
+<template>
+  <div class="f-comp">
+    <div class="d-flex space-between mb-20 hr-botm">
+      <h6 class="card-heading">My Company</h6>
+      <div>
+        <button class="slds-button slds-button_brand btn-sm" onclick={handleAccountEditModal}>
+          <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#edit"></use>
+          </svg>Edit
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-20 d-flex">
+      <div>
+        <template if:true={showLogo}>
+          <a href={accountData.accWebsite} target="_blank"><img src={profileVersionId} alt="logo" class="add-logo"
+              style="object-fit: contain; border: 1px solid #fff;
+            border-radius: 0;" /></a>
+        </template>
+        <template if:false={showLogo}>
+          <label style="display: inline-block;position: relative;height: 95px;width: 95px;" for="inputFile">
+            <div style="position: absolute;left: 0;top: 0;bottom: 0;
+                                        width: 100%;display: flex;border-radius: 6px;
+                                        align-items: center;justify-content: center;background: #FFF;
+                                        border: 2px dashed #bbbcbe; color: #fa842d;">
+              Add Logo
+            </div>
+            <lightning-input style="position: absolute;left: 0;opacity: 0;top: 0;bottom: 0;width: 100%;" name="file1"
+              type="file" label="Attachment" onchange={handleFileChange} accept=".jpg, .png, .gif">
+            </lightning-input>
+          </label>
+        </template>
+      </div>
+      <template if:true={hasAccountData}>
+        <div class="d-flex f-dir-col j-con-cen ml-10">
+          <h3>{accountData.accName}</h3>
+        </div>
+      </template>
+    </div>
+
+    <div class="d-flex mb-10">
+      <div class="icon-box icon-primary mr-10">
+        <img src={iconAddress} class="icon" alt="tasks icon" />
+      </div>
+      <div if:true={hasAccountAddress} class="d-flex f-dir-col j-con-cen">
+        {accountData.accShippingStreet} </br>
+        {accountData.accShippingCity}, {accountData.accShippingStateCode} {accountData.accShippingPostalCode}
+      </div>
+      <div if:false={hasAccountAddress} class="d-flex f-dir-col j-con-cen">
+        <a href="#" onclick={handleAccountEditModal}>Add Address</a>
+      </div>
+    </div>
+
+    <div class="d-flex mb-10">
+      <div class="icon-box icon-primary mr-10">
+        <img src={iconPhone} class="icon" alt="tasks icon" />
+      </div>
+      <div if:true={hasAccountPhone} class="d-flex f-dir-col j-con-cen">
+        <lightning-formatted-phone value={accountData.accPhone}></lightning-formatted-phone>
+      </div>
+      <div if:false={hasAccountPhone} class="d-flex f-dir-col j-con-cen">
+        <a href="#" onclick={handleAccountEditModal}>Add Phone</a>
+      </div>
+    </div>
+
+    <div class="d-flex mb-10">
+      <div class="icon-box icon-primary mr-10">
+        <img src={iconEmail} class="icon" alt="tasks icon" />
+      </div>
+      <div if:true={hasAccountEmail} class="d-flex f-dir-col j-con-cen">
+        <lightning-formatted-email value={accountData.accEmail} hide-icon></lightning-formatted-email>
+      </div>
+      <div if:false={hasAccountEmail} class="d-flex f-dir-col j-con-cen">
+        <a href="#" onclick={handleAccountEditModal}>Add Email</a>
+      </div>
+    </div>
+
+    <div class="d-flex mb-10">
+      <div class="icon-box icon-primary mr-10">
+        <img src={iconWebsite} class="icon" alt="tasks icon" />
+      </div>
+      <div if:true={hasAccountWebsite} class="d-flex f-dir-col j-con-cen">
+        <lightning-formatted-url value={accountData.accWebsite} tooltip={accountData.accWebsite} target="_blank">
+        </lightning-formatted-url>
+      </div>
+      <div if:false={hasAccountWebsite} class="d-flex f-dir-col j-con-cen">
+        <a href="#" onclick={handleAccountEditModal}>Add Website</a>
+      </div>
+    </div>
+
+  </div>
+</template>

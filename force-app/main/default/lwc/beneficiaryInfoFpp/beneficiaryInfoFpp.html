@@ -1,0 +1,122 @@
+<template>
+  <div class="spinner">
+    <template if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading" variant="brand"
+        size="large">
+      </lightning-spinner>
+    </template>
+  </div>
+  <main role="main" class="bg-white">
+
+
+    <!-- FORM + FAQ WRAP -->
+    <div class="slds-grid slds-gutters slds-container_x-large
+      slds-container_center slds-p-bottom_xx-large">
+      <div class="slds-col slds-size_9-of-12 mt-30">
+
+
+        <!-- BENEFICIARY -->
+        <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs">
+          <div class="slds-col slds-var-p-around_x-small slds-size_5-of-12">
+            <h6>NEW BENEFICIARY</h6>
+
+            <lightning-input name="beneficiaryDate" type="date"
+              placeholder="Enter a date"
+              value={beneficiaryDate}
+              onchange={handleBeneficiaryDateChange}></lightning-input>
+            <!-- <lightning-input type="date" name="beneficiaryDate" label="Enter a date" ></lightning-input> -->
+            <!-- <input type="date" id="beneficiaryDate" placeholder="" value="2020-02-01" class="slds-input" /> -->
+          </div>
+          <div class="slds-col slds-var-p-around_x-small slds-size_5-of-12">
+            <div class="slds-form-element mt-24">
+              <label class="slds-form-element__label sr-only"
+                for="beneficiaryType">Beneficiary Type</label>
+              <lightning-combobox
+                name="infant"
+                value={value}
+                placeholder="Infant"
+                options={beneficiaryOptions}
+                onchange={handleBeneficiaryChange}></lightning-combobox>
+            </div>
+          </div>
+
+          <div class="slds-col slds-var-p-around_x-small slds-size_2-of-12">
+            <div class="slds-form-element mt-24">
+              <button onclick={updateNewBeneficiaryInfo} class="slds-button
+                slds-button_brand mt-20">Update</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GENERAL INFO ============================= -->
+
+        <c-contact-info-component
+          onhandlecontactgeneralinfo={handleContactGeneralInfo}>
+        </c-contact-info-component>
+
+
+        <h6 class="mt-30">&nbsp;&nbsp; CONTACT INFO</h6>
+        <!-- CONTACT INFO ============================= -->
+        <c-address-component onhandleaddressinfo={handleaddressData}></c-address-component>
+
+
+   
+    
+            <!-- RESIDENCY VERIFICATION ============================= -->
+            <c-residency-verification-component
+            onhandleresidencydocument=
+            {handleResidencyDocument}>
+            </c-residency-verification-component>
+    
+            <c-profile-image-component onhandleprofileimage=
+            {handleProfileImage}></c-profile-image-component>
+
+        <!-- CONTINUE -->
+        <div class="mt-5">
+          <button onclick={createBeneficiaryInfoWithFile} class="slds-button
+            slds-button_brand mt-20 px-40">Continue</button>
+
+        </div>
+
+
+      </div>
+      <div class="slds-col slds-size_3-of-12 mt-30">
+
+        <div class="callout">
+
+          <h6 class="mb-3">FREQUENTLY ASKED QUESTIONS</h6>
+
+          <h5>What if I don’t have their Social Security Number yet?</h5>
+          <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+            egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+            bibendum erat libero et velit.</p>
+
+          <h5>When do I need to submit proof of residency?</h5>
+          <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+            egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+            bibendum erat libero et velit.</p>
+
+          <h5>Question lorem ipsum dolor?</h5>
+          <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+            egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+            bibendum erat libero et velit.</p>
+
+          <h5>Question lorem ipsum dolor?</h5>
+          <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+            egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+            bibendum erat libero et velit.</p>
+
+          <h5>Question lorem ipsum dolor?</h5>
+          <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+            egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+            bibendum erat libero et velit.</p>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </main>
+
+</template>

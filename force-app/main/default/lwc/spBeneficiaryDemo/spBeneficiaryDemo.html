@@ -1,0 +1,307 @@
+<template>
+    <div class="spinner">
+      <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" variant="brand"
+          size="large">
+        </lightning-spinner>
+      </template>
+    </div>
+    <main role="main" class="bg-white">
+  
+  
+      <!-- FORM + FAQ WRAP -->
+      <div class="slds-grid slds-gutters slds-container_x-large
+        slds-container_center slds-p-bottom_xx-large">
+        <div class="slds-col slds-size_12-of-12 mt-30">
+  
+  
+          <!-- BENEFICIARY -->
+          <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs">
+            <div class="slds-col slds-var-p-around_x-small slds-size_5-of-12">
+              <h6>NEW BENEFICIARY</h6>
+  
+              <lightning-input name="beneficiaryDate" type="date"
+                placeholder="Enter a date"
+                value={beneficiaryDate}
+                onchange={handleBeneficiaryDateChange}></lightning-input>
+              <!-- <lightning-input type="date" name="beneficiaryDate" label="Enter a date" ></lightning-input> -->
+              <!-- <input type="date" id="beneficiaryDate" placeholder="" value="2020-02-01" class="slds-input" /> -->
+            </div>
+            <div class="slds-col slds-var-p-around_x-small slds-size_5-of-12">
+              <div class="slds-form-element mt-24">
+                <label class="slds-form-element__label sr-only"
+                  for="beneficiaryType">Beneficiary Type</label>
+                <lightning-combobox
+                  name="infant"
+                  value={value}
+                  placeholder="Infant"
+                  options={beneficiaryOptions}
+                  onchange={handleBeneficiaryChange}></lightning-combobox>
+              </div>
+            </div>
+  
+            <div class="slds-col slds-var-p-around_x-small slds-size_2-of-12">
+              <div class="slds-form-element mt-24">
+                <button onclick={updateNewBeneficiaryInfo} class="slds-button
+                  slds-button_brand mt-20">Update</button>
+              </div>
+            </div>
+          </div>
+  
+          <!-- GENERAL INFO ============================= -->
+          <h6 class="mt-30">GENERAL INFO</h6>
+  
+          <!-- NAME -->
+          <fieldset class="slds-form-element slds-form-element_compound">
+            <legend class="slds-form-element__legend slds-form-element__label
+              sr-only">General Info</legend>
+            <div class="slds-form-element__control">
+              <div class="slds-form-element__row">
+  
+                <div class="slds-size_4-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only"
+                      for="firstName">First Name</label>
+                    <div>
+                      <lightning-input name="conFirstName" type="text"
+                        placeholder="First Name"
+                        value={conRecord.FirstName}
+                        onchange={handleFirstNameChange}></lightning-input>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="slds-size_2-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only"
+                      for="middleInitial">Middle Initial</label>
+                    <div class="slds-form-element__control">
+                      <lightning-input name="conMiddleName" type="text"
+                        placeholder="M.I."
+                        value={conRecord.MiddleName}
+                        onchange={handleMiddleNameChange}></lightning-input>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="slds-size_4-of-12">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label sr-only"
+                      for="lastName">Last Name</label>
+                    <div>
+                      <lightning-input name="conLastName" type="text"
+                        placeholder="Last Name"
+                        value={conRecord.LastName}
+                        onchange={handleLastNameChange}></lightning-input> </div>
+                  </div>
+                </div>
+                <template if:true={suffixListValues.data}>
+                  <div class="slds-size_2-of-12">
+                    <div class="slds-form-element">
+                      <label class="slds-form-element__label sr-only"
+                        for="suffix">Suffix</label>
+  
+                      <lightning-combobox
+                        name="suffix"
+                        value={value}
+                        placeholder="Suffix"
+                        options={suffixListValues.data.values}
+                        onchange={handleSuffixChange}></lightning-combobox>
+  
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </fieldset>
+  
+          <!-- SSN -->
+          <div class="slds-form-element mt-10">
+            <label class="slds-form-element__label sr-only" for="ssnItin">SSN or
+              ITIN</label>
+            <div>
+              <lightning-input name="conSsn" type="password" placeholder="SSN or ITIN"
+                value={conRecord.SSN__c} onchange={handleSsnChange}></lightning-input>
+            </div>
+          </div>
+  
+          <!-- RACE + GENDER -->
+          <fieldset class="slds-form-element slds-form-element_compound mt-16">
+            <legend class="slds-form-element__legend slds-form-element__label
+              sr-only">General Info</legend>
+            <div class="slds-form-element__control">
+              <div class="slds-form-element__row">
+                <template if:true={raceListValues.data}>
+  
+                  <div class="slds-size_6-of-12">
+                    <div class="slds-form-element">
+                      <label class="slds-form-element__label sr-only" for="race">Race</label>
+                      <lightning-combobox
+                        name="race"
+                        value={value}
+                        placeholder="Race"
+                        options={raceListValues.data.values}
+                        onchange={handleRaceChange}></lightning-combobox>
+  
+                    </div>
+                  </div>
+  
+                </template>
+                <template if:true={genderListValues.data}>
+                  <div class="slds-size_6-of-12">
+                    <div class="slds-form-element">
+                      <label class="slds-form-element__label sr-only"
+                        for="gender">Gender</label>
+                      <lightning-combobox
+                        name="gender"
+                        value={value}
+                        placeholder="Gender"
+                        options={genderListValues.data.values}
+                        onchange={handleGenderChange}></lightning-combobox>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </fieldset>
+  
+  
+  
+          <!-- CONTACT INFO ============================= -->
+          <h6 class="mt-30">CONTACT INFO</h6>
+  
+          <div class="slds-form-element mt-10">
+            <label class="slds-form-element__label sr-only" for="addNewAddress">Add
+              New Address</label>
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <select class="slds-select" id="addNewAddress">
+                  <option>Add New Address</option>
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+  
+  
+          <div class="box-light-gray mt-5">
+  
+            <lightning-input-address
+              street-placeholder="Street Address"
+              city-placeholder="City"
+              postal-code-placeholder="Zip code"
+              province-placeholder="State"
+              country-placeholder="Country"
+              address-lookup-placeholder="Address lookup"
+              street={address.street}
+              city={address.city}
+              country={address.country}
+              province={address.province}
+              postal-code={address.postalCode}
+              country-options={getCountryOptions}
+              province-options={getProvinceOptions}
+              onchange={handleAddressChange}></lightning-input-address>
+  
+  
+            
+          </div>
+  
+          <!-- RESIDENCY VERIFICATION ============================= -->
+          <h6 class="mt-30">RESIDENCY VERIFICATION</h6>
+          <p>Instructions ipsum dolor sit amet, consectetur adipiscing elit.
+            Curabitur aliquam malesuada leo, nec blandit enim imperdiet sit amet.
+            Phasellus posuere elit maximus pellentesque scelerisque. Phasellus
+            commodo molestie est, sed tincidunt leo rhoncus nec.</p>
+  
+          <div class="slds-form-element mt-10 mb-10">
+            <label class="slds-form-element__label sr-only"
+              for="mailVerification">Mail in verification (You can change this
+              later)</label>
+            <lightning-combobox
+              name="resVerification"
+              value={resVerificationValue}
+              options={resVerificationOptions}
+              onchange={handleResVerificationChange}></lightning-combobox>
+          </div>
+          <template if:true={resDocPicklistValues.data}>
+            <div class="slds-form-element mt-10 mb-10">
+                <label class="slds-form-element__label sr-only"
+                  for="suffix">Suffix</label>
+  
+                <lightning-combobox
+                  name="resdoc"
+                  value={resDocvalue}
+                  placeholder="Select Document"
+                  options={resDocPicklistValues.data.values}
+                  onchange={handleResDocListChange}></lightning-combobox>
+  
+              </div>
+          </template>
+          <template if:true={showDocUpload}>
+            <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs mb-10">
+  
+              <div class="slds-col slds-var-p-around_x-small slds-size_12-of-12">
+                <h6>Upload documents</h6>
+                <p>Select a document to upload for online verificaiton.</p>
+                <div class="custom-file mt-10 mb-10">
+                  <lightning-input type="file"
+                    accept=".jpg, .png, .gif, .pdf"
+                    label="Attachment" onchange={handleResDocFileChange}></lightning-input>
+                  {resDocFileName}
+                </div>
+    
+              </div>
+    
+            </div>
+  
+          </template>
+          <template if:true={showDriverLicense}>
+            <div class="mb-10">
+              <lightning-input name="dmv" type="Text" placeholder="Driver's License Number"
+                value="" onchange={handleSsnChange}></lightning-input>
+            </div>
+  
+          </template>
+  
+          <!-- <img width= 50px height=50px
+            src="https://fpcb--fpcbdevp1--c.documentforce.com/sfc/dist/version/renditionDownload?rendition=ORIGINAL_Jpg&versionId=068P0000001FE84IAG&operationContext=DELIVERY&contentId=05TP0000004VhQJMA0&page=0&d=/a/P00000000CEL/vAYab2vQ35MHQ1TWHJ2lcyvmfdB0BOjRg6ski5PNQr0&oid=00DP0000000GMohMAG&dpt=null&viewId="/> -->
+          <!-- FILE UPLOAD -->
+          <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs">
+            <div class="slds-col slds-var-p-around_x-small slds-size_2-of-12">
+              <img src={profileSrcData} alt="" class="upload-mug" />
+              <!-- <img src="https://fpcb--fpcbdevp1--c.documentforce.com/sfc/dist/version/renditionDownload?rendition=ORIGINAL_Jpg&versionId=068P0000001FE84IAG&operationContext=DELIVERY&contentId=05TP0000004VhQJMA0&page=0&d=/a/P00000000CEL/vAYab2vQ35MHQ1TWHJ2lcyvmfdB0BOjRg6ski5PNQr0&oid=00DP0000000GMohMAG&dpt=null&viewId="/> -->
+              <!-- <lightning-avatar size="large" variant="square" src={profileVersionId} fallback-icon-name="standard:avatar" alternative-text="Cindy Rice" class="slds-m-right_small upload-mug"></lightning-avatar>  -->
+            </div>
+            <div class="slds-col slds-var-p-around_x-small slds-size_10-of-12">
+              <h6>OPTIONAL PROFILE IMAGE</h6>
+              <p>Select an image to display for beneficiary. JPG, PNG, or GIF,
+                500kb max.</p>
+              <div class="custom-file mt-10">
+                <lightning-input type="file"
+                  accept=".jpg, .png, .gif"
+                  label="Attachment" onchange={handleFileChange}></lightning-input>
+                {profileFileName}
+              </div>
+  
+            </div>
+  
+          </div>
+  
+          <!-- CONTINUE -->
+          <div class="mt-5">
+            <button onclick={createBeneficiaryInfoWithFile} class="slds-button
+              slds-button_brand mt-20 px-40">Next</button>
+  
+          </div>
+  
+  
+        </div>
+        
+      </div>
+  
+  
+    </main>
+  
+  </template>

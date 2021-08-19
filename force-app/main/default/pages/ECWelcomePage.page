@@ -1,0 +1,131 @@
+<apex:page controller="ECController" standardStylesheets="false" showheader="true" sidebar="false">
+   <head>
+           <meta charset="utf-8" content="" />
+            <title>Florida Prepraid</title>
+       
+        <!-- Bootstrap core CSS -->
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+                integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
+        
+              <!-- Google Fonts -->
+           <link rel="preconnect" href="https://fonts.gstatic.com"/>
+           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Questrial&display=swap"/>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                                                                                            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
+         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>      
+          <apex:stylesheet value="{!$Resource.ECMaincss}"/>
+    </head>
+       
+    
+ <apex:form id="changeStatusForm">
+
+
+  <div class="pt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="card card-jumbo mb-4">
+            <div class="card-body p-0">
+
+              <div class="container-fluid p-0">
+                <div class="row">
+                  <div class="col-md-7">
+
+                    <div class="box-gray box-gray-left">
+                       <apex:image url="{!URLFOR($Resource.ECImages,
+                                                         'img/logo-fl-prepaid-white-320px.png')}" width="140" alt="Florida Prepaid"/>
+                      <div class="py-5">
+                        <div class="d-flex justify-content-center">
+                             <apex:image url="{!URLFOR($Resource.ECImages,
+                                                         'img/img-fpo-gray.png')}" width="68" height="62" alt="FPO"/>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                          <p class="tiny-text">bright, colorful, fun image to keep the mood bright and encouraging</p>
+                        </div>
+                      </div>
+                      <h1>Start saving for the future, today.</h1>
+                      <h2 class="pb-3">Tax-free, stress-free, worry free.</h2>
+                    </div>
+
+                  </div>
+                  <div class="col-md-5">
+
+                    <div class="mr-30">
+                      <div class="mx-auto" style="width: 200px; padding-top: 25px;">
+   							<h3 class="text-center py-4">Let’s Get Started</h3>
+					</div>
+                     
+                        <hr/>
+                        <div class="d-flex img-link">
+                          <div>
+                              <apex:image id="newregistration" value="{!URLFOR($Resource.ECImages,
+                                                         'img/img-fpo-90px.png')}" style="float:right;" height="70" width="70">
+                                <apex:actionSupport event="onclick" reRender="none"  action="{!goToGetStartedPage}" >
+                                    
+                                </apex:actionSupport>
+                            </apex:image>
+                              
+                           
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h5>I’m new to Florida Prepaid.</h5>
+                            <p>I’m interested in enrolling in a plan.</p>
+                          </div>
+                        </div>
+
+                        <div class="d-flex img-link">
+                          <div>
+                               <apex:image id="existinguser" value="{!URLFOR($Resource.ECImages,
+                                                         'img/img-fpo-90px.png')}" style="float:right;" height="70" width="70">
+                                <apex:actionSupport event="onclick" reRender="none"  action="{!goToGetStartedPage}" >
+                                    
+                                </apex:actionSupport>
+								</apex:image>
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h5> I’m already enrolled.</h5>
+                            <p> I’m a <b>beneficiary</b>, a <b>survivor</b>, or related to an existing plan already by other means.</p>
+                          </div>
+                        </div>
+                  
+                        <hr/>
+                      <p class="text-center py-4">Already have an account? <b><a href="#">Sign in</a></b></p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- /.card -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <p><small><b>Important Note About Your Security</b></small></p>
+        <p><small>The Florida Prepaid College Program will never ask you to provide your username and password (or any other personal information) in an email. If you ever receive an email message or phone call requesting that you provide such information in an email or on a web site, do not reply and please promptly report it to our Call Center at 1-800-553-GRAD (4723).</small></p>
+      </div>
+      <div class="col-md-4">
+        <div class="more-info d-flex">
+            <apex:image url="{!URLFOR($Resource.ECImages,
+                                                         'img/logo-fl-prepaid-symbol-black-260px.png')}" height="34" width="34" alt="Florida Prepaid"/>
+          <p><small>For more information on our privacy policy or Plans, please visit <b><a href="#">MyFloridaPrepaid.com</a></b></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</apex:form>
+</apex:page>

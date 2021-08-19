@@ -1,0 +1,32 @@
+<template>
+    <div class="slds-modal__header">
+        <h2 class="slds-modal__title slds-hyphenate slds-text-heading--medium">
+            Cancel Units
+        </h2>
+    </div>
+    <br>
+
+    <br>
+
+    <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+        <div class="slds-size_12-of-12">
+            <lightning-input type="number" name="requestedUnits" label="Requested Units" value={requestedUnitsValue}
+            onchange={handleRequestedUnitValueChange}>
+        </lightning-input>
+        </div>
+    </div>
+
+   <!-- <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">     
+        <div class="slds-size_12-of-12">
+            <lightning-input type="number" name="requested Amount" step="0.01" formatter="currency" label="Requested Amount"
+            value={requestedAmountValue} onchange={handleRequestedAmountValueChange}>
+        </lightning-input>
+        </div>
+    </div>-->
+
+    <div class="slds-m-top_large slds-grid slds-grid_align-center slds-align–absolute-center">
+        <lightning-button  type="submit" variant="brand" label="Cancel Units" onclick={cancelUnits}></lightning-button>
+    </div>
+
+
+</template>

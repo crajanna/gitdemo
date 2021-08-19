@@ -1,0 +1,5 @@
+<apex:page id="createClaim" standardController="School_Invoice_Header__c">
+    <flow:interview name="Create_Claim_for_School_Invoices">
+      <apex:param name="schoolInvoiceHeaderId" value="{!Id}"/> 
+    </flow:interview>
+</apex:page>

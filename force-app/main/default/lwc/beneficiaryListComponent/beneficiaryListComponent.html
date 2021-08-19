@@ -1,0 +1,46 @@
+<template>
+  <template if:true={isAllPlansActive}> 
+    <div class="box-dash box-dash-gray py-2 box-active">
+        <a href="#" class="link-split link-lg link-no-line " onclick={handleViewAllPlans}><span>View All Plans</span> <img src={imagerightcircle} alt="" /></a>
+     
+      </div>
+    </template>
+    <template if:false={isAllPlansActive}> 
+      <div class="box-dash box-dash-gray py-2">
+          <a href="#" class="link-split link-lg link-no-line " onclick={handleViewAllPlans}><span>View All Plans</span> <img src={imagerightcircle} alt="" /></a>
+       
+        </div>
+      </template>
+  
+
+  <template for:each={beneficiaryItemList} for:item="item" for:index="index">
+
+    <div class={item.cssClass} key={item.id}>
+        <div class="link-card-student">
+            <a href="#" onclick ={showBeneficiaryOverview} data-value={item.id} >
+            <img src={imagefpostudent30} alt="" />
+            <span class="mr-auto pl-10">{item.name}</span>
+            <img src={imageiconarrowright} alt="" />
+          </a>
+        </div>
+        <div class="link-card-plans">
+            <template if:true={item.isSavingsplan}>
+                <a href="#">
+                    <img src={imagecirclefpo14} alt="" />
+                    <span>Savings</span>
+                  </a>
+            </template>         
+        </div>
+      </div>
+
+</template>
+
+     
+      <!-- <a href="#" role="button"  class="slds-button slds-button_brand mt-20 px-40 d-block" onclick={addNewPlanHandler}><img src={imageplus} style="margin-right: 2px;" alt="" /> Add New Plan</a> -->
+      <!-- <button  class="slds-button slds-button_brand mt-20 px-40 d-block">Add New Plan</button> -->
+      <!-- <lightning-button  class="slds-button mt-20 px-40 d-block slds-m-left_x-small" 
+      variant="brand" label="Add New Plan" title="Add New Plan " icon-name="utility:add" onclick={addNewPlanHandler}> ></lightning-button> -->
+
+      <button class="slds-button slds-button_brand slds-button_stretch mt-20 px-40 d-block" onclick = {addNewPlanHandler}>Add New Plan</button>
+
+</template>

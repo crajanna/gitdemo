@@ -1,0 +1,36 @@
+@import 'c/fpCssLibrary';
+.btnIconOverlay {
+    position: absolute;
+    z-index: 1;
+    margin: 0.5% 0 0 92%;
+    padding-bottom: 27px;
+}
+.f-comp .icon-orange {
+    fill: #f36f21;
+}
+.f-comp .text-orange {
+    color: #f36f21;
+}
+.f-comp .mt-10 {
+    margin-top: 10px;
+}
+.rm-greyLine{
+    margin-top: 0px !important;
+    padding-top: 30px;
+}
+.f-comp.pledge-content {
+    margin-bottom: 0px !important;
+    padding-bottom: 40px;
+}
+
+.phone {
+    --sds-c-input-color-border-focus: var(--primary2);
+    --sds-c-input-color-background-focus: var(--sds-c-input-color-background, #fff);
+    --sds-c-input-color-background: #f2f2f2;
+    --sds-c-input-color-border: #f2f2f2;
+    --sds-c-input-shadow-focus: 0px 0px 0px 4px rgba(241, 111, 48, 0.2);
+}
+
+.THIS .label-hidden > label {
+    display: none;
+}

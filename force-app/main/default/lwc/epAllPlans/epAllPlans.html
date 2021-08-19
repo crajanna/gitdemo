@@ -1,0 +1,65 @@
+<template>
+  <div class="slds-grid">
+    <div class="slds-col slds-size_2-of-12 p-4">
+  
+      <c-beneficiary-list-component record-id ={userAccountId}></c-beneficiary-list-component>
+
+    </div>
+    <div class="slds-col slds-large-size_10-of-12 bg-gray">
+  
+ 
+  
+  
+      <div class="d-flex space-between ml-34 mr-34 mb-40">
+        <h3>All Plans</h3>
+        <div class="slds-form-element ml-auto" style="width:400px;">
+          <label class="slds-form-element__label sr-only" for="text-input-id-1">Search</label>
+          <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+            <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
+              <use xlink:href="icons/utility-sprite/svg/symbols.svg#search"></use>
+            </svg>
+            <input type="text" id="text-input-id-1" placeholder="Search Name, SSN, Account #, or Plan #" class="slds-input" />
+          </div>
+        </div>
+      </div>
+  
+  
+  
+      <div class="col-inner-wrap">
+  
+  
+        <div class="slds-grid slds-gutters slds-wrap">
+          <div class="slds-col slds-large-size_12-of-12">
+  
+            <template if:true={records}>
+              <c-custom-data-table                        
+                  records={records}
+                  show-table="true"
+                  columns={columns}
+                  recordsperpage="10"
+                  onactions={handleRowActions}
+                  onpagination={handlePagination}
+              >
+              </c-custom-data-table>
+          </template>
+  
+            <div class="text-right mt-40">
+              <button class="slds-button slds-button_brand mt-20 px-40" onclick={handleAddBeneficiary}>Add New Beneficiary</button>
+              <button  class="slds-button slds-button_brand mt-20 px-40" onclick={handleManageAccount}>Manage Account</button>
+              <!-- <a href="#" role="button" class="mt-20 mr-30" style="position:relative;top:10px;"><b>+ Add New Beneficiary</b></a>
+              <a href="#" role="button" class="slds-button slds-button_brand mt-20 px-40">Manage Account</a> -->
+            </div>
+  
+          </div>
+        </div>
+  
+  
+      </div><!-- /.col-inner-wrap -->
+  
+  
+    </div>
+  </div>
+  
+      
+
+</template>

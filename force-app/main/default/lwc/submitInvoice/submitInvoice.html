@@ -1,0 +1,201 @@
+<template>
+    <template if:true={isLoading}>
+        <div style="z-index: 10000 !important;">
+            <lightning-spinner alternative-text="Uploading......" size="medium" style="z-index: 10000 !important;"></lightning-spinner>
+        </div>
+    </template>
+
+    
+<template if:true={schoolInvoiceScreen}>
+        <table  border="0">
+            <tr>
+                <td width = "10%">
+                    &nbsp;
+                </td>
+                <td width = "35%">
+                    <lightning-input label="" accept=".csv"  name="file uploader" onchange={handleFilesChange} type="file" multiple></lightning-input>
+                </td>
+                <td width = "5%">
+                    &nbsp;
+                </td>
+                <td width = "40%">         
+                    <lightning-button label="Upload" onclick={handleSave} variant="brand" disabled={isTrue}></lightning-button>
+                </td>
+                <td width = "10%">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    
+    <br/><br/>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+    <template if:true={isSaved}>
+        School Name:
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+             <c-lookup-component onselected={handleSelectChange} objectname="Account" fieldname="Name"  label = "School"
+                    numrecords="10" iconname="standard:account" select-record-name={recordValue}> </c-lookup-component>
+            </div>
+        </div> 
+
+        <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+            <div class="slds-size_12-of-12">
+                  <template if:true={claimTermPicklist.data}>
+                          <lightning-combobox name="claimYear" value={termValue} label="Term"
+                          placeholder="Claim Term" options={claimTermPicklist.data.values}
+                          onchange={handleChangeClaimTermOptions} required 
+                          ></lightning-combobox> 
+                  
+                  </template>
+           </div> 
+      </div>
+
+      <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+        <div class="slds-size_12-of-12">        
+          <template if:true={claimYearPicklist.data}>
+                  <lightning-combobox name="claimYear" value={claimYearValue} label="Year"
+                  placeholder="Claim Year" options={claimYearPicklist.data.values}
+                  onchange={handleChangeClaimYearOptions} required 
+                  ></lightning-combobox> 
+     
+          </template>
+         </div>
+      </div>
+
+      <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+        <div class="slds-size_12-of-12">        
+          <template if:true={invoiceTypePicklist.data}>
+                  <lightning-combobox name="invoiceType" value={invoiceTypeValue} label="Invoice Type"
+                  placeholder="Invoice Type" options={invoiceTypePicklist.data.values}
+                  onchange={handleChangeInvoiceType} required 
+                  ></lightning-combobox> 
+     
+          </template>
+         </div>
+      </div>
+
+      <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+        <div class="slds-size_3-of-12">
+            <lightning-input type="number" name="totalEstimatedRecords" label="Total Records" value={totalEstimatedRecords}
+            onchange={handleTotalEstimatedRecordsChange}>
+        </lightning-input>
+        </div>
+        <div class="slds-size_1-of-12"></div>
+        <div class="slds-size_3-of-12">
+            <lightning-input type="number" name="totalEstimatedHours" label="Total Estimated Hours" value={totalEstimatedHours}
+            onchange={handleTotalEstimatedHoursChange}>
+        </lightning-input>
+        </div>
+        <div class="slds-size_1-of-12"></div>
+        <div class="slds-size_4-of-12">
+            <lightning-input type="number" name="totalEstimatedAmount" step="0.01" formatter="currency" label="Total Estimated Amount"
+            value={totalEstimatedAmount} onchange={handleTotalEstimatedAmountChange}>
+        </lightning-input>
+        </div>
+       </div>
+
+        <br/><br/> 
+        
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col"> <div class="slds-truncate" title="Student Id">Student Id</div></th>
+                    <th scope="col"> <div class="slds-truncate" title="SSN">SSN</div></th>
+                    <th scope="col"> <div class="slds-truncate" title="Birth Date">Birth Date</div></th>
+                    <th scope="col"> <div class="slds-truncate" title="Rate Code">Rate Code</div></th>
+                  <!--  <th scope="col" > <div class="slds-truncate" title="Dsec">Rate Desc</div></th> -->
+                    <th scope="col" > <div class="slds-truncate" title="CreditHr">Credit Hours</div></th>
+                    <th scope="col" > <div class="slds-truncate" title="Amount">Amount</div></th>
+                    <th scope="col" > <div class="slds-truncate" title="ReferenceNbr">Reference No</div></th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={arr} for:item="item" for:index="index">
+                    <tr key={item} class="slds-hint-parent">
+                    
+                        <td>
+                            <lightning-input access-key={index} type="text"  value={item.studentId} name="studentId" onchange={handleOnchangeStudName}></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input access-key={index} type="text"  value={item.ssn} name="ssn" onchange={handleOnchangeStudName}></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input access-key={index} type="date"  value={item.birthDate} name="birthDate" onchange={handleOnchangeStudName}></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-combobox access-key={index} name="rateCode"  value={item.rateCode} options={rateOptions}
+                            onchange={handleOnchangeStudName} ></lightning-combobox>
+                        </td>
+                       <!-- <td>
+                            <lightning-input access-key={index} type="text"  value={item.rateDesc} name="rateDesc" onchange={handleOnchangeStudName}></lightning-input>
+                        </td>-->
+                        <td>
+                            <lightning-input access-key={index} type="number"  value={item.creditHrBilled} name="creditHrBilled" onchange={handleOnchangeStudName}></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input access-key={index} type="number"  value={item.amtBilled} name="amtBilled" onchange={handleOnchangeStudName}></lightning-input>
+                        </td>    
+                        <td>
+                            <lightning-input access-key={index} type="number"  value={item.referenceNbr} name="referenceNbr" onchange={handleOnchangeStudName}></lightning-input>
+                        </td>                   
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+
+        <br/>
+
+        <div class="slds-align_absolute-center slds-m-top_small slds-m-bottom_medium">
+            <lightning-button variant="brand" label="Confirm Details" title="Confirm Details" onclick={goToconfirmationScreen}></lightning-button>
+        </div>
+
+    </template>
+
+</template> <!--schoolInvoiceScreen-->
+
+<template if:true={confirmationScreen}>    
+   
+    <br/>
+    <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+        <div class="slds-size_6-of-12"><h6 class="gray-grid-title">School</h6>     
+        <lightning-formatted-text value={recordValue} ></lightning-formatted-text></div>
+        <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Term</h6>     
+            <lightning-formatted-text value={termValue} ></lightning-formatted-text></div>
+     </div>
+    
+
+    <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+        <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Claim Year</h6>     
+        <lightning-formatted-text value={claimYearValue} ></lightning-formatted-text></div>
+        <div class="slds-size_6-of-12"><h6 class="gray-grid-title">Invoice Type</h6>     
+            <lightning-formatted-text value={invoiceTypeValue} ></lightning-formatted-text></div>
+     </div>
+
+     <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+        <div class="slds-size_4-of-12"><h6 class="gray-grid-title">Total Records</h6>     
+            <lightning-formatted-number value={totalEstimatedRecords} maximum-fraction-digits="2"></lightning-formatted-number></div>
+        <div class="slds-size_4-of-12"><h6 class="gray-grid-title">Total Estimated Credit Hours</h6>     
+            <lightning-formatted-number value={totalEstimatedHours} maximum-fraction-digits="2"></lightning-formatted-number></div>
+        <div class="slds-size_4-of-12"><h6 class="gray-grid-title">Total Estimated Amount</h6>     
+            <lightning-formatted-number value={totalEstimatedAmount} maximum-fraction-digits="2"></lightning-formatted-number></div>
+     </div>
+
+     <div class="slds-grid slds-gutters slds-container_large slds-container_center slds-p-bottom_large">
+        <div class="slds-size_4-of-12"><h6 class="gray-grid-title">Total Records</h6>     
+            <lightning-formatted-number value={totalRecords} maximum-fraction-digits="2"></lightning-formatted-number></div>
+        <div class="slds-size_4-of-12"><h6 class="gray-grid-title">Total Credit Hours</h6>     
+            <lightning-formatted-number value={totalCreditHrs} maximum-fraction-digits="2"></lightning-formatted-number></div>
+        <div class="slds-size_4-of-12"><h6 class="gray-grid-title">Total Amount</h6>     
+            <lightning-formatted-number value={totalAmount} maximum-fraction-digits="2"></lightning-formatted-number></div>
+     </div>
+    
+    <lightning-button variant="brand" label="Create Invoice(s)" title="Create Invoice(s)" onclick={createRecords}
+    class="slds-float_right slds-p-around_medium"></lightning-button>
+    <lightning-button variant="brand" label="Edit" title="Edit" onclick={editDetails}
+    class="slds-float_right slds-p-around_medium"></lightning-button>
+
+</template>  <!--confirmationScreen-->
+</template>

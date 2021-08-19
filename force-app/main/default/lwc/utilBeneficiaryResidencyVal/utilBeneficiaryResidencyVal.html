@@ -1,0 +1,78 @@
+<template>
+    <h6 class="mt-30">RESIDENCY VERIFICATION</h6>
+          <p>Instructions ipsum dolor sit amet, consectetur adipiscing elit.
+            Curabitur aliquam malesuada leo, nec blandit enim imperdiet sit amet.
+            Phasellus posuere elit maximus pellentesque scelerisque. Phasellus
+            commodo molestie est, sed tincidunt leo rhoncus nec.</p>
+  
+          <div class="slds-form-element mt-10 mb-10">
+            <label class="slds-form-element__label sr-only"
+              for="mailVerification">Mail in verification (You can change this
+              later)</label>
+            <lightning-combobox
+              name="resVerification"
+              value={resVerificationValue}
+              options={resVerificationOptions}
+              onchange={handleResVerificationChange}></lightning-combobox>
+          </div>
+          <template if:true={resDocPicklistValues.data}>
+            <div class="slds-form-element mt-10 mb-10">
+                <label class="slds-form-element__label sr-only"
+                  for="suffix">Suffix</label>
+  
+                <lightning-combobox
+                  name="resdoc"
+                  value={resDocvalue}
+                  placeholder="Select Document"
+                  options={resDocPicklistValues.data.values}
+                  onchange={handleResDocListChange}></lightning-combobox>
+  
+              </div>
+          </template>
+          <template if:true={showDocUpload}>
+            <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs mb-10">
+              <div class="slds-col slds-var-p-around_x-small slds-size_12-of-12">
+                <h6>Upload documents</h6>
+                <p>Select a document to upload for online verificaiton.</p>
+                <div class="custom-file mt-10 mb-10">
+                  <lightning-input type="file"
+                    accept=".jpg, .png, .gif, .pdf"
+                    label="Attachment" onchange={handleResDocFileChange}></lightning-input>
+                  {resDocFileName}
+                </div>
+              </div>  
+            </div>
+  
+          </template>
+          <template if:true={showDriverLicense}>
+            <div class="mb-10">
+              <lightning-input name="dmv" type="Text" placeholder="Driver's License Number"
+                value="" onchange={handleSsnChange}></lightning-input>
+            </div>
+  
+          </template>
+  
+          <!-- <img width= 50px height=50px
+            src="https://fpcb--fpcbdevp1--c.documentforce.com/sfc/dist/version/renditionDownload?rendition=ORIGINAL_Jpg&versionId=068P0000001FE84IAG&operationContext=DELIVERY&contentId=05TP0000004VhQJMA0&page=0&d=/a/P00000000CEL/vAYab2vQ35MHQ1TWHJ2lcyvmfdB0BOjRg6ski5PNQr0&oid=00DP0000000GMohMAG&dpt=null&viewId="/> -->
+          <!-- FILE UPLOAD -->
+          <div class="slds-grid slds-p-top_xx-large box-light-gray-inputs">
+            <div class="slds-col slds-var-p-around_x-small slds-size_2-of-12">
+              <img src={profileSrcData} alt="" class="upload-mug" />
+              <!-- <img src="https://fpcb--fpcbdevp1--c.documentforce.com/sfc/dist/version/renditionDownload?rendition=ORIGINAL_Jpg&versionId=068P0000001FE84IAG&operationContext=DELIVERY&contentId=05TP0000004VhQJMA0&page=0&d=/a/P00000000CEL/vAYab2vQ35MHQ1TWHJ2lcyvmfdB0BOjRg6ski5PNQr0&oid=00DP0000000GMohMAG&dpt=null&viewId="/> -->
+              <!-- <lightning-avatar size="large" variant="square" src={profileVersionId} fallback-icon-name="standard:avatar" alternative-text="Cindy Rice" class="slds-m-right_small upload-mug"></lightning-avatar>  -->
+            </div>
+            <div class="slds-col slds-var-p-around_x-small slds-size_10-of-12">
+              <h6>OPTIONAL PROFILE IMAGE</h6>
+              <p>Select an image to display for beneficiary. JPG, PNG, or GIF,
+                500kb max.</p>
+              <div class="custom-file mt-10">
+                <lightning-input type="file"
+                  accept=".jpg, .png, .gif"
+                  label="Attachment" onchange={handleFileChange}></lightning-input>
+                {profileFileName}
+              </div>
+  
+            </div>
+  
+          </div>
+</template>

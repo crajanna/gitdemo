@@ -1,0 +1,42 @@
+<template>
+
+  <template if:true={studentGuardianInformationStep}>
+    <c-sp-student-guardian-information onnext={goToNextStep} select-program-id={selectProgramId}>
+    </c-sp-student-guardian-information>
+  </template>
+
+  <template if:true={guardianInformationStep}>
+    <c-sp-guardian-information onnext={goToNextStep} onprevious={goToPreviousStep} guardian-id={guardianId}
+      select-program-id={selectProgramId} selected-student-id={selectedStudentId} account-id={accountId}>
+    </c-sp-guardian-information>
+  </template>
+
+
+  <template if:true={displayScholarshipResponsibilities}>
+    <template if:true={scholarshipRequirementStep}>
+      <c-sp-student-questions onnext={goToNextStep} onprevious={goToPreviousStep} guardian-id={guardianId}
+        select-program-id={selectProgramId} academic-interests={academicInterests} account-id={accountId}
+        essay-student-statement={essayStudentStatement} selected-student-id={selectedStudentId}
+        benefits-qualify={benefitsQualify} proof-of-benefits-files={proofOfBenefitsFiles} 
+        complete-high-school-or-attend-college={completeHighSchoolOrAttendCollege} mentor={mentor}
+        mentor-or-organization={mentorOrOrganization} working-with-mentor={workingWithMentor} institution={institution} florida-resident-to-qualify-files={floridaResidentToQualifyFiles}
+        semester={semester}>
+      </c-sp-student-questions>
+    </template>
+  </template>
+
+  <template if:true={studentResponsibilitesStep}>
+    <c-sp-student-responsibilites onnext={goToNextStep} onprevious={goToPreviousStep} guardian-id={guardianId}
+      select-program-id={selectProgramId} selected-student-id={selectedStudentId} academic-interests={academicInterests}
+      account-id={accountId} essay-student-statement={essayStudentStatement} video-files={videoFiles}
+      benefits-qualify={benefitsQualify} proof-of-benefits-files={proofOfBenefitsFiles}  florida-resident-to-qualify-files={floridaResidentToQualifyFiles}
+      complete-high-school-or-attend-college={completeHighSchoolOrAttendCollege} mentor={mentor}
+      mentor-or-organization={mentorOrOrganization} working-with-mentor={workingWithMentor} institution={institution}
+      semester={semester}></c-sp-student-responsibilites>
+    <!-- student-family-qualify-benefits={} florida-resident-to-qualify-for-a-florida={} -->
+  </template>
+
+
+
+
+</template>

@@ -1,0 +1,264 @@
+<!--
+  @description       : 
+  @author            : Pradeep Landge
+  @group             : 
+  @last modified on  : 02-25-2021
+  @last modified by  : Pradeep Landge
+  Modifications Log 
+  Ver   Date         Author           Modification
+  1.0   02-25-2021   Pradeep Landge   Initial Version
+-->
+<template>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+
+    <!--coverage screen -->
+    <template if:true={coverageScreen}>
+        <header class="slds-modal__header">
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Select Coverages</h2>
+        </header>
+        <lightning-dual-listbox name="coverages" label="Select Coverage Plans" source-label="Available Coverage Plans"
+            selected-label="Selected Coverage Plans" field-level-help="Select your preferred Coverage Plans"
+            options={coverageOptions} onchange={handleChangeSelectedCoverages} value={selectedCoveragesValues}>
+        </lightning-dual-listbox>
+        <lightning-button variant="brand" label="Next" title="Next" onclick={handlePolicyScreenNext}
+            disabled={coveragesNotSelected} class="slds-float_right slds-p-around_medium"></lightning-button>
+    </template>
+
+
+    <!--Create Claim Screen-->
+    <template if:true={newPolicyScreen}>
+        <header class="slds-modal__header">
+            <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">New Claim</h2>
+        </header>
+        <br>
+        School Name:
+        <div style="margin-top: -12px;">
+            <c-lookup-component onselected={handleSelectChange} objectname="Account" fieldname="Name"
+                numrecords="10" iconname="standard:account" select-record-name={recordValue} lookupstyle="width : 40%;"> </c-lookup-component>
+        </div>
+        <br>
+
+        <lightning-combobox name="Term" label="Term" value={termValue} placeholder="Select Claim Term"
+            options={claimTermOptions} onchange={handleChangeClaimTermOptions}></lightning-combobox><br>
+
+        <lightning-combobox name="Year" label="Year" value={claimYearValue} options={claimYearOptions}
+            onchange={handleChangeClaimYearOptions}></lightning-combobox><br>
+
+        <lightning-combobox name="Claim Type" label="Claim Type" value={claimTypeValue} placeholder="Select Claim Type"
+            options={claimTypeOptions} onchange={handleChangeClaimTypeOptions}></lightning-combobox><br>
+           
+           <!-- <lightning-combobox name="payment Options" label="Payment Options" value={paymentValue} placeholder="Select Payment Option"
+            options={paymentOptions} onchange={handlepaymentOptions}></lightning-combobox><br>-->
+        
+            <lightning-input type="number" name="requestedUnits" label="Requested Units" value={requestedUnitsValue}
+            onchange={handleRequestedUnitValueChange}>
+        </lightning-input><br>
+
+        <lightning-input type="number" name="requested Amount" step="0.01" formatter="currency" label="Requested Amount"
+            value={requestedAmountValue} onchange={handleRequestedAmountValueChange}>
+        </lightning-input><br>
+
+        <lightning-button variant="brand" label="Next" title="Next" onclick={goToFileUploadScreen}
+            class="slds-float_right slds-p-around_medium"></lightning-button>
+
+        <lightning-button variant="brand" label="Previous" title="previous" onclick={goToCoverageScreen}
+            class="slds-float_right slds-p-around_medium"></lightning-button>
+
+
+    </template>
+
+    <template if:true={documentScreen}>
+        <header class="slds-modal__header">
+            <h2 class="slds-modal__title slds-hyphenate">Upload Documents</h2>
+        </header>
+        <!-- <div class="slds-p-around_medium lgc-bg">
+            <lightning-file-upload
+            label="Upload Files"
+            name="fileUploader"
+            accept={acceptedUploadFormats}
+            onuploadfinished={handleUploadFinished}
+            multiple>
+    </lightning-file-upload>
+    <div class="slds-text-body_small slds-text-color_error">{uploadedFileNamesTemp}</div>
+        </div>-->
+        <lightning-input type="file" label="Attachment" onchange={handleFileUploaded} multiple>
+        </lightning-input>
+        <template for:each={filesUploaded} for:item="file">
+            <div key={file.Title} class="slds-text-body_small">{file.Title}</div>
+        </template>
+        <br>
+
+        <lightning-button variant="brand" label="Confirm Claim" title="Confirm Claim" onclick={goToconfirmationScreen}
+            class="slds-float_right slds-p-around_medium"></lightning-button>
+
+        <lightning-button variant="brand" label="Previous" title="Previous" onclick={goBackToClaimPage}
+            class="slds-float_right slds-p-around_medium"></lightning-button>
+
+    </template>
+
+
+    <template if:true={confirmationScreen}>
+        <div class="test-id__section slds-section  slds-is-open full forcePageBlockSection forcePageBlockSectionView"
+            data-aura-rendered-by="257:2096;a" data-aura-class="forcePageBlockSection forcePageBlockSectionView">
+
+            <div class="slds-modal__header">
+                <h2 class="slds-modal__title slds-hyphenate slds-text-heading--medium">
+                    Confirm Claim Details
+                </h2>
+            </div>
+            <div class="test-id__section-content slds-section__content section__content"
+                data-aura-rendered-by="273:2096;a" id="4:2096;a" aria-hidden="false"
+                style="transition: none 0s ease 0s;">
+                <div class="slds-form form-horizontal " data-aura-rendered-by="274:2096;a">
+                    <div class="slds-grid slds-gutters_small full cols-2 forcePageBlockSectionRow"
+                        data-aura-rendered-by="70:2096;a" data-aura-class="forcePageBlockSectionRow">
+                        <div class="slds-col slds-grid slds-has-flexi-truncate  full forcePageBlockItem forcePageBlockItemView"
+                            data-aura-rendered-by="11:2096;a"
+                            data-aura-class="forcePageBlockItem forcePageBlockItemView">
+                            <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element"
+                                data-aura-rendered-by="12:2096;a">
+                                <div class="test-id__field-label-container slds-form-element__label"
+                                    data-aura-rendered-by="13:2096;a"><span class="test-id__field-label"
+                                        data-aura-rendered-by="14:2096;a">School Name</span></div>
+                                <div class="slds-form-element__control slds-grid itemBody"
+                                    data-aura-rendered-by="16:2096;a">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow "
+                                        data-aura-rendered-by="17:2096;a"><span data-aura-rendered-by="9:2096;a"
+                                            class="uiOutputText"
+                                            data-aura-class="uiOutputText">{recordValue}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-grid slds-has-flexi-truncate  full forcePageBlockItem forcePageBlockItemView"
+                            data-aura-rendered-by="57:2096;a"
+                            data-aura-class="forcePageBlockItem forcePageBlockItemView">
+                            <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element"
+                                data-aura-rendered-by="58:2096;a">
+                                <div class="test-id__field-label-container slds-form-element__label"
+                                    data-aura-rendered-by="59:2096;a"><span class="test-id__field-label"
+                                        data-aura-rendered-by="60:2096;a">Term</span></div>
+                                <div class="slds-form-element__control slds-grid itemBody"
+                                    data-aura-rendered-by="16:2096;a">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow "
+                                        data-aura-rendered-by="17:2096;a"><span data-aura-rendered-by="9:2096;a"
+                                            class="uiOutputText"
+                                            data-aura-class="uiOutputText">{termValue}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="slds-grid slds-gutters_small full cols-2 forcePageBlockSectionRow"
+                        data-aura-rendered-by="134:2096;a" data-aura-class="forcePageBlockSectionRow">
+                        <div class="slds-col slds-grid slds-has-flexi-truncate  full forcePageBlockItem forcePageBlockItemView"
+                            data-aura-rendered-by="78:2096;a"
+                            data-aura-class="forcePageBlockItem forcePageBlockItemView">
+                            <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element"
+                                data-aura-rendered-by="79:2096;a">
+                                <div class="test-id__field-label-container slds-form-element__label"
+                                    data-aura-rendered-by="80:2096;a"><span class="test-id__field-label"
+                                        data-aura-rendered-by="81:2096;a">Claim Year</span></div>
+                                <div class="slds-form-element__control slds-grid itemBody"
+                                    data-aura-rendered-by="16:2096;a">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow "
+                                        data-aura-rendered-by="17:2096;a"><span data-aura-rendered-by="9:2096;a"
+                                            class="uiOutputText"
+                                            data-aura-class="uiOutputText">{claimYearValue}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-grid slds-has-flexi-truncate  full forcePageBlockItem forcePageBlockItemView"
+                            data-aura-rendered-by="121:2096;a"
+                            data-aura-class="forcePageBlockItem forcePageBlockItemView">
+                            <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element"
+                                data-aura-rendered-by="122:2096;a">
+                                <div class="test-id__field-label-container slds-form-element__label"
+                                    data-aura-rendered-by="123:2096;a"><span class="test-id__field-label"
+                                        data-aura-rendered-by="124:2096;a">Claim Type</span></div>
+                                <div class="slds-form-element__control slds-grid itemBody"
+                                    data-aura-rendered-by="16:2096;a">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow "
+                                        data-aura-rendered-by="17:2096;a"><span data-aura-rendered-by="9:2096;a"
+                                            class="uiOutputText"
+                                            data-aura-class="uiOutputText">{claimTypeValue}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="slds-grid slds-gutters_small full cols-2 forcePageBlockSectionRow"
+                        data-aura-rendered-by="134:2096;a" data-aura-class="forcePageBlockSectionRow">
+                        <div class="slds-col slds-grid slds-has-flexi-truncate  full forcePageBlockItem forcePageBlockItemView"
+                            data-aura-rendered-by="78:2096;a"
+                            data-aura-class="forcePageBlockItem forcePageBlockItemView">
+                            <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element"
+                                data-aura-rendered-by="79:2096;a">
+                                <div class="test-id__field-label-container slds-form-element__label"
+                                    data-aura-rendered-by="80:2096;a"><span class="test-id__field-label"
+                                        data-aura-rendered-by="81:2096;a">Requested Units</span></div>
+                                <div class="slds-form-element__control slds-grid itemBody"
+                                    data-aura-rendered-by="16:2096;a">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow "
+                                        data-aura-rendered-by="17:2096;a"><span data-aura-rendered-by="9:2096;a"
+                                            class="uiOutputText"
+                                            data-aura-class="uiOutputText">{requestedUnitsValue}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-grid slds-has-flexi-truncate  full forcePageBlockItem forcePageBlockItemView"
+                            data-aura-rendered-by="121:2096;a"
+                            data-aura-class="forcePageBlockItem forcePageBlockItemView">
+                            <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element"
+                                data-aura-rendered-by="122:2096;a">
+                                <div class="test-id__field-label-container slds-form-element__label"
+                                    data-aura-rendered-by="123:2096;a"><span class="test-id__field-label"
+                                        data-aura-rendered-by="124:2096;a">Requested Amount Value</span></div>
+                                <div class="slds-form-element__control slds-grid itemBody"
+                                    data-aura-rendered-by="16:2096;a">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow "
+                                        data-aura-rendered-by="17:2096;a"><span data-aura-rendered-by="9:2096;a"
+                                            class="uiOutputText"
+                                            data-aura-class="uiOutputText">{requestedAmountValue}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-gutters_small full cols-2 forcePageBlockSectionRow"
+                        data-aura-rendered-by="134:2096;a" data-aura-class="forcePageBlockSectionRow">
+                        <div class="slds-col slds-grid slds-has-flexi-truncate  full forcePageBlockItem forcePageBlockItemView"
+                            data-aura-rendered-by="78:2096;a"
+                            data-aura-class="forcePageBlockItem forcePageBlockItemView">
+                            <div class="slds-form-element slds-form-element_readonly slds-form-element_edit slds-grow slds-hint-parent override--slds-form-element"
+                                data-aura-rendered-by="79:2096;a">
+                                <div class="test-id__field-label-container slds-form-element__label"
+                                    data-aura-rendered-by="80:2096;a"><span class="test-id__field-label"
+                                        data-aura-rendered-by="81:2096;a">Selected Claims</span></div>
+                                <div class="slds-form-element__control slds-grid itemBody"
+                                    data-aura-rendered-by="16:2096;a">
+                                    <span class="test-id__field-value slds-form-element__static slds-grow "
+                                        data-aura-rendered-by="17:2096;a"><span data-aura-rendered-by="9:2096;a"
+                                            class="uiOutputText"
+                                            data-aura-class="uiOutputText">
+                                            <template for:each={SelOptionsLabels} for:item="cover" for:index="index">
+                                                <div key={cover.key}>
+                                                    {cover} <br/>
+                                                </div>
+                                               
+                                            </template>
+                                        
+                                        </span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <lightning-button variant="brand" label="Create Claim" title="Create Claim" onclick={CreateClaim}
+            class="slds-float_right slds-p-around_medium"></lightning-button>
+        <lightning-button variant="brand" label="Edit" title="Edit" onclick={editClaim}
+            class="slds-float_right slds-p-around_medium"></lightning-button>
+    </template>
+</template>

@@ -1,0 +1,77 @@
+<template>
+    <div class="box-dash">
+
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-large-size_4-of-12">
+
+                <!-- <img src={profileData} alt="profile" class="upload-mug" /> -->
+                <img src={profileData} alt="profile" class="mr-4" />
+            </div>
+            <div class="slds-col slds-large-size_4-of-12" style="padding-bottom:
+                90px;">
+                <div class="mb-20">
+                    <div class="title">Date of Birth</div>
+                    <div class="value">
+                        <lightning-formatted-date-time
+                            value={accDetails.dob}
+                            year="numeric"
+                            month="numeric"
+                            day="numeric"
+                            time-zone="UTC">
+                        </lightning-formatted-date-time>
+                    </div>
+                </div>
+
+                <div class="mb-20">
+                    <div class="title">Age / Grade</div>
+                    <div class="value">{accDetails.ageGrade}
+                       
+                    </div>
+                </div>
+
+                <div>
+                    <div class="title">Florida Resident</div>
+                    <div class="value">
+                        <!-- <img src={imageiconcheck20} class="mr-2"
+                            /> -->
+                            <lightning-icon icon-name="action:approval" size="xx-small" alternative-text="Approved" title="Approved"></lightning-icon>    
+                            {accDetails.residencyStatus}</div>
+                </div>
+
+            </div>
+            <div class="slds-col slds-large-size_4-of-12" style="padding-bottom:
+                90px;">
+
+                <div class="mb-20">
+                    <div class="title">Primary Phone</div>
+                    <div class="value">
+                        <lightning-formatted-phone value={accDetails.phone}></lightning-formatted-phone>
+                    </div>
+                </div>
+
+                <div class="mb-20">
+                    <div class="title">Email</div>
+                    <div class="value">
+                        <lightning-formatted-email value={accDetails.email} hide-icon></lightning-formatted-email>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="title">Mailing Address</div>
+                    <div class="value">
+
+                        <lightning-formatted-address 
+                        street={accDetails.street} 
+                        city={accDetails.city} 
+                        country="US" 
+                        province={accDetails.state} 
+                        postal-code={accDetails.zip}  disabled></lightning-formatted-address>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</template>

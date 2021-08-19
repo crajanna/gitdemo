@@ -1,0 +1,74 @@
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+            </lightning-spinner>
+        </template>
+    </div>
+    <main role="main" class="bg-white">
+
+
+        <!-- FORM + FAQ WRAP -->
+        <div class="slds-grid slds-gutters slds-container_x-large
+        slds-container_center slds-p-bottom_xx-large">
+            <div class="slds-col slds-size_9-of-12 mt-30">
+
+
+                <!-- BENEFICIARY -->
+                <c-util-beneficiary-type onheaderinput={handleInputs}></c-util-beneficiary-type>
+
+                <!-- GENERAL INFO ============================= -->
+                <c-util-beneficiary-general-info ongeneralinput={handleInputs} con-record={conRecord}>
+                </c-util-beneficiary-general-info>
+
+                <!-- CONTACT INFO ============================= -->
+                <c-util-beneficiary-contact-info onadressinput={handleAddressChange}></c-util-beneficiary-contact-info>
+
+                <!-- RESIDENCY VERIFICATION ============================= -->
+                <c-util-beneficiary-residency-val onresdocselected={handleResDocListChange}
+                    onresdocfilechange={handleResDocFileChange} onfilechange={handleFileChange}>
+                </c-util-beneficiary-residency-val>
+
+                <!-- CONTINUE -->
+                <div class="mt-5">
+                    <button onclick={createBeneficiaryInfoWithFile} class="slds-button
+                        slds-button_brand mt-20 px-40">Continue
+                    </button>
+                </div>
+
+            </div>
+            <div class="slds-col slds-size_3-of-12 mt-30">
+
+                <div class="callout">
+
+                    <h6 class="mb-3">FREQUENTLY ASKED QUESTIONS</h6>
+
+                    <h5>What if I don’t have their Social Security Number yet?</h5>
+                    <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+                        egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+                        bibendum erat libero et velit.</p>
+
+                    <h5>When do I need to submit proof of residency?</h5>
+                    <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+                        egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+                        bibendum erat libero et velit.</p>
+
+                    <h5>Question lorem ipsum dolor?</h5>
+                    <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+                        egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+                        bibendum erat libero et velit.</p>
+
+                    <h5>Question lorem ipsum dolor?</h5>
+                    <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+                        egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+                        bibendum erat libero et velit.</p>
+
+                    <h5>Question lorem ipsum dolor?</h5>
+                    <p>Dolor magni in doloremque ab est vitae at voluptatibus esse. Nulla
+                        egestas, sapien ac auctor venenatis, lectus ante ornare mauris, et
+                        bibendum erat libero et velit.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</template>

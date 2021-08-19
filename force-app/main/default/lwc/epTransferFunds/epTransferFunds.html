@@ -1,0 +1,108 @@
+<!-- sldsValidatorIgnore -->
+
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+          <lightning-spinner alternative-text="Loading" variant="brand"
+            size="large">
+          </lightning-spinner>
+        </template>
+      </div>
+
+      <div class="box-dash">
+        <div class="slds-grid slds-grid_align-center">
+            <div class="slds-col">
+                <div class="slds-grid slds-grid_align-center ">
+                    <div class="slds-size_12-of-12">
+            
+                        <div class="slds-form-element__control mb-20">
+                            <div class="slds-form-element__row">
+            
+                                    <div class="slds-form-element">
+                                        <div>
+                                            <lightning-combobox
+                                                name="SavignsPlanAccount"
+                                                label="From Account"
+                                                value=""
+                                                placeholder="Select 529 savings plan"
+                                                options={fromAccount}
+                                                onchange={handleFromAccountTypeChange}></lightning-combobox>
+                                        </div>
+                                    </div>
+            
+                            </div>
+                        </div>
+            
+                        <fieldset class="slds-form-element slds-form-element_compound">
+                            <legend class="slds-form-element__legend
+                                slds-form-element__label
+                                sr-only">General Info</legend>
+                            <div class="slds-form-element__control">
+                                <div class="slds-form-element__row">
+            
+                                        <div class="slds-form-element">
+                                            <div>
+                                                Available funds to transfer: <b><lightning-formatted-number value={availableFunds} format-style="currency" currency-code="USD"></lightning-formatted-number></b>
+                                            </div>
+                                        </div>
+            
+                                </div>
+                            </div>
+                        </fieldset>
+            
+            
+                        <div class="slds-form-element__control mb-20">
+                            <div class="slds-form-element__row">
+            
+                                    <div class="slds-form-element">
+                                        <div>
+                                            <lightning-combobox
+                                                name="SavignsPlanAccount"
+                                                label="To Account"
+                                                value=""
+                                                placeholder="Select 529 savings plan"
+                                                options={toAccount}
+                                                onchange={handleToAccountTypeChange}></lightning-combobox>
+                                        </div>
+                                    </div>
+            
+                            </div>
+                        </div>
+            
+            
+            
+            
+            
+                                <div class="slds-form-element">
+                                    <div>
+                                        <lightning-input class="amountCmp" name="amount"
+                                            type="text" value={fullAmount} label="Amount"
+                                            formatter="currency" placeholder="$0.00"
+                                            onchange={handleAmountChange}></lightning-input>
+                                    </div>
+                                </div>
+            
+                                <div class="slds-form-element">
+                                    <div class="slds-align_absolute-center">
+                                        <button class="slds-button slds-button_brand mt-20
+                                            px-40"
+                                            onclick={handleTransferFunds}>Transfer funds</button>
+                                        <button class="slds-button slds-button_brand mt-20
+                                            px-40"
+                                            onclick={handleCancel}>Cancel</button>
+            
+                                    </div>
+                                </div>
+            
+            
+                        </div>
+            
+                    </div>
+            </div>
+           
+          </div>
+
+
+    </div>
+
+    </template>

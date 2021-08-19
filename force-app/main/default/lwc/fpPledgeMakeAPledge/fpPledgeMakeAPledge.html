@@ -1,0 +1,215 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-19-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   05-07-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <div class="slds-grid f-comp pledge-header">
+        <div class="slds-col">
+
+            <h1>Become a Donor</h1>
+            <p>Make a pledge for the program you have selected.</p>
+
+        </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="slds-grid slds-gutters_x-small f-comp pledge-steps-new">
+
+        <div class="slds-col">
+            <div class="btn-wiz-new done">
+                <span class="num"><span>1</span></span> <span class="title">Choose Program</span>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz-new active">
+                <span class="num"><span>2</span></span> <span class="title">Make A Pledge</span>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>3</span></span> <span class="title">Specify Payment</span>
+            </div>
+        </div>
+
+        <div class="slds-col">
+            <div class="btn-wiz-new">
+                <span class="num"><span>4</span></span> <span class="title">Finish</span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+    <div class="slds-grid slds-wrap f-comp pledge-content">
+
+        <!-- OTHER PROGRAMS -->
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12">
+            <div class="pledge-card-wrap">
+
+                <div class="pledge-inner">
+                    <h2>Make a Pledge</h2>
+                    <p class="hr-botm">
+                        Select the amount you are pledging.
+                    </p>
+
+                    <!-- FORM ELEMENTS -->
+                    <div class="slds-form" role="list">
+                        <div class="slds-form__row mb-20">
+                            <div class="slds-form__item" role="listitem">
+                                <div class="slds-form-element slds-form-element_stacked">
+                                    <label class="slds-form-element__label" for="howMuch">What amount would you like to
+                                        pledge?</label>
+                                    <div
+                                        class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                                        <img src={dollarIcon}
+                                            class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default"
+                                            aria-hidden="true" />
+                                        <input type="number" id="howMuch" name="howMuch" value={howMuch}
+                                            class="slds-input" placeholder="0.00" onkeyup={handleChange}
+                                            onchange={handleChange} />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <template if:true={displayProduct}>
+                                <div class="slds-form__item" role="listitem">
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-01">Where do
+                                            you want to make an
+                                            impact?</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select class="slds-select" name="contribution" id="contribution"
+                                                    onchange={handleChange}>
+                                                    <option disabled selected value>-- select an option --</option>
+                                                    <option>Where Most Needed</option>
+                                                    <option>County</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+
+                        <div class="slds-form__row mb-20">
+
+
+                            <template if:true={enableCounty}>
+                                <div class="slds-form__item" role="listitem">
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-01">Which
+                                            County?</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select class="slds-select" id="county" name="county"
+                                                    onchange={handleChange}>
+                                                    <template if:true={isCounty}>
+                                                        <option selected="selected">All</option>
+                                                        <template if:true={countyNames}>
+                                                            <template for:each={countyNames} for:item="countyName">
+                                                                <option key={countyName}>{countyName}</option>
+                                                            </template>
+                                                        </template>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <template if:true={enableZipCodes}>
+                                <div class="slds-form__item" role="listitem">
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                        <label class="slds-form-element__label" for="horizontal-input-id-01">Which ZIP
+                                            Code?</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                                <select class="slds-select" id="zip" name="zip" onchange={handleChange}>
+                                                    <option selected="selected">All</option>
+                                                    <template if:true={zipCodes}>
+                                                        <template for:each={zipCodes} for:item="zipCode">
+                                                            <option key={zipCode}>{zipCode}</option>
+                                                        </template>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="text-right">
+
+                        <button onclick={handleGoBack}
+                            class="slds-button slds-button_brand btn-sm px-20 btn-reverse mr-10"
+                            data-gtmid="Make A Pledge - Go Back">Go
+                            Back</button>
+
+                        <template if:true={displayNext}>
+                            <button class="slds-button slds-button_brand btn-sm px-40" data-gtmid="Make A Pledge - Next"
+                                onclick={handleMakePledge}>Next</button>
+                        </template>
+                        <template if:false={displayNext}>
+                            <button class="slds-button slds-button_brand btn-sm px-40"
+                                style="background: lightgrey;border: 2px solid lightgrey;"
+                                data-gtmid="Make A Pledge - Next">Next</button>
+
+                        </template>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- SELECTED PROGRAM -->
+
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+            <div class="pledge-card-wrap card-right p-0">
+                <div class="pledge-card">
+                    <template if:true={productImgURL}>
+                        <div class="img-wrap">
+                            <img src={productImgURL} alt="program" />
+                        </div>
+                    </template>
+                    <div class="pledge-card-body">
+                        <div class="d-flex space-between mb-20 mt-20 hr-botm">
+                            <div class="icon-box icon-burgundy mr-10">
+                                <img src={pledgeIcon} class="icon" alt="tasks icon" />
+                            </div>
+                            <h6 class="card-heading">My Pledges</h6>
+                            <h6 class="card-heading ml-auto">TOTAL: <span class="text-gray1">
+                                    <lightning-formatted-number value={donationAmount} format-style="currency"
+                                        currency-code="USD"></lightning-formatted-number>
+                                </span> <span class="text-400">/ <lightning-formatted-number value={pledgeAmout}
+                                        format-style="currency" currency-code="USD"></lightning-formatted-number></span>
+                            </h6>
+                        </div>
+                        <h3>{productName}<a href={productLearnMoreURL} target="_blank"><img src={externalLinkIcon}
+                                    class="icon-shift ml-5" alt="open external link" /></a></h3>
+                        <p>{priductDescription}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>

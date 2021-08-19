@@ -1,0 +1,25 @@
+@import 'c/fpCssLibrary';
+
+.f-comp .j-con-cen {
+    justify-content: center;
+}
+.f-comp .f-dir-col {
+    flex-direction: column;
+}
+.f-comp .d-flex {
+    display: flex;
+}
+.f-comp .space-between {
+    justify-content: space-between;
+}
+.f-comp .d-flex {
+    display: flex;
+}
+
+.f-comp .mb-20 {
+    margin-bottom: 20px !important;
+}
+
+.f-comp .card-team {
+    background-color: #ffffff;
+}
